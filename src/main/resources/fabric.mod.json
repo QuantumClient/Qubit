@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "qubit",
+  "version": "${version}",
+  "name": "Qubit",
+  "description": "",
+  "authors": ["Quantum Dev team"],
+  "contact": {},
+  "license": "GPL-3.0",
+  "icon": "assets/qubit/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "org.quantumclient.qubit.Qubit"
+    ]
+  },
+  "mixins": [
+    "qubit.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "minecraft": "1.16.5"
+  }
+}

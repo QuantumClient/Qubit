@@ -19,6 +19,9 @@ public class Module implements Wrapper {
 
     private final Category category;
 
+    protected boolean open = false;
+
+    private boolean isBinding = false;
     private int bind;
     private boolean toggled;
     private List<Setting> settingList;
@@ -32,6 +35,10 @@ public class Module implements Wrapper {
 
     public Module(String name, String description, Category category) {
         this(name, description, -1, category);
+    }
+
+    public Module(String name, Category category, int bind) {
+        this(name, null, bind, category);
     }
 
     public Module(String name, Category category) {
@@ -98,4 +105,25 @@ public class Module implements Wrapper {
     public int getBind() {
         return bind;
     }
+
+    public boolean isOpen() {
+        return open;
+    }
+
+    public void setOpen(boolean open) {
+        this.open = open;
+    }
+
+    public boolean isBinding() {
+        return isBinding;
+    }
+
+    public void setBinding(boolean binding) {
+        isBinding = binding;
+    }
+
+    public void setBind(int bind) {
+        this.bind = bind;
+    }
+
 }

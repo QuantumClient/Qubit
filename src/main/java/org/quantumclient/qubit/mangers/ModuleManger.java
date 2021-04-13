@@ -6,6 +6,7 @@ import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.event.EventKeyPress;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
+import org.quantumclient.qubit.module.movement.ClickGui;
 import org.quantumclient.qubit.module.movement.Sprint;
 import org.quantumclient.qubit.module.movement.TestModule;
 
@@ -24,6 +25,7 @@ public class ModuleManger {
         EventBus.register(this);
         add(new TestModule());
         add(new Sprint());
+        add(new ClickGui());
     }
 
     private void add(Module module) {
@@ -53,7 +55,7 @@ public class ModuleManger {
     }
 
     @Subscribe
-    private void onKeyPress(EventKeyPress event) {
+    public void onKeyPress(EventKeyPress event) {
         if (event.getAction() != GLFW.GLFW_PRESS) return;
         if (mc.currentScreen != null) return;
         for (Module module : modules) {

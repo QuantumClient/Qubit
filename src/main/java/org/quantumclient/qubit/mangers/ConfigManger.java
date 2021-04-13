@@ -10,14 +10,12 @@ import org.quantumclient.qubit.settings.Setting;
 import org.quantumclient.qubit.settings.numbers.FloatSetting;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings({"unchecked", "rawtypes"})

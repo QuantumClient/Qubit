@@ -7,8 +7,10 @@ import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
 import org.quantumclient.qubit.settings.Setting;
+import org.quantumclient.qubit.settings.numbers.FloatSetting;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -65,7 +67,7 @@ public class ConfigManger {
             dataMap.put("Toggled", module.isToggled());
             dataMap.put("Bind", module.getBind());
             if (module.hasSetting()) {
-                Map<String, Object> settingMap = new HashMap<>();
+                Map<String, Object> settingMap = new LinkedHashTreeMap<>();
                 for (Setting setting : module.getSettingList()) {
                     settingMap.put(setting.getName(), setting.getValue());
                 }
@@ -84,11 +86,17 @@ public class ConfigManger {
             InputStream inputStream = Files.newInputStream(Paths.get(moduleLocation + module.getName() + ".yml"));
             Map<String, Object> data = yaml.load(inputStream);
             if (data == null || data.get("Name") == null) continue;
-            module.setToggled((Boolean) data.get("Toggled"));
+            module.setToggled((boolean) data.get("Toggled"));
             if (module.hasSetting()) {
+                Map<String, Object> settingMap = (Map<String, Object>) data.get("Settings");
                 for (Setting setting : module.getSettingList()) {
-                    Map<String, Object> settingMap = (Map<String, Object>) data.get("Settings");
-                    if (settingMap.containsKey(setting.getName())) setting.setValue(settingMap.get(setting.getName()));
+                    if (settingMap.containsKey(setting.getName())) {
+                        if (setting instanceof FloatSetting) {
+                            setting.setValue(((Double) settingMap.get(setting.getName())).floatValue()); /*Yaml seems to load floats as doubles no matter what i do so this is have to do */
+                        } else {
+                            setting.setValue(settingMap.get(setting.getName()));
+                        }
+                    }
                 }
             }
             inputStream.close();

@@ -2,10 +2,10 @@ package org.quantumclient.qubit.settings;
 
 public class CheckSetting extends Setting<Boolean> {
 
-    public CheckSetting(String name, String description, boolean vaule) {
+    public CheckSetting(String name, String description, boolean value) {
         this.name = name;
         this.description = description;
-        this.value = vaule;
+        this.value = value;
     }
 
     public CheckSetting(String name, boolean value) {

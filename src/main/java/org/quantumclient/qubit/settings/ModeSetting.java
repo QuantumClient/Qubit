@@ -15,6 +15,19 @@ public class ModeSetting extends Setting<String> {
         this(name, null, vaule, modes);
     }
 
+    public String  nextMode() {
+        int i = 0;
+        String returnString;
+        for (String string : modes) {
+            if (string.equals(getValue())) {
+                break;
+            }
+            i++;
+        }
+        if (i + 1 == modes.length) returnString = modes[0];
+        else returnString = modes[i + 1];
+        return returnString;
+    }
 
     public String[] getModes() {
         return modes;

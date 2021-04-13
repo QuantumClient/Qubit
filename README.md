@@ -12,3 +12,6 @@ please try to be descriptive.
 
 ### License
 If you are modifying Qubit or using any of its features you are required to publicly disclose the source code and use the GPL-3.0 license.
+
+### The name
+Qubit is a bit of Quantum and so what better for a client made by the Quantum developers, with that being said this is completely custom and shares no code with Quantum or any of client.

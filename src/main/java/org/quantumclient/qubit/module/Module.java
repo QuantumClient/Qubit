@@ -126,4 +126,8 @@ public class Module implements Wrapper {
         this.bind = bind;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
 }

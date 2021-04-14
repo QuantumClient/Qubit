@@ -4,13 +4,16 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import org.quantumclient.qubit.module.Category;
+import org.quantumclient.qubit.utils.RenderUtils;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClickGuiScreen extends Screen {
 
     private List<Frame> frames = new ArrayList<>();
+    private static String  description;
 
     public ClickGuiScreen() {
         super(Text.of("ClickGui"));
@@ -29,10 +32,15 @@ public class ClickGuiScreen extends Screen {
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
         super.render(matrix, mouseX, mouseY, delta);
-        //super.renderBackground(matrix);
+        super.renderBackground(matrix);
         for (Frame frame : frames) {
             frame.render(matrix, mouseX, mouseY);
         }
+        if (description != null && description != "") {
+            RenderUtils.drawRect(mouseX + 10, mouseY, mouseX + 15 + client.textRenderer.getWidth(description), mouseY + client.textRenderer.fontHeight, new Color(47, 47, 47, 200));
+            client.textRenderer.draw(matrix, description, mouseX + 12, mouseY, -1);
+        }
+        description = null;
     }
 
     @Override
@@ -63,4 +71,9 @@ public class ClickGuiScreen extends Screen {
         }
         return super.keyPressed(keyCode, scanCode, modifiers);
     }
+
+    static void setDescription(String s) {
+        description = s;
+    }
+
 }

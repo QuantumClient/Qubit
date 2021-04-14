@@ -2,6 +2,7 @@ package org.quantumclient.qubit.gui.click;
 
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
 import org.apache.commons.lang3.StringUtils;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.Category;
@@ -46,9 +47,13 @@ public class Frame implements Wrapper {
             if(mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                 if (clickedButton == 0) module.toggle();
                 if (clickedButton == 1) module.setOpen(!module.isOpen());
+                ClickGuiScreen.setDescription(module.getDescription());
             }
             m++;
             if (module.isOpen() && module.hasSetting()) for (Setting setting : module.getSettingList()) {
+                if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
+                    ClickGuiScreen.setDescription(setting.getDescription());
+                }
                 if (setting instanceof CheckSetting) {
                     CheckSetting checkSetting = (CheckSetting) setting;
                     RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, (checkSetting.getValue()) ? new Color(63, 91, 115, 150) : new Color(0, 0, 0, 150));

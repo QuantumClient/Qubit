@@ -9,7 +9,7 @@ import org.quantumclient.qubit.module.Module;
 public class ClickGui extends Module {
 
     public ClickGui() {
-        super("ClickGUi", Category.MOVEMENT, GLFW.GLFW_KEY_RIGHT_SHIFT);
+        super("ClickGui", "Opens a control panel for modules", GLFW.GLFW_KEY_RIGHT_SHIFT, Category.CLIENT);
     }
 
     @Override

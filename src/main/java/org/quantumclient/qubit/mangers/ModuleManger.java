@@ -6,9 +6,9 @@ import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.event.EventKeyPress;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
-import org.quantumclient.qubit.module.movement.ClickGui;
-import org.quantumclient.qubit.module.movement.Sprint;
-import org.quantumclient.qubit.module.movement.TestModule;
+import org.quantumclient.qubit.module.client.*;
+import org.quantumclient.qubit.module.combat.Offhand;
+import org.quantumclient.qubit.module.movement.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -26,6 +26,7 @@ public class ModuleManger {
         add(new TestModule());
         add(new Sprint());
         add(new ClickGui());
+        add(new Offhand());
     }
 
     private void add(Module module) {

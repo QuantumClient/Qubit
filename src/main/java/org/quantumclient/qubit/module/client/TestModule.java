@@ -1,4 +1,4 @@
-package org.quantumclient.qubit.module.movement;
+package org.quantumclient.qubit.module.client;
 
 import org.lwjgl.glfw.GLFW;
 import org.quantumclient.energy.Subscribe;

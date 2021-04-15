@@ -2,6 +2,7 @@ package org.quantumclient.qubit.gui.click;
 
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
 import org.apache.commons.lang3.StringUtils;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.Category;
@@ -40,17 +41,12 @@ public class Frame implements Wrapper {
 
     void render(MatrixStack matrix, int mouseX, int mouseY) {
         int m = 1;
-        RenderUtils.drawRect(x, y, x + width, y + height, new Color(63, 91, 115));
-        mc.textRenderer.draw(matrix, StringUtils.capitalize(category.name().toLowerCase()), x + 2, y + 4, -1);
-        if(mouseX >= x && mouseY >= y && mouseX <= x + width && mouseY <= y + height) {
-            if (clickedButton == 1) open = !open;
-            if (dragging) {
-                x = mouseX - (oldMX - x);
-                y = mouseY - (oldMY - y);
-            }
-            oldMX = mouseX;
-            oldMY = mouseY;
-        }
+        RenderUtils.drawRect(x - 5 , y, x + width + 5, y + height, new Color(63, 91, 115));
+        RenderUtils.drawRectOutLine(x - 5, y, x + width + 5, (float) (y + height - 0.8), new Color(100, 141, 184));
+
+
+        mc.textRenderer.draw(matrix, StringUtils.capitalize(category.name().toLowerCase()), (x + ((x + width) - x) / 2 - (mc.textRenderer.getWidth(new LiteralText(category.name().toLowerCase()))) / 2), y + 4, -1);
+
         if (open) for (Module module : Qubit.getModuleManger().getModulesInCat(category)) {
             RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, (module.isToggled()) ? new Color(63, 91, 115, 150) : new Color(0, 0, 0, 150));
             mc.textRenderer.draw(matrix, StringUtils.capitalize(module.getName()), x + 2, y + 4 + height * m, -1);
@@ -131,6 +127,15 @@ public class Frame implements Wrapper {
                 }
                 m++;
             }
+        }
+        if(mouseX >= x && mouseY >= y && mouseX <= x + width && mouseY <= y + height) {
+            if (clickedButton == 1) open = !open;
+            if (dragging) {
+                x = mouseX - (oldMX - x);
+                y = mouseY - (oldMY - y);
+            }
+            oldMX = mouseX;
+            oldMY = mouseY;
         }
         clickedButton = -1;
         key = -1;

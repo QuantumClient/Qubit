@@ -27,14 +27,18 @@ public class ModuleManger {
         add(new Sprint());
         add(new ClickGui());
         add(new Offhand());
+        add(new ToggleMsg());
     }
 
     private void add(Module module) {
         modules.add(module);
     }
 
-    public Module getModule(Module module) {
-        return getModule(module.getName());
+    public Module getModule(Class<? extends Module> module) {
+        return modules.stream()
+                .filter(mod -> mod.getClass().equals(module))
+                .findFirst()
+                .orElse(null);
     }
 
     public Module getModule(String name) {
@@ -42,6 +46,14 @@ public class ModuleManger {
                 .filter(mod -> mod.getName().equalsIgnoreCase(name))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public boolean isModuleEnabled(Class<? extends Module> module) {
+        return getModule(module).isToggled();
+    }
+
+    public boolean isModuleEnabled(String module) {
+        return getModule(module).isToggled();
     }
 
     public List<Module> getModules() {

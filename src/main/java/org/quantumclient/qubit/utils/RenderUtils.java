@@ -27,6 +27,19 @@ public class RenderUtils {
         end();
     }
 
+    public static void drawRectOutLine(float x, float y, float w, float h, Color color) {
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        begin();
+        bufferbuilder.begin(GL11.GL_LINE_LOOP, VertexFormats.POSITION_COLOR);
+        bufferbuilder.vertex(x, h, 0).color(color.getRed()/255.0f, color.getGreen()/255.0f, color.getBlue()/255.0f, color.getAlpha()/255.0f).next();
+        bufferbuilder.vertex(w, h, 0).color(color.getRed()/255.0f, color.getGreen()/255.0f, color.getBlue()/255.0f, color.getAlpha()/255.0f).next();
+        bufferbuilder.vertex(w, y, 0).color(color.getRed()/255.0f, color.getGreen()/255.0f, color.getBlue()/255.0f, color.getAlpha()/255.0f).next();
+        bufferbuilder.vertex(x, y, 0).color(color.getRed()/255.0f, color.getGreen()/255.0f, color.getBlue()/255.0f, color.getAlpha()/255.0f).next();
+        tessellator.draw();
+        end();
+    }
+
     private static void begin() {
         GlStateManager.enableBlend();
         GlStateManager.disableTexture();

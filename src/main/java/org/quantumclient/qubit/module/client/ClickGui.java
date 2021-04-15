@@ -5,7 +5,6 @@ import org.quantumclient.qubit.gui.click.ClickGuiScreen;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
 
-
 public class ClickGui extends Module {
 
     public ClickGui() {

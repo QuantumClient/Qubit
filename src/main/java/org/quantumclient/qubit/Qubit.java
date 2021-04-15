@@ -1,6 +1,7 @@
 package org.quantumclient.qubit;
 
 import net.fabricmc.api.ModInitializer;
+import org.quantumclient.qubit.mangers.CommandManger;
 import org.quantumclient.qubit.mangers.ConfigManger;
 import org.quantumclient.qubit.mangers.ModuleManger;
 import org.quantumclient.qubit.utils.Wrapper;
@@ -12,10 +13,12 @@ public class Qubit implements ModInitializer, Wrapper {
 
     protected static ModuleManger moduleManger = new ModuleManger();
     protected static ConfigManger configManger = new ConfigManger();
+    protected static CommandManger commandManger = new CommandManger();
 
     @Override
     public void onInitialize() {
         moduleManger.init();
+        commandManger.init();
         configManger.init();
         mc.execute(() -> mc.getWindow().setTitle(String.format("%s - %s", NAME, VERSION)));
         Runtime.getRuntime().addShutdownHook(new Thread(() -> configManger.save()));
@@ -28,4 +31,9 @@ public class Qubit implements ModInitializer, Wrapper {
     public static ModuleManger getModuleManger() {
         return moduleManger;
     }
+
+    public static CommandManger getCommandManger() {
+        return commandManger;
+    }
+
 }

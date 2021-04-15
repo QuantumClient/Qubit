@@ -45,7 +45,6 @@ public class Frame implements Wrapper {
         RenderUtils.drawRect(x - 5 , y, x + width + 5, y + height, new Color(63, 91, 115));
         RenderUtils.drawRectOutLine(x - 5, y, x + width + 5, (float) (y + height - 0.8), new Color(100, 141, 184));
 
-
         mc.textRenderer.draw(matrix, StringUtils.capitalize(category.name().toLowerCase()), (x + ((x + width) - x) / 2 - (mc.textRenderer.getWidth(new LiteralText(category.name().toLowerCase()))) / 2), y + 4, -1);
 
         if (open) for (Module module : Qubit.getModuleManger().getModulesInCat(category)) {

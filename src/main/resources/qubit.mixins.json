@@ -3,12 +3,13 @@
   "minVersion": "0.8",
   "package": "org.quantumclient.qubit.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [
-    "MixinInGameHud"
-  ],
+  "mixins": [],
   "client": [
     "MixinKeyboard",
-    "MixinMinecraftClient"
+    "MixinMinecraftClient",
+    "MixinClientConnection",
+    "MixinInGameHud",
+    "MixinCommandSuggestor"
   ],
   "injectors": {
     "defaultRequire": 1

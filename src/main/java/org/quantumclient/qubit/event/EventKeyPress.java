@@ -19,5 +19,4 @@ public class EventKeyPress extends Event {
     public int getAction() {
         return action;
     }
-
 }

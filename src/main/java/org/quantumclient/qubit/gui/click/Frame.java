@@ -49,7 +49,11 @@ public class Frame implements Wrapper {
         mc.textRenderer.draw(matrix, StringUtils.capitalize(category.name().toLowerCase()), (x + ((x + width) - x) / 2 - (mc.textRenderer.getWidth(new LiteralText(category.name().toLowerCase()))) / 2), y + 4, -1);
 
         if (open) for (Module module : Qubit.getModuleManger().getModulesInCat(category)) {
-            RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, (module.isToggled()) ? new Color(63, 91, 115, 150) : new Color(0, 0, 0, 150));
+            RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
+            if (module.isToggled())
+                RenderUtils.drawRect(x, y + m * height + 2, x + width, y + height + m * height - 1, new Color(63, 91, 115));
+
+            //RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, (module.isToggled()) ? new Color(63, 91, 115, 150) : new Color(0, 0, 0, 150));
             mc.textRenderer.draw(matrix, StringUtils.capitalize(module.getName()), x + 2, y + 4 + height * m, -1);
             if(mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                 if (clickedButton == 0) module.toggle();
@@ -63,7 +67,10 @@ public class Frame implements Wrapper {
                 }
                 if (setting instanceof CheckSetting) {
                     CheckSetting checkSetting = (CheckSetting) setting;
-                    RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, (checkSetting.getValue()) ? new Color(63, 91, 115, 150) : new Color(0, 0, 0, 150));
+                    RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
+                    if (checkSetting.getValue())
+                        RenderUtils.drawRect(x, y + m * height + 2, x + width, y + height + m * height - 1, new Color(63, 91, 115));
+
                     mc.textRenderer.draw(matrix, StringUtils.capitalize(setting.getName()), x + 2, y + 4 + height * m, -1);
                     if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                         if (clickedButton == 0) checkSetting.setValue(!checkSetting.getValue());
@@ -81,7 +88,7 @@ public class Frame implements Wrapper {
                     FloatSetting floatSetting = (FloatSetting) setting;
                     float newWidth = width * (floatSetting.getValue() - floatSetting.getMin()) / (floatSetting.getMax() - floatSetting.getMin());
                     RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
-                    RenderUtils.drawRect(x, y + m * height + 2, x + newWidth , y + height + m * height - 2, new Color(63, 91, 115));
+                    RenderUtils.drawRect(x, y + m * height + 2, x + newWidth , y + height + m * height - 1, new Color(63, 91, 115));
                     mc.textRenderer.draw(matrix, StringUtils.capitalize(setting.getName()) + ": " + setting.getValue(), x + 2, y + 4 + height * m, -1);
                     if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                         if (dragging) {
@@ -99,7 +106,7 @@ public class Frame implements Wrapper {
                     DoubleSetting doubleSetting = (DoubleSetting) setting;
                     double newWidth = width * (doubleSetting.getValue() - doubleSetting.getMin()) / (doubleSetting.getMax() - doubleSetting.getMin());
                     RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
-                    RenderUtils.drawRect(x, y + m * height + 2, (float) (x + newWidth), y + height + m * height - 2, new Color(63, 91, 115));
+                    RenderUtils.drawRect(x, y + m * height + 2, (float) (x + newWidth), y + height + m * height - 1, new Color(63, 91, 115));
                     mc.textRenderer.draw(matrix, StringUtils.capitalize(setting.getName()) + ": " + setting.getValue(), x + 2, y + 4 + height * m, -1);
                     if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                         if (dragging) {

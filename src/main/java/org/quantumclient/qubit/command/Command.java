@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.command.CommandSource;
 import org.jetbrains.annotations.Nullable;
 
-public class Command {
+public abstract class Command {
 
     protected String name;
 
@@ -21,8 +21,6 @@ public class Command {
         this(name, null);
     }
 
-    public void register(CommandDispatcher<CommandSource> dispatcher) {
-
-    }
+    public abstract void register(CommandDispatcher<CommandSource> dispatcher);
 
 }

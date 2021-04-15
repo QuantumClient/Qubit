@@ -3,6 +3,7 @@ package org.quantumclient.qubit.gui.click;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
+import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.utils.RenderUtils;
 
@@ -27,6 +28,7 @@ public class ClickGuiScreen extends Screen {
             frames.add(new Frame(category, 20 + (i * 110), 30));
             i++;
         }
+        Qubit.getConfigManger().loadGui(this);
     }
 
     @Override
@@ -72,8 +74,17 @@ public class ClickGuiScreen extends Screen {
         return super.keyPressed(keyCode, scanCode, modifiers);
     }
 
+    @Override
+    public void onClose() {
+        super.onClose();
+        Qubit.getConfigManger().saveGui(this);
+    }
+
     static void setDescription(String s) {
         description = s;
     }
 
+    public List<Frame> getFrames() {
+        return frames;
+    }
 }

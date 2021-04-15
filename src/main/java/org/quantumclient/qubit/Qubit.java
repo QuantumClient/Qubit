@@ -21,6 +21,10 @@ public class Qubit implements ModInitializer, Wrapper {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> configManger.save()));
     }
 
+    public static ConfigManger getConfigManger() {
+        return configManger;
+    }
+
     public static ModuleManger getModuleManger() {
         return moduleManger;
     }

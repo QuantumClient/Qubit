@@ -2,7 +2,6 @@ package org.quantumclient.qubit.gui.click;
 
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
 import org.apache.commons.lang3.StringUtils;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.Category;
@@ -21,14 +20,17 @@ import java.math.RoundingMode;
 
 public class Frame implements Wrapper {
 
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
+    private int oldMX;
+    private int oldMY;
     private final Category category;
     private final int width = 90;
     private final int height = 14;
     private int key;
     private int clickedButton;
     private boolean dragging;
+    private boolean open = true;
 
     public Frame(Category category, int x, int y) {
         this.category = category;
@@ -38,10 +40,18 @@ public class Frame implements Wrapper {
 
     void render(MatrixStack matrix, int mouseX, int mouseY) {
         int m = 1;
-        RenderUtils.drawRect(x, y, x + width, y + 14, new Color(63, 91, 115));
+        RenderUtils.drawRect(x, y, x + width, y + height, new Color(63, 91, 115));
         mc.textRenderer.draw(matrix, StringUtils.capitalize(category.name().toLowerCase()), x + 2, y + 4, -1);
-
-        for (Module module : Qubit.getModuleManger().getModulesInCat(category)) {
+        if(mouseX >= x && mouseY >= y && mouseX <= x + width && mouseY <= y + height) {
+            if (clickedButton == 1) open = !open;
+            if (dragging) {
+                x = mouseX - (oldMX - x);
+                y = mouseY - (oldMY - y);
+            }
+            oldMX = mouseX;
+            oldMY = mouseY;
+        }
+        if (open) for (Module module : Qubit.getModuleManger().getModulesInCat(category)) {
             RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, (module.isToggled()) ? new Color(63, 91, 115, 150) : new Color(0, 0, 0, 150));
             mc.textRenderer.draw(matrix, StringUtils.capitalize(module.getName()), x + 2, y + 4 + height * m, -1);
             if(mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
@@ -128,7 +138,7 @@ public class Frame implements Wrapper {
 
     void mouseClicked(double mouseX, double mouseY, int button) {
         clickedButton = button;
-        dragging = true;
+        if (button == 0) dragging = true;
     }
 
     void mouseReleased(double mouseX, double mouseY, int mouseButton) {
@@ -139,6 +149,31 @@ public class Frame implements Wrapper {
         this.key = key;
     }
 
+    public void setOpen(boolean open) {
+        this.open = open;
+    }
 
+    public boolean isOpen() {
+        return open;
+    }
 
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
 }

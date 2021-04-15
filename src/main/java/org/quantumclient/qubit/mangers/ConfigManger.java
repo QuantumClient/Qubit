@@ -4,6 +4,8 @@ import com.google.gson.internal.LinkedHashTreeMap;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 import org.quantumclient.qubit.Qubit;
+import org.quantumclient.qubit.gui.click.ClickGuiScreen;
+import org.quantumclient.qubit.gui.click.Frame;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
 import org.quantumclient.qubit.settings.Setting;
@@ -132,4 +134,42 @@ public class ConfigManger {
             e.printStackTrace();
         }
     }
+
+    public void loadGui(ClickGuiScreen clickGuiScreen) {
+        try {
+            if (!Files.exists(Paths.get(MAIN_FOLDER + "Gui.yml"))) return;
+            InputStream inputStream = Files.newInputStream(Paths.get(MAIN_FOLDER + "Gui.yml"));
+            Map<String, Object> data = yaml.load(inputStream);
+            for (Frame frame : clickGuiScreen.getFrames()) {
+                if (data == null || data.get(StringUtils.capitalize(frame.getCategory().name().toLowerCase())) == null) continue;
+                Map<String, Object> guiMap = (Map<String, Object>) data.get(StringUtils.capitalize(frame.getCategory().name().toLowerCase()));
+                if (guiMap.containsKey("Open")) frame.setOpen((boolean) guiMap.get("Open"));
+                if (guiMap.containsKey("X")) frame.setX((Integer) guiMap.get("X"));
+                if (guiMap.containsKey("Y")) frame.setY((Integer) guiMap.get("Y"));
+            }
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveGui(ClickGuiScreen clickGuiScreen) {
+        try {
+            Map<String, Object> dataMap = new LinkedHashTreeMap<>();
+            for (Frame frame : clickGuiScreen.getFrames()) {
+                makeFile(null, "Gui");
+                Map<String, Object> guiMap = new LinkedHashTreeMap<>();
+                guiMap.put("Open", frame.isOpen());
+                guiMap.put("X", frame.getX());
+                guiMap.put("Y", frame.getY());
+                dataMap.put(StringUtils.capitalize(frame.getCategory().name().toLowerCase()), guiMap);
+            }
+            PrintWriter writer = new PrintWriter(MAIN_FOLDER + "Gui.yml");
+            yaml.dump(dataMap, writer);
+            dataMap.clear();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

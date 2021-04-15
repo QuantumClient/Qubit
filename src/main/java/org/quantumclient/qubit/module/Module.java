@@ -4,7 +4,6 @@ import net.minecraft.util.Formatting;
 import org.jetbrains.annotations.Nullable;
 import org.quantumclient.energy.EventBus;
 import org.quantumclient.qubit.Qubit;
-import org.quantumclient.qubit.mangers.ModuleManger;
 import org.quantumclient.qubit.module.client.ToggleMsg;
 import org.quantumclient.qubit.settings.Setting;
 import org.quantumclient.qubit.utils.MsgHelper;

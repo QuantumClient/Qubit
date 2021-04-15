@@ -4,6 +4,7 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import org.apache.commons.lang3.StringUtils;
+import org.lwjgl.glfw.GLFW;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
@@ -116,12 +117,15 @@ public class Frame implements Wrapper {
             }
             if (module.isOpen()) {
                 RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
-                String string = (module.isBinding()) ? "..." : InputUtil.fromKeyCode(module.getBind(), -1).getLocalizedText().getString();
+                String string = (module.isBinding()) ? "..." : (module.getBind() == -1) ? "NONE" : InputUtil.fromKeyCode(module.getBind() , -1).getLocalizedText().getString();
                 mc.textRenderer.draw(matrix, StringUtils.capitalize("Bind: " + string), x + 2, y + 4 + height * m, -1);
                 if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                     if (clickedButton == 0) module.setBinding(!module.isBinding());
                     if (module.isBinding() && key != -1) {
-                        module.setBind(key);
+                        if (key == GLFW.GLFW_KEY_BACKSPACE)
+                            module.setBind(-1);
+                        else
+                            module.setBind(key);
                         module.setBinding(false);
                     }
                 }

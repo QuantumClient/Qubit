@@ -11,6 +11,7 @@ import org.lwjgl.glfw.GLFW;
 import org.quantumclient.energy.EventBus;
 import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.command.Command;
+import org.quantumclient.qubit.command.commands.Friends;
 import org.quantumclient.qubit.command.commands.Test;
 import org.quantumclient.qubit.event.EventKeyPress;
 import org.quantumclient.qubit.event.EventPacketSend;
@@ -25,6 +26,7 @@ public class CommandManger implements Wrapper {
     public void init() {
         EventBus.register(this);
         add(new Test());
+        add(new Friends());
     }
 
     private void add(Command command) {
@@ -36,12 +38,12 @@ public class CommandManger implements Wrapper {
         if (event.getPacket() instanceof ChatMessageC2SPacket) {
             ChatMessageC2SPacket pack = (ChatMessageC2SPacket) event.getPacket();
             if (pack.getChatMessage().startsWith(PREFIX)) {
+                event.setCancelled(true);
                 try {
                     dispatcher.execute(pack.getChatMessage().substring(PREFIX.length()), clientCommandSource);
                 } catch (CommandSyntaxException e) {
                     e.printStackTrace();
                 }
-                event.setCancelled(true);
             }
         }
     }

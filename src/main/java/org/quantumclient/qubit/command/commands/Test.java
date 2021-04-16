@@ -11,7 +11,7 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 public class Test extends Command {
 
     public Test() {
-        super("test", "i am testing");
+        super("Test", "i am testing");
     }
 
     @Override

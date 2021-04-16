@@ -1,6 +1,7 @@
 package org.quantumclient.qubit.module.combat;
 
 import com.google.common.collect.Streams;
+import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,6 +37,7 @@ public class Aura extends Module {
 
     @Subscribe
     public void onTick(EventTick event) {
+
         if (mc.player.getAttackCooldownProgress(0) < 1) return;
         entityList = Streams.stream(mc.world.getEntities())
                 .filter(e -> (e instanceof PlayerEntity && players.getValue() && !e.equals(mc.player)) || (e instanceof HostileEntity && mobs.getValue()))

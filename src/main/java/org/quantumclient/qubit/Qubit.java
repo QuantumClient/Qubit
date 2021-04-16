@@ -3,6 +3,7 @@ package org.quantumclient.qubit;
 import net.fabricmc.api.ModInitializer;
 import org.quantumclient.qubit.mangers.CommandManger;
 import org.quantumclient.qubit.mangers.ConfigManger;
+import org.quantumclient.qubit.mangers.FriendManger;
 import org.quantumclient.qubit.mangers.ModuleManger;
 import org.quantumclient.qubit.utils.Wrapper;
 
@@ -14,6 +15,7 @@ public class Qubit implements ModInitializer, Wrapper {
     protected static ModuleManger moduleManger = new ModuleManger();
     protected static ConfigManger configManger = new ConfigManger();
     protected static CommandManger commandManger = new CommandManger();
+    protected static FriendManger friendManger = new FriendManger();
 
     @Override
     public void onInitialize() {
@@ -34,6 +36,10 @@ public class Qubit implements ModInitializer, Wrapper {
 
     public static CommandManger getCommandManger() {
         return commandManger;
+    }
+
+    public static FriendManger getFriendManger() {
+        return friendManger;
     }
 
 }

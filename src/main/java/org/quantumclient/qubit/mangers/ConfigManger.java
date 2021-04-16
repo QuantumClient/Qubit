@@ -18,7 +18,9 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class ConfigManger {
@@ -44,7 +46,7 @@ public class ConfigManger {
     public void load() {
         try {
             loadModules();
-
+            loadFriends();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,6 +55,7 @@ public class ConfigManger {
     public void save() {
         try {
             saveModules();
+            saveFriends();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -156,8 +159,8 @@ public class ConfigManger {
     public void saveGui(ClickGuiScreen clickGuiScreen) {
         try {
             Map<String, Object> dataMap = new LinkedHashTreeMap<>();
+            makeFile(null, "Gui");
             for (Frame frame : clickGuiScreen.getFrames()) {
-                makeFile(null, "Gui");
                 Map<String, Object> guiMap = new LinkedHashTreeMap<>();
                 guiMap.put("Open", frame.isOpen());
                 guiMap.put("X", frame.getX());
@@ -171,5 +174,30 @@ public class ConfigManger {
             e.printStackTrace();
         }
     }
+
+    public void loadFriends() {
+        try {
+            if (!Files.exists(Paths.get(MAIN_FOLDER + "Friends.yml"))) return;
+            InputStream inputStream = Files.newInputStream(Paths.get(MAIN_FOLDER + "Friends.yml"));
+            for (UUID uuid : (List<UUID>) yaml.load(inputStream)) {
+                Qubit.getFriendManger().addFriend(uuid);
+            }
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveFriends() {
+        try {
+            makeFile(null, "Friends");
+            List<UUID> friendList = Qubit.getFriendManger().getFriendList();
+            PrintWriter writer = new PrintWriter(MAIN_FOLDER + "Friends.yml");
+            yaml.dump(friendList, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

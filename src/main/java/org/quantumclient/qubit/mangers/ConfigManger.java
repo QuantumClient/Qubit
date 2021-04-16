@@ -90,6 +90,7 @@ public class ConfigManger {
             Map<String, Object> data = yaml.load(inputStream);
             if (data == null || data.get("Name") == null) continue;
             module.setToggled((boolean) data.get("Toggled"));
+            module.setBind((int) data.get("Bind"));
             if (module.hasSetting() && data.containsKey("Settings")) {
                 Map<String, Object> settingMap = (Map<String, Object>) data.get("Settings");
                 for (Setting setting : module.getSettingList()) {

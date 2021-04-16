@@ -7,6 +7,7 @@ import org.quantumclient.qubit.event.EventKeyPress;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
 import org.quantumclient.qubit.module.client.*;
+import org.quantumclient.qubit.module.combat.Aura;
 import org.quantumclient.qubit.module.combat.Offhand;
 import org.quantumclient.qubit.module.movement.*;
 
@@ -28,6 +29,7 @@ public class ModuleManger {
         add(new ClickGui());
         add(new Offhand());
         add(new ToggleMsg());
+        add(new Aura());
     }
 
     private void add(Module module) {

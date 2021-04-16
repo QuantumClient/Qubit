@@ -97,6 +97,12 @@ public class Module implements Wrapper {
         settingList.add(setting);
     }
 
+    protected void addSetting(Setting... settings) {
+        for (Setting setting : settings) {
+            addSetting(setting);
+        }
+    }
+
     protected void setSettingList(List<Setting> settingList) {
         this.settingList = settingList;
     }

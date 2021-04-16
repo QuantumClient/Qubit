@@ -147,7 +147,7 @@ public class Frame implements Wrapper {
 
         }
 
-        if(mouseX >= x && mouseY >= y && mouseX <= x + width && mouseY <= y + height) {
+        if(mouseX >= x -5 && mouseY >= y && mouseX <= x + width + 5 && mouseY <= y + height) {
             if (clickedButton == 1) open = !open;
             if (dragging) {
                 x = mouseX - (oldMX - x);

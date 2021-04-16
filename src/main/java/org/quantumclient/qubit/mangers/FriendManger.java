@@ -4,40 +4,39 @@ import net.minecraft.entity.player.PlayerEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class FriendManger {
 
-    private final List<UUID> uuids = new ArrayList<>();
+    private final List<String> friends = new ArrayList<>();
 
-    public void addFriend(UUID uuid) {
-        if (!uuids.contains(uuid))
-            uuids.add(uuid);
+    public void addFriend(String name) {
+        if (!friends.contains(name))
+            friends.add(name);
     }
 
     public void addFriend(PlayerEntity playerEntity) {
-        addFriend(playerEntity.getUuid());
+        addFriend(playerEntity.getGameProfile().getName());
     }
 
-    public boolean isFriend(UUID uuid) {
-        return uuids.contains(uuid);
+    public boolean isFriend(String name) {
+        return friends.contains(name);
     }
 
     public boolean isFriend(PlayerEntity playerEntity) {
-        return uuids.contains(playerEntity.getUuid());
+        return isFriend(playerEntity.getGameProfile().getName());
     }
 
-    public void deleteFriend(UUID uuid) {
-        if (uuids.contains(uuid)) {
-            uuids.remove(uuid);
+    public void deleteFriend(String name) {
+        if (friends.contains(name)) {
+            friends.remove(name);
         }
     }
 
     public void deleteFriend(PlayerEntity playerEntity) {
-        deleteFriend(playerEntity.getUuid());
+        deleteFriend(playerEntity.getGameProfile().getName());
     }
 
-    public List<UUID> getFriendList() {
-        return uuids;
+    public List<String> getFriends() {
+        return friends;
     }
 }

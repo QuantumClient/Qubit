@@ -179,8 +179,8 @@ public class ConfigManger {
         try {
             if (!Files.exists(Paths.get(MAIN_FOLDER + "Friends.yml"))) return;
             InputStream inputStream = Files.newInputStream(Paths.get(MAIN_FOLDER + "Friends.yml"));
-            for (UUID uuid : (List<UUID>) yaml.load(inputStream)) {
-                Qubit.getFriendManger().addFriend(uuid);
+            for (String name : (List<String>) yaml.load(inputStream)) {
+                Qubit.getFriendManger().addFriend(name);
             }
             inputStream.close();
         } catch (IOException e) {
@@ -191,7 +191,7 @@ public class ConfigManger {
     public void saveFriends() {
         try {
             makeFile(null, "Friends");
-            List<UUID> friendList = Qubit.getFriendManger().getFriendList();
+            List<String> friendList = Qubit.getFriendManger().getFriends();
             PrintWriter writer = new PrintWriter(MAIN_FOLDER + "Friends.yml");
             yaml.dump(friendList, writer);
         } catch (IOException e) {

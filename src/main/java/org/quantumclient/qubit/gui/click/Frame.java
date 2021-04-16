@@ -1,10 +1,12 @@
 package org.quantumclient.qubit.gui.click;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
+import org.lwjgl.opengl.GL11;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
@@ -43,17 +45,21 @@ public class Frame implements Wrapper {
     void render(MatrixStack matrix, int mouseX, int mouseY) {
         int m = 1;
         RenderUtils.drawRect(x - 5 , y, x + width + 5, y + height, new Color(63, 91, 115));
-        RenderUtils.drawRectOutLine(x - 5, y, x + width + 5, (float) (y + height - 0.8), new Color(100, 141, 184));
+        RenderUtils.drawRectOutLine(x - 5, y, x + width + 5,  y + height, new Color(100, 141, 184));
 
-        mc.textRenderer.draw(matrix, StringUtils.capitalize(category.name().toLowerCase()), (x + ((x + width) - x) / 2 - (mc.textRenderer.getWidth(new LiteralText(category.name().toLowerCase()))) / 2), y + 4, -1);
+        mc.textRenderer.draw(matrix, StringUtils.capitalize(category.name().toLowerCase()), (x + ((x + width) - x) / 2 - (mc.textRenderer.getWidth(new LiteralText(category.name().toLowerCase()))) / 2), y + 3, -1);
 
         if (open) for (Module module : Qubit.getModuleManger().getModulesInCat(category)) {
+
+
             RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
             if (module.isToggled())
-                RenderUtils.drawRect(x, y + m * height + 2, x + width, y + height + m * height - 1, new Color(63, 91, 115));
+                RenderUtils.drawRect(x, y + m * height + 2, x + width, y + height + m * height - 2, new Color(63, 91, 115));
 
+
+            int o = m;
             //RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, (module.isToggled()) ? new Color(63, 91, 115, 150) : new Color(0, 0, 0, 150));
-            mc.textRenderer.draw(matrix, StringUtils.capitalize(module.getName()), x + 2, y + 4 + height * m, -1);
+            mc.textRenderer.draw(matrix, StringUtils.capitalize(module.getName()), x + 2, y + 3 + height * m, -1);
             if(mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                 if (clickedButton == 0) module.toggle();
                 if (clickedButton == 1) module.setOpen(!module.isOpen());
@@ -68,9 +74,9 @@ public class Frame implements Wrapper {
                     CheckSetting checkSetting = (CheckSetting) setting;
                     RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
                     if (checkSetting.getValue())
-                        RenderUtils.drawRect(x, y + m * height + 2, x + width, y + height + m * height - 1, new Color(63, 91, 115));
+                        RenderUtils.drawRect(x, y + m * height + 2, x + width, y + height + m * height - 2, new Color(63, 91, 115));
 
-                    mc.textRenderer.draw(matrix, StringUtils.capitalize(setting.getName()), x + 2, y + 4 + height * m, -1);
+                    mc.textRenderer.draw(matrix, StringUtils.capitalize(setting.getName()), x + 2, y + 3 + height * m, -1);
                     if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                         if (clickedButton == 0) checkSetting.setValue(!checkSetting.getValue());
                     }
@@ -78,7 +84,7 @@ public class Frame implements Wrapper {
                 if (setting instanceof ModeSetting) {
                     ModeSetting modeSetting = (ModeSetting) setting;
                     RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
-                    mc.textRenderer.draw(matrix, StringUtils.capitalize(setting.getName()) + ": " + setting.getValue(), x + 2, y + 4 + height * m, -1);
+                    mc.textRenderer.draw(matrix, StringUtils.capitalize(setting.getName()) + ": " + setting.getValue(), x + 2, y + 3 + height * m, -1);
                     if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                         if (clickedButton == 0) modeSetting.setValue(modeSetting.nextMode());
                     }
@@ -87,8 +93,8 @@ public class Frame implements Wrapper {
                     FloatSetting floatSetting = (FloatSetting) setting;
                     float newWidth = width * (floatSetting.getValue() - floatSetting.getMin()) / (floatSetting.getMax() - floatSetting.getMin());
                     RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
-                    RenderUtils.drawRect(x, y + m * height + 2, x + newWidth , y + height + m * height - 1, new Color(63, 91, 115));
-                    mc.textRenderer.draw(matrix, StringUtils.capitalize(setting.getName()) + ": " + setting.getValue(), x + 2, y + 4 + height * m, -1);
+                    RenderUtils.drawRect(x, y + m * height + 2, x + newWidth , y + height + m * height - 2, new Color(63, 91, 115));
+                    mc.textRenderer.draw(matrix, StringUtils.capitalize(setting.getName()) + ": " + setting.getValue(), x + 2, y + 3 + height * m, -1);
                     if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                         if (dragging) {
                             float diff = mouseX - x;
@@ -105,8 +111,8 @@ public class Frame implements Wrapper {
                     DoubleSetting doubleSetting = (DoubleSetting) setting;
                     double newWidth = width * (doubleSetting.getValue() - doubleSetting.getMin()) / (doubleSetting.getMax() - doubleSetting.getMin());
                     RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
-                    RenderUtils.drawRect(x, y + m * height + 2, (float) (x + newWidth), y + height + m * height - 1, new Color(63, 91, 115));
-                    mc.textRenderer.draw(matrix, StringUtils.capitalize(setting.getName()) + ": " + setting.getValue(), x + 2, y + 4 + height * m, -1);
+                    RenderUtils.drawRect(x, y + m * height + 2, (float) (x + newWidth), y + height + m * height - 2, new Color(63, 91, 115));
+                    mc.textRenderer.draw(matrix, StringUtils.capitalize(setting.getName()) + ": " + setting.getValue(), x + 2, y + 3 + height * m, -1);
                     if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                         if (dragging) {
                             double diff = mouseX - x;
@@ -124,7 +130,7 @@ public class Frame implements Wrapper {
             if (module.isOpen()) {
                 RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
                 String string = (module.isBinding()) ? "..." : (module.getBind() == -1) ? "NONE" : InputUtil.fromKeyCode(module.getBind() , -1).getLocalizedText().getString();
-                mc.textRenderer.draw(matrix, StringUtils.capitalize("Bind: " + string), x + 2, y + 4 + height * m, -1);
+                mc.textRenderer.draw(matrix, StringUtils.capitalize("Bind: " + string), x + 2, y + 3 + height * m, -1);
                 if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                     if (clickedButton == 0) module.setBinding(!module.isBinding());
                     if (module.isBinding() && key != -1) {
@@ -137,7 +143,10 @@ public class Frame implements Wrapper {
                 }
                 m++;
             }
+            RenderUtils.drawRectOutLine(x, y + o * height, x + width, y + m * height, new Color(100, 141, 184));
+
         }
+
         if(mouseX >= x && mouseY >= y && mouseX <= x + width && mouseY <= y + height) {
             if (clickedButton == 1) open = !open;
             if (dragging) {

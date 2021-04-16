@@ -9,6 +9,8 @@ import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
 
+import static org.lwjgl.opengl.GL11C.GL_SCISSOR_TEST;
+
 
 public class RenderUtils {
 

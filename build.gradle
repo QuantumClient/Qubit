@@ -26,6 +26,7 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     modImplementation "org.quantumclient:Energy:${project.energy_version}"
+    include "org.quantumclient:Energy:${project.energy_version}"
 
     implementation 'org.yaml:snakeyaml:1.28'
     include 'org.yaml:snakeyaml:1.28'

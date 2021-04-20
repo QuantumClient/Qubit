@@ -29,7 +29,7 @@ dependencies {
     include "org.quantumclient:Energy:${project.energy_version}"
 
     modImplementation 'com.github.QuantumClient:Renderer:-SNAPSHOT'
-    include 'org.quantumclient:Energy:-SNAPSHOT'
+    include 'org.quantumclient:Renderer:-SNAPSHOT'
 
     implementation 'org.yaml:snakeyaml:1.28'
     include 'org.yaml:snakeyaml:1.28'

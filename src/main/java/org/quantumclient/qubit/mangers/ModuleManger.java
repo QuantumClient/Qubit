@@ -10,6 +10,7 @@ import org.quantumclient.qubit.module.client.*;
 import org.quantumclient.qubit.module.combat.Aura;
 import org.quantumclient.qubit.module.combat.Offhand;
 import org.quantumclient.qubit.module.movement.*;
+import org.quantumclient.qubit.module.render.Fullbight;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -31,6 +32,7 @@ public class ModuleManger {
         add(new ToggleMsg());
         add(new Aura());
         add(new Font());
+        add(new Fullbight());
     }
 
     private void add(Module module) {

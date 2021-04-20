@@ -26,6 +26,7 @@ public class Aura extends Module {
     private FloatSetting range = new FloatSetting("Range", 5f, 1f, 10f, 0, 0);
 
     private List<Entity> entityList;
+    private int tick;
 
     public Aura() {
         super("Aura", "Kill people", Category.COMBAT);
@@ -37,21 +38,28 @@ public class Aura extends Module {
 
     @Subscribe
     public void onTick(EventTick event) {
+        tick++;
 
         if (mc.player.getAttackCooldownProgress(0) < 1) return;
-        entityList = Streams.stream(mc.world.getEntities())
-                .filter(e -> e instanceof LivingEntity)
-                .filter(e -> (e instanceof PlayerEntity && players.getValue() && !e.equals(mc.player) && !Qubit.getFriendManger().isFriend((PlayerEntity) e))
-                        || (e instanceof Monster && mobs.getValue()))
-                .filter(e -> e.distanceTo(mc.player) <= range.getValue())
-                .sorted((a, b) -> Float.compare(a.distanceTo(mc.player), b.distanceTo(mc.player)))
-                .collect(Collectors.toList());
+        if (tick >= 10) {
+            entityList = Streams.stream(mc.world.getEntities())
+                    .filter(e -> e instanceof LivingEntity)
+                    .filter(e -> (e instanceof PlayerEntity && players.getValue() && !e.equals(mc.player) && !Qubit.getFriendManger().isFriend((PlayerEntity) e))
+                            || (e instanceof Monster && mobs.getValue()))
+                    .filter(e -> e.distanceTo(mc.player) <= range.getValue())
+                    .sorted((a, b) -> Float.compare(a.distanceTo(mc.player), b.distanceTo(mc.player)))
+                    .collect(Collectors.toList());
+        }
+
 
         if (entityList.isEmpty()) return;
         switch (modeSetting.getValue()) {
             case "Multi":
+                int i = 0;
                 for (Entity entity : entityList) {
+                    if (i >= 10) return;
                     mc.interactionManager.attackEntity(mc.player, entity);
+                    i++;
                 }
                 mc.player.swingHand(Hand.MAIN_HAND);
                 break;
@@ -61,6 +69,9 @@ public class Aura extends Module {
                 break;
         }
 
-        entityList.clear();
+        if (tick >= 21) {
+            entityList.clear();
+            tick = 0;
+        }
     }
 }

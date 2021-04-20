@@ -47,7 +47,7 @@ public class Aura extends Module {
                 .sorted((a, b) -> Float.compare(a.distanceTo(mc.player), b.distanceTo(mc.player)))
                 .collect(Collectors.toList());
 
-        if (entityList.get(0) == null) return;
+        if (entityList.isEmpty()) return;
         switch (modeSetting.getValue()) {
             case "Multi":
                 for (Entity entity : entityList) {

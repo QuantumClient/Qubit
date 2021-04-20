@@ -30,6 +30,7 @@ public class ModuleManger {
         add(new Offhand());
         add(new ToggleMsg());
         add(new Aura());
+        add(new Font());
     }
 
     private void add(Module module) {

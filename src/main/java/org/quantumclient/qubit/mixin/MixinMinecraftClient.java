@@ -5,6 +5,7 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
 import org.quantumclient.energy.EventBus;
 import org.quantumclient.qubit.event.EventTick;
+import org.quantumclient.qubit.utils.FontUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -27,6 +28,7 @@ public class MixinMinecraftClient {
 
     @Inject(method = "updateWindowTitle", at = @At("HEAD"), cancellable = true)
     public void onTitleChange(CallbackInfo ci) {
+        FontUtils.init();
         ci.cancel();
     }
 

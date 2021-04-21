@@ -23,9 +23,12 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
       
-    - uses: sinshutu/upload-to-discord@master 
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      with:
-        args: README.md
-    
+    - name: send message
+      uses: appleboy/discord-action@master
+        with:
+        webhook_id: ${{ secrets.WEBHOOK_ID }}
+        webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+        file: "README.md"
+        message: "Test."
+
+  

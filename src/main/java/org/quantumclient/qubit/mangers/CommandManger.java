@@ -17,16 +17,22 @@ import org.quantumclient.qubit.event.EventKeyPress;
 import org.quantumclient.qubit.event.EventPacketSend;
 import org.quantumclient.qubit.utils.Wrapper;
 
-public class CommandManger implements Wrapper {
+public class CommandManger implements Wrapper, MangerManger.Manger {
 
     private final CommandDispatcher<CommandSource> dispatcher = new CommandDispatcher<>();
     private final ClientCommandSource clientCommandSource = new ClientCommandSource(null, mc);
     public static String PREFIX = ",";
 
+    @Override
     public void init() {
         EventBus.register(this);
         add(new Test());
         add(new Friends());
+    }
+
+    @Override
+    public String getName() {
+        return "Commands";
     }
 
     private void add(Command command) {

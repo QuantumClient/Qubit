@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class ConfigManger {
+public class ConfigManger implements MangerManger.Manger {
 
     private static final String MAIN_FOLDER = "Qubit/";
     private static final String MODULE_FOLDER = "Modules/";
@@ -36,6 +36,13 @@ public class ConfigManger {
         yaml = new Yaml(options);
     }
 
+
+    @Override
+    public String getName() {
+        return "Configs";
+    }
+
+    @Override
     public void init() {
         makeDir();
         load();

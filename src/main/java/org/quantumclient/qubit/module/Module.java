@@ -1,6 +1,7 @@
 package org.quantumclient.qubit.module;
 
 import net.minecraft.util.Formatting;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.quantumclient.energy.EventBus;
 import org.quantumclient.qubit.Qubit;
@@ -17,11 +18,13 @@ import java.util.List;
 public class Module implements Wrapper {
 
 
+    @NotNull
     private final String name;
 
     @Nullable
     private final String description;
 
+    @NotNull
     private final Category category;
 
     protected boolean open = false;
@@ -31,7 +34,14 @@ public class Module implements Wrapper {
     private boolean toggled;
     private List<Setting> settingList;
 
-    public Module(String name, @Nullable String description, int bind, Category category) {
+    /**
+     *
+     * @param name the name of the module
+     * @param description what the module does
+     * @param bind a key where the button would turn on
+     * @param category what type of module it is
+     */
+    public Module(@NotNull String name, @Nullable String description, int bind, @NotNull Category category) {
         this.name = name;
         this.description = description;
         this.bind = bind;
@@ -50,15 +60,23 @@ public class Module implements Wrapper {
         this(name, null, category);
     }
 
+    /**
+     *
+     * @return what the module is called
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return what category the module is in
+     */
     public Category getCategory() {
         return category;
     }
 
-    public void onEnable() {
+    protected void onEnable() {
         if (Qubit.getModuleManger().isModuleEnabled(ToggleMsg.class) && !name.equals(Qubit.getModuleManger().getModule(ClickGui.class).getName())) {
             MsgHelper.sendMessage(name + Formatting.GREEN + " enabled");
         }
@@ -66,7 +84,7 @@ public class Module implements Wrapper {
         EventBus.register(this);
     }
 
-    public void onDisable() {
+    protected void onDisable() {
         if (Qubit.getModuleManger().isModuleEnabled(ToggleMsg.class) && !name.equals(Qubit.getModuleManger().getModule(ClickGui.class).getName())) {
             MsgHelper.sendMessage(name + Formatting.RED + " disable");
         }
@@ -82,6 +100,10 @@ public class Module implements Wrapper {
         }
     }
 
+    /**
+     *
+     * @param toggled weather the module should be on or not
+     */
     public void setToggled(boolean toggled) {
         if (toggled) {
             onEnable();
@@ -90,6 +112,10 @@ public class Module implements Wrapper {
         }
     }
 
+    /**
+     *
+     * @param setting adds a setting to the setting list
+     */
     protected void addSetting(Setting setting) {
         if (settingList == null) {
             settingList = new ArrayList<>();
@@ -97,6 +123,10 @@ public class Module implements Wrapper {
         settingList.add(setting);
     }
 
+    /**
+     *
+     * @param settings allows you to add multiple settings at once
+     */
     protected void addSetting(Setting... settings) {
         for (Setting setting : settings) {
             addSetting(setting);

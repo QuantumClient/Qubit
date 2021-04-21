@@ -5,9 +5,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FriendManger {
+public class FriendManger implements MangerManger.Manger {
 
-    private final List<String> friends = new ArrayList<>();
+    private List<String> friends;
 
     public void addFriend(String name) {
         if (!friends.contains(name))
@@ -39,4 +39,15 @@ public class FriendManger {
     public List<String> getFriends() {
         return friends;
     }
+
+    @Override
+    public void init() {
+        friends = new ArrayList<>();
+    }
+
+    @Override
+    public String getName() {
+        return "Friends";
+    }
+
 }

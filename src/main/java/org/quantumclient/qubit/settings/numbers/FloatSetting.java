@@ -9,6 +9,16 @@ public class FloatSetting extends Setting<Float> {
     protected float inc;
     protected int dec;
 
+    /**
+     * Used for number settings as a float
+     * @param name what the settings is called
+     * @param description what this settings changes
+     * @param value what the default vaule is
+     * @param min the minimum vaule the setting can be
+     * @param max the maximum vaule the setting can be
+     * @param inc how much the settings can increase by
+     * @param dec how many decimals the settings has
+     */
     public FloatSetting(String name, String description, float value, float min, float max, float inc, int dec) {
         this.name = name;
         this.description = description;

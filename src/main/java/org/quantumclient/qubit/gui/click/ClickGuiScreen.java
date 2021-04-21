@@ -3,6 +3,7 @@ package org.quantumclient.qubit.gui.click;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
+import org.jetbrains.annotations.Nullable;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.utils.FontUtils;
@@ -15,6 +16,8 @@ import java.util.List;
 public class ClickGuiScreen extends Screen {
 
     private List<Frame> frames = new ArrayList<>();
+
+    @Nullable
     private static String  description;
 
     public ClickGuiScreen() {
@@ -40,9 +43,10 @@ public class ClickGuiScreen extends Screen {
             frame.render(matrix, mouseX, mouseY);
         }
         if (description != null && description != "") {
-            RenderUtils.drawRect(mouseX + 10, mouseY, mouseX + 15 + client.textRenderer.getWidth(description), mouseY + client.textRenderer.fontHeight, new Color(47, 47, 47, 200));
+            RenderUtils.drawRect(mouseX + 10, mouseY, mouseX + 15 + FontUtils.getWidth(description), mouseY + client.textRenderer.fontHeight, new Color(47, 47, 47, 200));
             FontUtils.drawText(matrix, description, mouseX + 12, mouseY, false, Color.WHITE);
         }
+
         description = null;
     }
 

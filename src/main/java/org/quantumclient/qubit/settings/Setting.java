@@ -11,7 +11,6 @@ public abstract class Setting<T> {
 
     protected T value;
 
-    //for number settings can't think of a better way right now
 
     public String getName() {
         return name;
@@ -21,10 +20,18 @@ public abstract class Setting<T> {
         return description;
     }
 
+    /**
+     *
+     * @return returns the current value of the setting
+     */
     public T getValue() {
         return (T) value;
     }
 
+    /**
+     *
+     * @param value sets the vaule of the setting
+     */
     public void setValue(T value) {
         this.value = value;
     }

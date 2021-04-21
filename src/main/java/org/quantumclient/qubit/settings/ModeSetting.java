@@ -4,6 +4,13 @@ public class ModeSetting extends Setting<String> {
 
     private final String[] modes;
 
+    /**
+     * Uses for settings as modes with strings
+     * @param name what the settings is called
+     * @param description what will this setting change
+     * @param value what is its default value
+     * @param modes the other value options
+     */
     public ModeSetting(String name, String description, String value, String[] modes) {
         this.name = name;
         this.description = description;
@@ -29,7 +36,4 @@ public class ModeSetting extends Setting<String> {
         return returnString;
     }
 
-    public String[] getModes() {
-        return modes;
-    }
 }

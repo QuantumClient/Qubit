@@ -25,10 +25,11 @@ import java.util.stream.Collectors;
 
 import static org.quantumclient.qubit.utils.Wrapper.mc;
 
-public class ModuleManger {
+public class ModuleManger implements MangerManger.Manger {
 
     private final List<Module> modules = new ArrayList<>();
 
+    @Override
     public void init() {
         EventBus.register(this);
         add(new TestModule());
@@ -90,6 +91,11 @@ public class ModuleManger {
                 module.toggle();
             }
         }
+    }
+
+    @Override
+    public String getName() {
+        return "Modules";
     }
 
 }

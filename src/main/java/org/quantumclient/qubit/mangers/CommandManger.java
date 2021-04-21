@@ -12,6 +12,7 @@ import org.quantumclient.energy.EventBus;
 import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.command.Command;
 import org.quantumclient.qubit.command.commands.Friends;
+import org.quantumclient.qubit.command.commands.Prefix;
 import org.quantumclient.qubit.command.commands.Test;
 import org.quantumclient.qubit.event.EventKeyPress;
 import org.quantumclient.qubit.event.EventPacketSend;
@@ -21,13 +22,14 @@ public class CommandManger implements Wrapper, MangerManger.Manger {
 
     private final CommandDispatcher<CommandSource> dispatcher = new CommandDispatcher<>();
     private final ClientCommandSource clientCommandSource = new ClientCommandSource(null, mc);
-    public static String PREFIX = ",";
+    private static String prefix = ",";
 
     @Override
     public void init() {
         EventBus.register(this);
         add(new Test());
         add(new Friends());
+        add(new Prefix());
     }
 
     @Override
@@ -43,10 +45,10 @@ public class CommandManger implements Wrapper, MangerManger.Manger {
     public void onPacketSend(EventPacketSend event) {
         if (event.getPacket() instanceof ChatMessageC2SPacket) {
             ChatMessageC2SPacket pack = (ChatMessageC2SPacket) event.getPacket();
-            if (pack.getChatMessage().startsWith(PREFIX)) {
+            if (pack.getChatMessage().startsWith(prefix)) {
                 event.setCancelled(true);
                 try {
-                    dispatcher.execute(pack.getChatMessage().substring(PREFIX.length()), clientCommandSource);
+                    dispatcher.execute(pack.getChatMessage().substring(prefix.length()), clientCommandSource);
                 } catch (CommandSyntaxException e) {
                     e.printStackTrace();
                 }
@@ -58,7 +60,7 @@ public class CommandManger implements Wrapper, MangerManger.Manger {
     public void onKeyPress(EventKeyPress event) {
         if (event.getAction() != GLFW.GLFW_PRESS) return;
         if (mc.currentScreen != null) return;
-        if (PREFIX.equals(InputUtil.fromKeyCode(event.getKey(), -1).getLocalizedText().getString())) {
+        if (prefix.equals(InputUtil.fromKeyCode(event.getKey(), -1).getLocalizedText().getString())) {
             mc.openScreen(new ChatScreen(""));
         }
     }
@@ -69,5 +71,13 @@ public class CommandManger implements Wrapper, MangerManger.Manger {
 
     public ClientCommandSource getClientCommandSource() {
         return clientCommandSource;
+    }
+
+    public static String getPrefix() {
+        return prefix;
+    }
+
+    public static void setPrefix(String nPrefix) {
+       prefix = nPrefix;
     }
 }

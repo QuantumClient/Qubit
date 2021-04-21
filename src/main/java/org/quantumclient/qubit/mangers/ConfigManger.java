@@ -53,6 +53,7 @@ public class ConfigManger implements MangerManger.Manger {
         try {
             loadModules();
             loadFriends();
+            loadClient();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,6 +63,7 @@ public class ConfigManger implements MangerManger.Manger {
         try {
             saveModules();
             saveFriends();
+            saveClient();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -201,6 +203,33 @@ public class ConfigManger implements MangerManger.Manger {
             List<String> friendList = Qubit.getFriendManger().getFriends();
             PrintWriter writer = new PrintWriter(MAIN_FOLDER + "Friends.yml");
             yaml.dump(friendList, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void loadClient() {
+        try {
+            if (!Files.exists(Paths.get(MAIN_FOLDER + "Prefix.yml"))) return;
+            InputStream inputStream = Files.newInputStream(Paths.get(MAIN_FOLDER + "Client.yml"));
+            Map<String, Object> data = yaml.load(inputStream);
+            if (data.containsKey("Prefix")) CommandManger.setPrefix((String) data.get("Prefix"));
+
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveClient() {
+        try {
+            Map<String, Object> dataMap = new LinkedHashTreeMap<>();
+            makeFile(null, "Client");
+            dataMap.put("Prefix", CommandManger.getPrefix());
+            PrintWriter writer = new PrintWriter(MAIN_FOLDER + "Client.yml");
+            yaml.dump(dataMap, writer);
+            dataMap.clear();
         } catch (IOException e) {
             e.printStackTrace();
         }

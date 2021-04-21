@@ -40,8 +40,8 @@ public abstract class MixinCommandSuggestor {
 
     @Inject(method = "refresh", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILHARD)
     public void onRefresh(CallbackInfo ci, String string, StringReader reader) {
-        int length = CommandManger.PREFIX.length();
-        if (reader.canRead(length) && reader.getString().startsWith(CommandManger.PREFIX, reader.getCursor())) {
+        int length = CommandManger.getPrefix().length();
+        if (reader.canRead(length) && reader.getString().startsWith(CommandManger.getPrefix(), reader.getCursor())) {
             reader.setCursor(reader.getCursor() + length);
 
             CommandDispatcher<CommandSource> commandDispatcher = Qubit.getCommandManger().getDispatcher();

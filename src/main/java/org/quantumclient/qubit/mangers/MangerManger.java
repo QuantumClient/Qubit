@@ -10,6 +10,7 @@ public class MangerManger {
     private List<Manger> mangerList = new ArrayList<>();
 
     public void init() {
+        //i'm pretty sure this who thing slows down the client but idc
         for (Manger manger : mangerList) {
             Qubit.LOGGER.info(manger.getName() + " are being initialized");
             manger.init();
@@ -21,11 +22,6 @@ public class MangerManger {
     }
 
     public interface Manger {
-        /**
-         * what the manger controls
-         */
-        String name = "";
-
         String getName();
 
         void init();

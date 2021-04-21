@@ -11,7 +11,6 @@ public abstract class Setting<T> {
 
     protected T value;
 
-
     public String getName() {
         return name;
     }

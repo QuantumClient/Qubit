@@ -10,6 +10,7 @@ import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import org.lwjgl.glfw.GLFW;
 import org.quantumclient.energy.EventBus;
 import org.quantumclient.energy.Subscribe;
+import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.command.Command;
 import org.quantumclient.qubit.command.commands.Friends;
 import org.quantumclient.qubit.command.commands.Prefix;
@@ -23,6 +24,10 @@ public class CommandManger implements Wrapper, MangerManger.Manger {
     private final CommandDispatcher<CommandSource> dispatcher = new CommandDispatcher<>();
     private final ClientCommandSource clientCommandSource = new ClientCommandSource(null, mc);
     private static String prefix = ",";
+
+    public CommandManger() {
+        Qubit.getMangerManger().add(this);
+    }
 
     @Override
     public void init() {

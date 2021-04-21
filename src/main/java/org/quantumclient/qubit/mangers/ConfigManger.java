@@ -29,6 +29,7 @@ public class ConfigManger implements MangerManger.Manger {
     private final Yaml yaml;
 
     public ConfigManger() {
+        Qubit.getMangerManger().add(this);
         DumperOptions options = new DumperOptions();
         options.setIndent(4);
         options.setPrettyFlow(true);

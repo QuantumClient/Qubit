@@ -3,6 +3,7 @@ package org.quantumclient.qubit.mangers;
 import org.lwjgl.glfw.GLFW;
 import org.quantumclient.energy.EventBus;
 import org.quantumclient.energy.Subscribe;
+import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.event.EventKeyPress;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
@@ -28,6 +29,10 @@ import static org.quantumclient.qubit.utils.Wrapper.mc;
 public class ModuleManger implements MangerManger.Manger {
 
     private final List<Module> modules = new ArrayList<>();
+
+    public ModuleManger() {
+        Qubit.getMangerManger().add(this);
+    }
 
     @Override
     public void init() {

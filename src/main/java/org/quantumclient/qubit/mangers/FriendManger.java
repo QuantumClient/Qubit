@@ -1,6 +1,7 @@
 package org.quantumclient.qubit.mangers;
 
 import net.minecraft.entity.player.PlayerEntity;
+import org.quantumclient.qubit.Qubit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,10 @@ import java.util.List;
 public class FriendManger implements MangerManger.Manger {
 
     private List<String> friends;
+
+    public FriendManger() {
+        Qubit.getMangerManger().add(this);
+    }
 
     public void addFriend(String name) {
         if (!friends.contains(name))

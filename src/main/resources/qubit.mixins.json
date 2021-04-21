@@ -12,7 +12,8 @@
     "MixinCommandSuggestor",
     "IExplosionS2CPacket",
     "IEntityVelocityUpdateS2CPacket",
-    "MixinWorldRenderer"
+    "MixinWorldRenderer",
+    "MixinRenderTickCounter"
   ],
   "injectors": {
     "defaultRequire": 1

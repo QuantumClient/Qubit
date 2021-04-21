@@ -15,7 +15,6 @@ public abstract class Command implements Wrapper {
     @Nullable
     protected String description;
 
-
     protected Command(String name, @Nullable String description) {
         this.name = name;
         this.description = description;

@@ -5,5 +5,6 @@ public enum Category {
     PLAYER,
     MOVEMENT,
     RENDER,
+    WORLD,
     CLIENT
 }

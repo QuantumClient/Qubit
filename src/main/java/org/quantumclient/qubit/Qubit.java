@@ -10,7 +10,7 @@ import org.quantumclient.qubit.utils.Wrapper;
 public class Qubit implements ModInitializer, Wrapper {
 
     public static final String NAME = "Qubit";
-    protected static final String VERSION = "1.0";
+    protected static final String VERSION = "1.0.0";
 
     protected static ModuleManger moduleManger = new ModuleManger();
     protected static ConfigManger configManger = new ConfigManger();

@@ -4,7 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.command.CommandSource;
 import org.quantumclient.qubit.command.Command;
-import org.quantumclient.qubit.mangers.CommandManger;
+import org.quantumclient.qubit.managers.CommandManager;
 import org.quantumclient.qubit.utils.MsgHelper;
 
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
@@ -23,7 +23,7 @@ public class Prefix extends Command {
         LiteralArgumentBuilder<CommandSource> builder = LiteralArgumentBuilder.literal(name);
         builder.then(argument(name, string())
                 .executes(context -> {
-                    CommandManger.setPrefix(getString(context, name));
+                    CommandManager.setPrefix(getString(context, name));
                     MsgHelper.sendMessage("prefix is now " + getString(context, name));
             return SINGLE_SUCCESS;
         }));

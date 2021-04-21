@@ -1,4 +1,4 @@
-package org.quantumclient.qubit.mangers;
+package org.quantumclient.qubit.managers;
 
 import net.minecraft.entity.player.PlayerEntity;
 import org.quantumclient.qubit.Qubit;
@@ -6,11 +6,11 @@ import org.quantumclient.qubit.Qubit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FriendManger implements MangerManger.Manger {
+public class FriendManager implements ManagerManager.Manager {
 
     private List<String> friends;
 
-    public FriendManger() {
+    public FriendManager() {
         Qubit.getMangerManger().add(this);
     }
 

@@ -1,4 +1,4 @@
-package org.quantumclient.qubit.mangers;
+package org.quantumclient.qubit.managers;
 
 import com.google.gson.internal.LinkedHashTreeMap;
 import org.apache.commons.lang3.StringUtils;
@@ -22,13 +22,13 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class ConfigManger implements MangerManger.Manger {
+public class ConfigManager implements ManagerManager.Manager {
 
     private static final String MAIN_FOLDER = "Qubit/";
     private static final String MODULE_FOLDER = "Modules/";
     private final Yaml yaml;
 
-    public ConfigManger() {
+    public ConfigManager() {
         Qubit.getMangerManger().add(this);
         DumperOptions options = new DumperOptions();
         options.setIndent(4);
@@ -215,7 +215,7 @@ public class ConfigManger implements MangerManger.Manger {
             if (!Files.exists(Paths.get(MAIN_FOLDER + "Prefix.yml"))) return;
             InputStream inputStream = Files.newInputStream(Paths.get(MAIN_FOLDER + "Client.yml"));
             Map<String, Object> data = yaml.load(inputStream);
-            if (data.containsKey("Prefix")) CommandManger.setPrefix((String) data.get("Prefix"));
+            if (data.containsKey("Prefix")) CommandManager.setPrefix((String) data.get("Prefix"));
 
             inputStream.close();
         } catch (IOException e) {
@@ -227,7 +227,7 @@ public class ConfigManger implements MangerManger.Manger {
         try {
             Map<String, Object> dataMap = new LinkedHashTreeMap<>();
             makeFile(null, "Client");
-            dataMap.put("Prefix", CommandManger.getPrefix());
+            dataMap.put("Prefix", CommandManager.getPrefix());
             PrintWriter writer = new PrintWriter(MAIN_FOLDER + "Client.yml");
             yaml.dump(dataMap, writer);
             dataMap.clear();

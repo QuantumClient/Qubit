@@ -1,4 +1,4 @@
-package org.quantumclient.qubit.mangers;
+package org.quantumclient.qubit.managers;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -19,13 +19,13 @@ import org.quantumclient.qubit.event.EventKeyPress;
 import org.quantumclient.qubit.event.EventPacketSend;
 import org.quantumclient.qubit.utils.Wrapper;
 
-public class CommandManger implements Wrapper, MangerManger.Manger {
+public class CommandManager implements Wrapper, ManagerManager.Manager {
 
     private final CommandDispatcher<CommandSource> dispatcher = new CommandDispatcher<>();
     private final ClientCommandSource clientCommandSource = new ClientCommandSource(null, mc);
     private static String prefix = ",";
 
-    public CommandManger() {
+    public CommandManager() {
         Qubit.getMangerManger().add(this);
     }
 

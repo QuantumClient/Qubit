@@ -1,4 +1,4 @@
-package org.quantumclient.qubit.mangers;
+package org.quantumclient.qubit.managers;
 
 import org.lwjgl.glfw.GLFW;
 import org.quantumclient.energy.EventBus;
@@ -26,11 +26,11 @@ import java.util.stream.Collectors;
 
 import static org.quantumclient.qubit.utils.Wrapper.mc;
 
-public class ModuleManger implements MangerManger.Manger {
+public class ModuleManager implements ManagerManager.Manager {
 
     private final List<Module> modules = new ArrayList<>();
 
-    public ModuleManger() {
+    public ModuleManager() {
         Qubit.getMangerManger().add(this);
     }
 

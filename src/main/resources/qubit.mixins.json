@@ -9,7 +9,9 @@
     "MixinMinecraftClient",
     "MixinClientConnection",
     "MixinInGameHud",
-    "MixinCommandSuggestor"
+    "MixinCommandSuggestor",
+    "IExplosionS2CPacket",
+    "IEntityVelocityUpdateS2CPacket"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,12 +1,10 @@
 package org.quantumclient.qubit.gui.click;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.opengl.GL11;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;

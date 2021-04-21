@@ -15,6 +15,7 @@ public class FontUtils implements Wrapper {
     private static boolean custom;
 
     public static void drawText(MatrixStack matrix, String string, float x, float y, boolean shawdow, Color color) {
+        if (tahoma == null) tahoma = new FontRenderer(new GlyphPage(new Font("Tahoma", Font.PLAIN, 256), 256));
         custom = Qubit.getModuleManger().isModuleEnabled(org.quantumclient.qubit.module.client.Font.class);
         if (custom) {
             tahoma.drawString(matrix, string, x, y - 3, shawdow, color);

@@ -6,8 +6,9 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import net.minecraft.command.CommandSource;
 import org.jetbrains.annotations.Nullable;
+import org.quantumclient.qubit.utils.Wrapper;
 
-public abstract class Command {
+public abstract class Command implements Wrapper {
 
     protected String name;
 
@@ -15,12 +16,12 @@ public abstract class Command {
     protected String description;
 
 
-    public Command(String name, @Nullable String description) {
+    protected Command(String name, @Nullable String description) {
         this.name = name;
         this.description = description;
     }
 
-    public Command(String name) {
+    protected Command(String name) {
         this(name, null);
     }
 

@@ -4,7 +4,9 @@ import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.Packet;
+import net.minecraft.network.listener.PacketListener;
 import org.quantumclient.energy.EventBus;
+import org.quantumclient.qubit.event.EventPacketReceive;
 import org.quantumclient.qubit.event.EventPacketSend;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,6 +21,13 @@ public class MixinClientConnection {
         EventPacketSend event = new EventPacketSend(packet);
         EventBus.post(event);
         if (event.isCancelled()) ci.cancel();
+    }
+
+    @Inject(method = "handlePacket", at = @At("HEAD"), cancellable = true)
+    private static void handlePacket(Packet<?> packet, PacketListener listener, CallbackInfo info) {
+        EventPacketReceive event = new EventPacketReceive(packet);
+        EventBus.post(event);
+        if (event.isCancelled()) info.cancel();
     }
 
 }

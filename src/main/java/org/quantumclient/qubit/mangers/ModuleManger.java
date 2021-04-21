@@ -6,10 +6,14 @@ import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.event.EventKeyPress;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
-import org.quantumclient.qubit.module.client.*;
+import org.quantumclient.qubit.module.client.ClickGui;
+import org.quantumclient.qubit.module.client.Font;
+import org.quantumclient.qubit.module.client.TestModule;
+import org.quantumclient.qubit.module.client.ToggleMsg;
 import org.quantumclient.qubit.module.combat.Aura;
 import org.quantumclient.qubit.module.combat.Offhand;
-import org.quantumclient.qubit.module.movement.*;
+import org.quantumclient.qubit.module.movement.Sprint;
+import org.quantumclient.qubit.module.player.Velocity;
 import org.quantumclient.qubit.module.render.Fullbight;
 
 import java.util.ArrayList;
@@ -33,6 +37,7 @@ public class ModuleManger {
         add(new Aura());
         add(new Font());
         add(new Fullbight());
+        add(new Velocity());
     }
 
     private void add(Module module) {

@@ -1,10 +1,11 @@
 package org.quantumclient.qubit;
 
 import net.fabricmc.api.ModInitializer;
-import org.quantumclient.qubit.mangers.*;
+import org.quantumclient.qubit.mangers.CommandManger;
+import org.quantumclient.qubit.mangers.ConfigManger;
+import org.quantumclient.qubit.mangers.FriendManger;
+import org.quantumclient.qubit.mangers.ModuleManger;
 import org.quantumclient.qubit.utils.Wrapper;
-
-import java.awt.*;
 
 public class Qubit implements ModInitializer, Wrapper {
 

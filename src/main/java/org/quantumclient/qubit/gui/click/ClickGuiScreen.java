@@ -5,6 +5,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.Category;
+import org.quantumclient.qubit.utils.FontUtils;
 import org.quantumclient.qubit.utils.RenderUtils;
 
 import java.awt.*;
@@ -40,7 +41,7 @@ public class ClickGuiScreen extends Screen {
         }
         if (description != null && description != "") {
             RenderUtils.drawRect(mouseX + 10, mouseY, mouseX + 15 + client.textRenderer.getWidth(description), mouseY + client.textRenderer.fontHeight, new Color(47, 47, 47, 200));
-            client.textRenderer.draw(matrix, description, mouseX + 12, mouseY, -1);
+            FontUtils.drawText(matrix, description, mouseX + 12, mouseY, false, Color.WHITE);
         }
         description = null;
     }

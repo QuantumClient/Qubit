@@ -15,22 +15,22 @@ public class FontUtils implements Wrapper {
     private static boolean custom;
 
     public static void drawText(MatrixStack matrix, String string, float x, float y, boolean shawdow, Color color) {
-        if (tahoma == null) tahoma = new FontRenderer(new GlyphPage(new Font("Tahoma", Font.PLAIN, 256), 256));
+        if (tahoma == null) tahoma = new FontRenderer(new GlyphPage(new Font("Tahoma", Font.PLAIN, 1000), 1000));
         custom = Qubit.getModuleManger().isModuleEnabled(org.quantumclient.qubit.module.client.Font.class);
         if (custom) {
             tahoma.drawString(matrix, string, x, y - 3, shawdow, color);
         } else {
             if (shawdow) {
-                tr.draw(matrix, string, x, y, color.getRGB());
-            } else {
                 tr.drawWithShadow(matrix, string, x, y, color.getRGB());
+            } else {
+                tr.draw(matrix, string, x, y, color.getRGB());
             }
         }
     }
 
     public static void init() {
         if (tahoma == null) {
-            tahoma = new FontRenderer(new GlyphPage(new Font("Tahoma", Font.PLAIN, 256), 256));
+            tahoma = new FontRenderer(new GlyphPage(new Font("Tahoma", Font.PLAIN, 128), 128));
         }
 
     }

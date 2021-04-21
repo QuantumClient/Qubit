@@ -15,6 +15,7 @@ import org.quantumclient.qubit.module.combat.Offhand;
 import org.quantumclient.qubit.module.movement.Sprint;
 import org.quantumclient.qubit.module.player.Velocity;
 import org.quantumclient.qubit.module.render.Fullbight;
+import org.quantumclient.qubit.module.render.NoRender;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -38,6 +39,7 @@ public class ModuleManger {
         add(new Font());
         add(new Fullbight());
         add(new Velocity());
+        add(new NoRender());
     }
 
     private void add(Module module) {

@@ -11,7 +11,8 @@
     "MixinInGameHud",
     "MixinCommandSuggestor",
     "IExplosionS2CPacket",
-    "IEntityVelocityUpdateS2CPacket"
+    "IEntityVelocityUpdateS2CPacket",
+    "MixinWorldRenderer"
   ],
   "injectors": {
     "defaultRequire": 1

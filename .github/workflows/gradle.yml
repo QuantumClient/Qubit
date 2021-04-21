@@ -25,7 +25,7 @@ jobs:
       
     - name: send message
       uses: appleboy/discord-action@master
-        with:
+      with:
         webhook_id: ${{ secrets.WEBHOOK_ID }}
         webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
         file: "README.md"

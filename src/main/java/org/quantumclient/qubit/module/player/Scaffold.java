@@ -20,14 +20,14 @@ public class Scaffold extends Module {
     private final CheckSetting tower = new CheckSetting("Tower", true);
     private final CheckSetting swing = new CheckSetting("Swing", "Swing hand when placing blocks", false);
     private final CheckSetting switchItem = new CheckSetting("Switch", "Switch to block item", false);
-    private final FloatSetting extra = new FloatSetting("Extra", "Places blocks in front of you", 0f, 0f, 8f, 0, 0);
+    private final FloatSetting extend = new FloatSetting("Extend", "Places blocks in front of you", 1f, 1f, 8f, 0, 0);
 
     public Scaffold() {
         super("Scaffold", "Places blocks under you", Category.PLAYER);
         addSetting(tower,
                 swing,
                 switchItem,
-                extra
+                extend
         );
     }
 
@@ -75,7 +75,7 @@ public class Scaffold extends Module {
             int i = 1;
             BlockPos tempBlock = new BlockPos(mc.player.getX(), mc.player.getY() - 1, mc.player.getZ());
             while (!canPlace(tempBlock)) {
-                if (i > extra.getValue()) {
+                if (i > extend.getValue()) {
                     break;
                 }
                 x = mc.player.getX() + (speed * 1.0 * cos + sideSpeed * 1.0 * sin) * i;

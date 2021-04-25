@@ -20,4 +20,5 @@ public class Timer extends Module {
         float eventLastFrameDuration = event.getLastFrameDuration();
         event.setLastFrameDuration(eventLastFrameDuration *= timerSetting.getValue());
     }
+
 }

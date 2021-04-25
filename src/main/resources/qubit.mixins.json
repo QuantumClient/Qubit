@@ -13,7 +13,8 @@
     "IExplosionS2CPacket",
     "IEntityVelocityUpdateS2CPacket",
     "MixinWorldRenderer",
-    "MixinRenderTickCounter"
+    "MixinRenderTickCounter",
+    "ILivingEntity"
   ],
   "injectors": {
     "defaultRequire": 1

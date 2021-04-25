@@ -14,6 +14,7 @@ import org.quantumclient.qubit.module.client.ToggleMsg;
 import org.quantumclient.qubit.module.combat.Aura;
 import org.quantumclient.qubit.module.combat.Offhand;
 import org.quantumclient.qubit.module.movement.Sprint;
+import org.quantumclient.qubit.module.player.Scaffold;
 import org.quantumclient.qubit.module.player.Velocity;
 import org.quantumclient.qubit.module.render.Fullbight;
 import org.quantumclient.qubit.module.render.NoRender;
@@ -48,6 +49,7 @@ public class ModuleManager implements ManagerManager.Manager {
         add(new Velocity());
         add(new NoRender());
         add(new Timer());
+        add(new Scaffold());
     }
 
     private void add(Module module) {

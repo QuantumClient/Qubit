@@ -17,7 +17,6 @@ import java.util.List;
 @SuppressWarnings("rawtypes")
 public class Module implements Wrapper {
 
-
     @NotNull
     private final String name;
 
@@ -35,7 +34,7 @@ public class Module implements Wrapper {
     private List<Setting> settingList;
 
     /**
-     *
+     * Constructor
      * @param name the name of the module
      * @param description what the module does
      * @param bind a key where the button would turn on
@@ -61,18 +60,18 @@ public class Module implements Wrapper {
     }
 
     /**
-     *
+     * The name of the client
      * @return what the module is called
      */
-    public String getName() {
+    public @NotNull String getName() {
         return name;
     }
 
     /**
-     *
+     * What category type the module is
      * @return what category the module is in
      */
-    public Category getCategory() {
+    public @NotNull Category getCategory() {
         return category;
     }
 
@@ -101,7 +100,7 @@ public class Module implements Wrapper {
     }
 
     /**
-     *
+     * Weather the client should be on
      * @param toggled weather the module should be on or not
      */
     public void setToggled(boolean toggled) {
@@ -113,7 +112,7 @@ public class Module implements Wrapper {
     }
 
     /**
-     *
+     * Settings used for controlling variables in modules
      * @param setting adds a setting to the setting list
      */
     protected void addSetting(Setting setting) {
@@ -124,7 +123,7 @@ public class Module implements Wrapper {
     }
 
     /**
-     *
+     * Settings used for controlling variables in modules
      * @param settings allows you to add multiple settings at once
      */
     protected void addSetting(Setting... settings) {
@@ -173,7 +172,7 @@ public class Module implements Wrapper {
         this.bind = bind;
     }
 
-    public String getDescription() {
+    public @Nullable String getDescription() {
         return description;
     }
 

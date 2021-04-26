@@ -1,5 +1,5 @@
 # Qubit
-[![discord](https://img.shields.io/badge/Discord-h8EQyuYTK7-3f5b73)](https://discord.gg/h8EQyuYTK7) 
+[![discord](https://img.shields.io/badge/Discord-h8EQyuYTK7-3f5b73)](https://discord.gg/h8EQyuYTK7) [![Build Status](https://travis-ci.com/QuantumClient/Qubit.svg?token=xQtbtioZsqArKWpCmMKz&branch=master)](https://travis-ci.com/QuantumClient/Qubit)
 
 Qubit is a fabric utility mod for anarchy servers.
 

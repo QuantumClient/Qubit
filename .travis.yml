@@ -1,7 +1,12 @@
 language: java
 
-jdk:
-  - openjdk8
+os: linux
+
+jdk: oraclejdk8
+
+branches:
+  only:
+    - master
 
 script:
   - chmod +x ./gradlew

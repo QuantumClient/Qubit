@@ -24,7 +24,7 @@ script:
 after_success:
   - wget https://gist.githubusercontent.com/ChiquitaV2/051e9d47b6e8d3693d86c620f359854f/raw/f4344cd9704dd3d9578b143e335919d838f57319/discordHook.sh
   - chmod +x discordHook.sh
-  - ./discordHook.sh success -d $WEBHOOK_URL -u $UPLOADHOOK_URL
+  - ./discordHook.sh -t success -d $WEBHOOK_URL -u $UPLOADHOOK_URL
 after_failure:
   - wget https://gist.githubusercontent.com/ChiquitaV2/051e9d47b6e8d3693d86c620f359854f/raw/f4344cd9704dd3d9578b143e335919d838f57319/discordHook.sh
   - chmod +x discordHook.sh

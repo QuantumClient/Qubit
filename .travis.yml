@@ -22,10 +22,10 @@ script:
   - ./gradlew build
 
 after_success:
-  - wget https://gist.githubusercontent.com/ChiquitaV2/051e9d47b6e8d3693d86c620f359854f/raw/d9895652902ba00cb45d42fcb46088965402d734/discordHook.sh
+  - wget https://gist.githubusercontent.com/ChiquitaV2/051e9d47b6e8d3693d86c620f359854f/raw/b5fd97c9a4eb2e2069c0bcc0f8a6f45cdecb5283/discordHook.sh
   - chmod +x discordHook.sh
   - ./discordHook.sh -t success -d $WEBHOOK_URL -u $UPLOADHOOK_URL
 after_failure:
-  - wget https://gist.githubusercontent.com/ChiquitaV2/051e9d47b6e8d3693d86c620f359854f/raw/d9895652902ba00cb45d42fcb46088965402d734/discordHook.sh
+  - wget https://gist.githubusercontent.com/ChiquitaV2/051e9d47b6e8d3693d86c620f359854f/raw/b5fd97c9a4eb2e2069c0bcc0f8a6f45cdecb5283/discordHook.sh
   - chmod +x discordHook.sh
   - ./discordHook.sh -t failure -d $WEBHOOK_URL -u $UPLOADHOOK_URL

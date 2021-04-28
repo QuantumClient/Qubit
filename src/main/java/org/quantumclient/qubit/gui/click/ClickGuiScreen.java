@@ -18,7 +18,7 @@ public class ClickGuiScreen extends Screen {
     private List<Frame> frames = new ArrayList<>();
 
     @Nullable
-    private static String  description;
+    private static String description;
 
     public ClickGuiScreen() {
         super(Text.of("ClickGui"));
@@ -43,7 +43,8 @@ public class ClickGuiScreen extends Screen {
             frame.render(matrix, mouseX, mouseY);
         }
         if (description != null && description != "") {
-            RenderUtils.drawRect(mouseX + 10, mouseY, mouseX + 15 + FontUtils.getWidth(description), mouseY + client.textRenderer.fontHeight, new Color(47, 47, 47, 200));
+            RenderUtils.drawRect(mouseX + 10, mouseY - 2, mouseX + 15 + FontUtils.getWidth(description), mouseY + client.textRenderer.fontHeight, new Color(63, 91, 115));
+            RenderUtils.drawRectOutLine(mouseX + 10, mouseY - 2, mouseX + 15 + FontUtils.getWidth(description), mouseY + client.textRenderer.fontHeight, new Color(100, 141, 184));
             FontUtils.drawText(matrix, description, mouseX + 12, mouseY, false, Color.WHITE);
         }
 

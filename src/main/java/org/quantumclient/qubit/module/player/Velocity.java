@@ -8,18 +8,20 @@ import org.quantumclient.qubit.mixin.IEntityVelocityUpdateS2CPacket;
 import org.quantumclient.qubit.mixin.IExplosionS2CPacket;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
+import org.quantumclient.qubit.settings.AddSetting;
 import org.quantumclient.qubit.settings.numbers.FloatSetting;
 
 public class Velocity extends Module {
 
+    @AddSetting
     private FloatSetting horizontal = new FloatSetting("Horizontal", 0f, 0f, 100f, 0, 0);
-    private FloatSetting vertical = new FloatSetting("Vertical", 0f, 0f, 100f, 0, 0);
 
+    @AddSetting
+    private FloatSetting vertical = new FloatSetting("Vertical", 0f, 0f, 100f, 0, 0);
 
 
     public Velocity() {
         super("Velocity", Category.PLAYER);
-        addSetting(horizontal, vertical);
     }
 
     @Subscribe

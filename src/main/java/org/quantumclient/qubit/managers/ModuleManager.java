@@ -55,6 +55,7 @@ public class ModuleManager implements ManagerManager.Manager {
     }
 
     private void add(Module module) {
+        module.loadSetting();
         modules.add(module);
     }
 

@@ -1,16 +1,19 @@
 package org.quantumclient.qubit.module;
 
 import net.minecraft.util.Formatting;
+import org.apache.commons.lang3.reflect.FieldUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.quantumclient.energy.EventBus;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.client.ClickGui;
 import org.quantumclient.qubit.module.client.ToggleMsg;
+import org.quantumclient.qubit.settings.AddSetting;
 import org.quantumclient.qubit.settings.Setting;
 import org.quantumclient.qubit.utils.MsgHelper;
 import org.quantumclient.qubit.utils.Wrapper;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -176,4 +179,20 @@ public class Module implements Wrapper {
         return description;
     }
 
+    /**
+     * Used for loading setting added though the AddSetting annotation
+     */
+    public void loadSetting() {
+        try {
+            for (Field field : FieldUtils.getFieldsWithAnnotation(getClass(), AddSetting.class)) {
+                if (!field.isAccessible())
+                    field.setAccessible(true);
+                if (Setting.class.isAssignableFrom(field.getType())) {
+                    addSetting((Setting) field.get(this));
+                }
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
 }

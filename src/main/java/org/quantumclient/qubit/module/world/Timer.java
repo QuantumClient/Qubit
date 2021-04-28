@@ -8,7 +8,7 @@ import org.quantumclient.qubit.settings.numbers.FloatSetting;
 
 public class Timer extends Module {
 
-    private FloatSetting timerSetting = new FloatSetting("Timer", 1f, 0f, 20f, 0, 2);
+    private final FloatSetting timerSetting = new FloatSetting("Timer", 1f, 0f, 20f, 0, 2);
 
     public Timer() {
         super("Timer", Category.WORLD);

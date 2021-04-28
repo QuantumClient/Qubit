@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ClickGuiScreen extends Screen {
 
-    private List<Frame> frames = new ArrayList<>();
+    private final List<Frame> frames = new ArrayList<>();
 
     @Nullable
     private static String description;

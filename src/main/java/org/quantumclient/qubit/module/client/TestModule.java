@@ -11,9 +11,9 @@ import org.quantumclient.qubit.settings.numbers.FloatSetting;
 
 public class TestModule extends Module {
 
-    private CheckSetting booleanTest = new CheckSetting("BooleanTest", "this is a test",true);
-    private FloatSetting numbertest = new FloatSetting("numbertesta", 4.4f, 4f, 10f, 0f, 1);
-    private ModeSetting modTest = new ModeSetting("ModeTest", "Packet", new String[] {"Packet", "Normal"});
+    private final CheckSetting booleanTest = new CheckSetting("BooleanTest", "this is a test",true);
+    private final FloatSetting numbertest = new FloatSetting("numbertesta", 4.4f, 4f, 10f, 0f, 1);
+    private final ModeSetting modTest = new ModeSetting("ModeTest", "Packet", new String[] {"Packet", "Normal"});
 
 
     public TestModule() {

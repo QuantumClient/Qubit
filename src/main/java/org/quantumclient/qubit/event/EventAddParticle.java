@@ -5,7 +5,7 @@ import org.quantumclient.energy.Event;
 
 public class EventAddParticle extends Event {
 
-    private ParticleEffect particleEffect;
+    private final ParticleEffect particleEffect;
 
     public EventAddParticle(ParticleEffect particleEffect) {
         this.particleEffect = particleEffect;

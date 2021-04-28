@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ManagerManager {
 
-    private List<Manager> managerList = new ArrayList<>();
+    private final List<Manager> managerList = new ArrayList<>();
 
     public void init() {
         for (Manager manager : managerList) {
@@ -18,12 +18,6 @@ public class ManagerManager {
 
     public void add(Manager manager) {
         managerList.add(manager);
-    }
-
-    public interface Manager {
-        String getName();
-
-        void init();
     }
 
 }

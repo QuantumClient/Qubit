@@ -6,7 +6,7 @@ import org.quantumclient.qubit.Qubit;
 
 public class MsgHelper implements Wrapper {
 
-    private static String prefix = Formatting.GRAY + "[" + Formatting.DARK_AQUA + Qubit.NAME + Formatting.GRAY + "] " + Formatting.RESET;
+    private static final String prefix = Formatting.GRAY + "[" + Formatting.DARK_AQUA + Qubit.NAME + Formatting.GRAY + "] " + Formatting.RESET;
 
     public static void sendMessage(String s) {
         if (mc.world != null) {

@@ -9,7 +9,7 @@ import org.quantumclient.qubit.settings.CheckSetting;
 
 public class NoRender extends Module {
 
-    private CheckSetting explosion = new CheckSetting("Explosion", true);
+    private final CheckSetting explosion = new CheckSetting("Explosion", true);
 
     public NoRender() {
         super("NoRender", Category.RENDER);

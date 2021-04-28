@@ -11,7 +11,7 @@ import java.awt.*;
 public class FontUtils implements Wrapper {
 
     private static FontRenderer tahoma;
-    private static TextRenderer tr = mc.textRenderer;
+    private static final TextRenderer tr = mc.textRenderer;
     private static boolean custom;
 
     public static void drawText(MatrixStack matrix, String string, float x, float y, boolean shawdow, Color color) {

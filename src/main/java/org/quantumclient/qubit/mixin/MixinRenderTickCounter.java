@@ -2,15 +2,11 @@ package org.quantumclient.qubit.mixin;
 
 import net.minecraft.client.render.RenderTickCounter;
 import org.quantumclient.energy.EventBus;
-import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.event.EventRenderTick;
-import org.quantumclient.qubit.module.world.Timer;
-import org.quantumclient.qubit.utils.FontUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(RenderTickCounter.class)

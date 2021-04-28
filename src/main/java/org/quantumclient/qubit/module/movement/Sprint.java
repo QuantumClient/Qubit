@@ -10,8 +10,8 @@ import org.quantumclient.qubit.settings.numbers.FloatSetting;
 
 public class Sprint extends Module {
 
-    private CheckSetting test = new CheckSetting("bittest", true);
-    private FloatSetting numbertest = new FloatSetting("numbertesta", 4.4f, 1f, 10f, 0f, 1);
+    private final CheckSetting test = new CheckSetting("bittest", true);
+    private final FloatSetting numbertest = new FloatSetting("numbertesta", 4.4f, 1f, 10f, 0f, 1);
 
     public Sprint() {
         super("Sprint", "Automatically run", Category.MOVEMENT);

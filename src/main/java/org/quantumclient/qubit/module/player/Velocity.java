@@ -14,10 +14,10 @@ import org.quantumclient.qubit.settings.numbers.FloatSetting;
 public class Velocity extends Module {
 
     @AddSetting
-    private FloatSetting horizontal = new FloatSetting("Horizontal", 0f, 0f, 100f, 0, 0);
+    private final FloatSetting horizontal = new FloatSetting("Horizontal", 0f, 0f, 100f, 0, 0);
 
     @AddSetting
-    private FloatSetting vertical = new FloatSetting("Vertical", 0f, 0f, 100f, 0, 0);
+    private final FloatSetting vertical = new FloatSetting("Vertical", 0f, 0f, 100f, 0, 0);
 
 
     public Velocity() {

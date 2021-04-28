@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class ConfigManager implements ManagerManager.Manager {
+public class ConfigManager implements Manager {
 
     private static final String MAIN_FOLDER = "Qubit/";
     private static final String MODULE_FOLDER = "Modules/";

@@ -5,7 +5,7 @@ import org.quantumclient.energy.Event;
 
 public class EventHudRender extends Event {
 
-    private MatrixStack matrix;
+    private final MatrixStack matrix;
 
     public EventHudRender(MatrixStack matrix) {
         this.matrix = matrix;

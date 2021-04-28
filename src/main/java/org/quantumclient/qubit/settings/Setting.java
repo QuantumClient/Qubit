@@ -24,7 +24,7 @@ public abstract class Setting<T> {
      * @return returns the current value of the setting
      */
     public T getValue() {
-        return (T) value;
+        return value;
     }
 
     /**

@@ -4,7 +4,7 @@ import net.minecraft.network.Packet;
 import org.quantumclient.energy.Event;
 
 public class EventPacketSend extends Event {
-    private Packet<?> packet;
+    private final Packet<?> packet;
 
     public EventPacketSend(Packet<?> packet) {
         this.packet = packet;

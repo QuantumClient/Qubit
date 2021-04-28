@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
 
 public class Aura extends Module {
 
-    private ModeSetting modeSetting = new ModeSetting("Mode", "Multi", new String[]{"Multi", "Single"});
-    private CheckSetting players = new CheckSetting("Players", true);
-    private CheckSetting mobs = new CheckSetting("Mobs", true);
-    private FloatSetting range = new FloatSetting("Range", 5f, 1f, 10f, 0, 0);
+    private final ModeSetting modeSetting = new ModeSetting("Mode", "Multi", new String[]{"Multi", "Single"});
+    private final CheckSetting players = new CheckSetting("Players", true);
+    private final CheckSetting mobs = new CheckSetting("Mobs", true);
+    private final FloatSetting range = new FloatSetting("Range", 5f, 1f, 10f, 0, 0);
 
     private List<Entity> entityList;
     private int tick;

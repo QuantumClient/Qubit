@@ -6,7 +6,7 @@ import org.quantumclient.qubit.Qubit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FriendManager implements ManagerManager.Manager {
+public class FriendManager implements Manager {
 
     private List<String> friends;
 
@@ -32,9 +32,7 @@ public class FriendManager implements ManagerManager.Manager {
     }
 
     public void deleteFriend(String name) {
-        if (friends.contains(name)) {
-            friends.remove(name);
-        }
+        friends.remove(name);
     }
 
     public void deleteFriend(PlayerEntity playerEntity) {

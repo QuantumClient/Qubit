@@ -14,8 +14,7 @@
     "IEntityVelocityUpdateS2CPacket",
     "MixinWorldRenderer",
     "MixinRenderTickCounter",
-    "ILivingEntity",
-    "IGameRenderer"
+    "ILivingEntity"
   ],
   "injectors": {
     "defaultRequire": 1

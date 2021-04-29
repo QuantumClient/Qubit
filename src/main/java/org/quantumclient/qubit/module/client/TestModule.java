@@ -1,9 +1,7 @@
 package org.quantumclient.qubit.module.client;
 
-import net.minecraft.util.Identifier;
 import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.event.EventHudRender;
-import org.quantumclient.qubit.mixin.IGameRenderer;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
 import org.quantumclient.qubit.settings.CheckSetting;

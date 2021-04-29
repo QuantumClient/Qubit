@@ -3,7 +3,6 @@ package org.quantumclient.qubit.module.client;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 import org.quantumclient.qubit.gui.click.ClickGuiScreen;
-import org.quantumclient.qubit.mixin.IGameRenderer;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
 

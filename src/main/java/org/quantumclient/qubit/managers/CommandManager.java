@@ -13,6 +13,7 @@ import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.command.Command;
 import org.quantumclient.qubit.command.commands.Friends;
+import org.quantumclient.qubit.command.commands.Modules;
 import org.quantumclient.qubit.command.commands.Prefix;
 import org.quantumclient.qubit.command.commands.Test;
 import org.quantumclient.qubit.event.EventKeyPress;
@@ -35,6 +36,7 @@ public class CommandManager implements Wrapper, Manager {
         add(new Test());
         add(new Friends());
         add(new Prefix());
+        add(new Modules());
     }
 
     @Override

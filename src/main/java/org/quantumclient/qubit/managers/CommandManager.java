@@ -31,7 +31,7 @@ public class CommandManager implements Wrapper, Manager {
 
     @Override
     public void init() {
-        EventBus.register(this);
+        Qubit.getEventBus().register(this);
         add(new Test());
         add(new Friends());
         add(new Prefix());

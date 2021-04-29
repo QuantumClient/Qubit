@@ -4,6 +4,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import org.quantumclient.energy.EventBus;
+import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.event.EventHudRender;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +24,7 @@ public class MixinInGameHud {
     public void onRender(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
         if (client.player == null || client.world == null) return;
         EventHudRender event = new EventHudRender(matrices);
-        EventBus.post(event);
+        Qubit.getEventBus().post(event);
         if (event.isCancelled()) ci.cancel();
     }
 

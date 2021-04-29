@@ -5,6 +5,7 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.texture.TextureManager;
 import net.minecraft.client.world.ClientWorld;
 import org.quantumclient.energy.EventBus;
+import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.event.EventTick;
 import org.quantumclient.qubit.utils.FontUtils;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,7 +26,7 @@ public class MixinMinecraftClient {
 
     @Inject(method = "tick", at = @At("HEAD"))
     public void onTick(CallbackInfo ci) {
-        if (player != null && world != null) EventBus.post(new EventTick());
+        if (player != null && world != null) Qubit.getEventBus().mutliThreadPost(new EventTick());
     }
 
     @Inject(method = "updateWindowTitle", at = @At("HEAD"), cancellable = true)

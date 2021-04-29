@@ -2,6 +2,7 @@ package org.quantumclient.qubit.module;
 
 import net.minecraft.util.Formatting;
 import org.apache.commons.lang3.reflect.FieldUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.quantumclient.energy.EventBus;
@@ -83,7 +84,7 @@ public class Module implements Wrapper {
             MsgHelper.sendMessage(name + Formatting.GREEN + " enabled");
         }
         toggled = true;
-        EventBus.register(this);
+        Qubit.getEventBus().register(this);
     }
 
     protected void onDisable() {
@@ -91,7 +92,7 @@ public class Module implements Wrapper {
             MsgHelper.sendMessage(name + Formatting.RED + " disable");
         }
         toggled = false;
-        EventBus.unregister(this);
+        Qubit.getEventBus().unregister(this);
     }
 
     public void toggle() {

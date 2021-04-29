@@ -38,7 +38,7 @@ public class ModuleManager implements Manager {
 
     @Override
     public void init() {
-        EventBus.register(this);
+        Qubit.getEventBus().register(this);
         add(new TestModule());
         add(new Sprint());
         add(new ClickGui());

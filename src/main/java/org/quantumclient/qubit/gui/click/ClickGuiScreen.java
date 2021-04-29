@@ -5,6 +5,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
 import org.quantumclient.qubit.Qubit;
+import org.quantumclient.qubit.mixin.IGameRenderer;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.utils.FontUtils;
 import org.quantumclient.qubit.utils.RenderUtils;
@@ -84,6 +85,9 @@ public class ClickGuiScreen extends Screen {
     public void onClose() {
         super.onClose();
         Qubit.getConfigManger().saveGui(this);
+        if (((IGameRenderer) client.gameRenderer).getShader() != null) {
+            ((IGameRenderer) client.gameRenderer).getShader().close();
+        }
     }
 
     static void setDescription(String s) {

@@ -52,6 +52,7 @@ public class Aura extends Module {
         }
 
 
+        if (entityList == null) return;
         if (entityList.isEmpty()) return;
         switch (modeSetting.getValue()) {
             case "Multi":

@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 
 import static org.quantumclient.qubit.utils.Wrapper.mc;
 
-public class ModuleManager implements Manager {
+public final class ModuleManager implements Manager {
 
     private final List<Module> modules = new ArrayList<>();
 

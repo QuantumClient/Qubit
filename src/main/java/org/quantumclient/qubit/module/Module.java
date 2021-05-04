@@ -2,16 +2,14 @@ package org.quantumclient.qubit.module;
 
 import net.minecraft.util.Formatting;
 import org.apache.commons.lang3.reflect.FieldUtils;
-import org.apache.commons.lang3.reflect.MethodUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.quantumclient.energy.EventBus;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.client.ClickGui;
 import org.quantumclient.qubit.module.client.ToggleMsg;
 import org.quantumclient.qubit.settings.AddSetting;
 import org.quantumclient.qubit.settings.Setting;
-import org.quantumclient.qubit.utils.MsgHelper;
+import org.quantumclient.qubit.utils.MsgUtils;
 import org.quantumclient.qubit.utils.Wrapper;
 
 import java.lang.reflect.Field;
@@ -81,7 +79,7 @@ public class Module implements Wrapper {
 
     protected void onEnable() {
         if (Qubit.getModuleManger().isModuleEnabled(ToggleMsg.class) && !name.equals(Qubit.getModuleManger().getModule(ClickGui.class).getName())) {
-            MsgHelper.sendMessage(name + Formatting.GREEN + " enabled");
+            MsgUtils.sendMessage(name + Formatting.GREEN + " enabled");
         }
         toggled = true;
         Qubit.getEventBus().register(this);
@@ -89,7 +87,7 @@ public class Module implements Wrapper {
 
     protected void onDisable() {
         if (Qubit.getModuleManger().isModuleEnabled(ToggleMsg.class) && !name.equals(Qubit.getModuleManger().getModule(ClickGui.class).getName())) {
-            MsgHelper.sendMessage(name + Formatting.RED + " disable");
+            MsgUtils.sendMessage(name + Formatting.RED + " disable");
         }
         toggled = false;
         Qubit.getEventBus().unregister(this);

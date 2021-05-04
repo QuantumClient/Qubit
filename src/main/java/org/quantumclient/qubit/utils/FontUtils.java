@@ -8,7 +8,7 @@ import org.quantumclient.renderer.text.GlyphPage;
 
 import java.awt.*;
 
-public class FontUtils implements Wrapper {
+public final class FontUtils implements Wrapper {
 
     private static FontRenderer tahoma;
     private static final TextRenderer tr = mc.textRenderer;

@@ -15,7 +15,7 @@ import net.minecraft.text.LiteralText;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.command.Command;
 import org.quantumclient.qubit.command.arguments.PlayerArgument;
-import org.quantumclient.qubit.utils.MsgHelper;
+import org.quantumclient.qubit.utils.MsgUtils;
 import org.quantumclient.qubit.utils.Wrapper;
 
 import java.util.Collection;
@@ -37,10 +37,10 @@ public class Friends extends Command {
                 .executes(context -> {
                     PlayerEntity player = context.getArgument("name", PlayerEntity.class);
                     if (Qubit.getFriendManger().isFriend(player)) {
-                        MsgHelper.sendMessage(player.getGameProfile().getName() + " is already a friend");
+                        MsgUtils.sendMessage(player.getGameProfile().getName() + " is already a friend");
                     } else {
                         Qubit.getFriendManger().addFriend(player);
-                        MsgHelper.sendMessage(player.getGameProfile().getName() + " is now a friend");
+                        MsgUtils.sendMessage(player.getGameProfile().getName() + " is now a friend");
                     }
                     return SINGLE_SUCCESS;
                 })))
@@ -49,13 +49,13 @@ public class Friends extends Command {
                 .executes(context -> {
                     String player = context.getArgument("name", String.class);
                     Qubit.getFriendManger().deleteFriend(player);
-                    MsgHelper.sendMessage(player + " is no longer a friend");
+                    MsgUtils.sendMessage(player + " is no longer a friend");
                     return SINGLE_SUCCESS;
                 })))
                 .then(literal("list")
                 .executes(context -> {
                     for (String name : Qubit.getFriendManger().getFriends()) {
-                        MsgHelper.sendMessage(name);
+                        MsgUtils.sendMessage(name);
                     }
                     return SINGLE_SUCCESS;
                 }));

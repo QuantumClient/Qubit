@@ -5,7 +5,7 @@ import org.quantumclient.qubit.Qubit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManagerManager {
+public final class ManagerManager {
 
     private final List<Manager> managerList = new ArrayList<>();
 

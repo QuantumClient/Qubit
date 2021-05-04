@@ -6,7 +6,7 @@ import org.quantumclient.qubit.Qubit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FriendManager implements Manager {
+public final class FriendManager implements Manager {
 
     private List<String> friends;
 

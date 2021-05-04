@@ -20,7 +20,7 @@ import org.quantumclient.qubit.event.EventKeyPress;
 import org.quantumclient.qubit.event.EventPacketSend;
 import org.quantumclient.qubit.utils.Wrapper;
 
-public class CommandManager implements Wrapper, Manager {
+public final class CommandManager implements Wrapper, Manager {
 
     private final CommandDispatcher<CommandSource> dispatcher = new CommandDispatcher<>();
     private final ClientCommandSource clientCommandSource = new ClientCommandSource(null, mc);

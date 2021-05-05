@@ -13,9 +13,9 @@ group = project.maven_group
 allprojects {
     repositories {
         jcenter()
-        maven {
-            url 'https://jitpack.io'
-        }
+        maven { url 'http://maven.quantumclient.org/releases' }
+        maven { url 'https://jitpack.io' }
+
     }
 }
 
@@ -28,8 +28,8 @@ dependencies {
     modImplementation "org.quantumclient:Energy:${project.energy_version}"
     include "org.quantumclient:Energy:${project.energy_version}"
 
-    modImplementation 'org.quantumclient:Renderer:-SNAPSHOT'
-    include 'org.quantumclient:Renderer:-SNAPSHOT'
+    modImplementation 'org.quantumclient:Renderer:1.0'
+    include 'org.quantumclient:Renderer:1.0'
 
     implementation 'org.yaml:snakeyaml:1.28'
     include 'org.yaml:snakeyaml:1.28'

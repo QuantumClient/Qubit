@@ -13,6 +13,7 @@ import net.minecraft.util.math.Matrix4f;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.event.EventAddParticle;
 import org.quantumclient.qubit.event.EventWorldRender;
+import org.quantumclient.qubit.module.render.ESP;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -60,7 +61,10 @@ public class MixinWorldRenderer {
 
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;getTeamColorValue()I"))
     public int getColor(Entity entity) {
-        return Formatting.GREEN.getColorValue();
+        if (Qubit.getModuleManger().isModuleEnabled(ESP.class)) {
+
+        }
+        return Formatting.WHITE.getColorValue();
     }
 
 

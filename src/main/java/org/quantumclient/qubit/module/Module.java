@@ -10,7 +10,7 @@ import org.quantumclient.qubit.settings.AddSetting;
 import org.quantumclient.qubit.settings.Setting;
 import org.quantumclient.qubit.utils.MsgUtils;
 import org.quantumclient.qubit.utils.Wrapper;
-import org.quantumclient.qubit.utils.annotations.NoChat;
+import org.quantumclient.qubit.utils.annotations.Silent;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -78,7 +78,7 @@ public class Module implements Wrapper {
     }
 
     protected void onEnable() {
-        if (getClass().getAnnotation(NoChat.class) == null && Qubit.getModuleManger().isModuleEnabled(ToggleMsg.class)) {
+        if (getClass().getAnnotation(Silent.class) == null && Qubit.getModuleManger().isModuleEnabled(ToggleMsg.class)) {
             MsgUtils.sendMessage(name + Formatting.GREEN + " enabled");
         }
         toggled = true;
@@ -86,7 +86,7 @@ public class Module implements Wrapper {
     }
 
     protected void onDisable() {
-        if (getClass().getAnnotation(NoChat.class) == null) {
+        if (getClass().getAnnotation(Silent.class) == null) {
             MsgUtils.sendMessage(name + Formatting.RED + " disable");
         }
         toggled = false;

@@ -6,6 +6,8 @@ import net.minecraft.client.gl.ShaderEffect;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -62,9 +64,18 @@ public class MixinWorldRenderer {
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;getTeamColorValue()I"))
     public int getColor(Entity entity) {
         if (Qubit.getModuleManger().isModuleEnabled(ESP.class)) {
-
+            if (entity instanceof PlayerEntity) {
+                if (Qubit.getFriendManger().isFriend((PlayerEntity) entity)) {
+                    return 5636095;
+                } else {
+                    return 16733525;
+                }
+            }
+            if (entity instanceof HostileEntity) {
+                return 170;
+            }
         }
-        return Formatting.WHITE.getColorValue();
+        return 16777215;
     }
 
 

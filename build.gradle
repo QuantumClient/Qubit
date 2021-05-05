@@ -13,9 +13,7 @@ group = project.maven_group
 allprojects {
     repositories {
         jcenter()
-        maven { url 'http://maven.quantumclient.org/releases' }
-        maven { url 'https://jitpack.io' }
-
+        maven { url 'https://maven.quantumclient.org/releases' }
     }
 }
 

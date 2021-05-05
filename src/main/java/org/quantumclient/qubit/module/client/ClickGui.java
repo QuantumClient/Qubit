@@ -5,9 +5,9 @@ import org.lwjgl.glfw.GLFW;
 import org.quantumclient.qubit.gui.click.ClickGuiScreen;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
-import org.quantumclient.qubit.utils.annotations.NoChat;
+import org.quantumclient.qubit.utils.annotations.Silent;
 
-@NoChat
+@Silent
 public class ClickGui extends Module {
 
 

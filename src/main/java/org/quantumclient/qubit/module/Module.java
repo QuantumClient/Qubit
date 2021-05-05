@@ -5,12 +5,12 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.quantumclient.qubit.Qubit;
-import org.quantumclient.qubit.module.client.ClickGui;
 import org.quantumclient.qubit.module.client.ToggleMsg;
 import org.quantumclient.qubit.settings.AddSetting;
 import org.quantumclient.qubit.settings.Setting;
 import org.quantumclient.qubit.utils.MsgUtils;
 import org.quantumclient.qubit.utils.Wrapper;
+import org.quantumclient.qubit.utils.annotations.NoChat;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -78,7 +78,7 @@ public class Module implements Wrapper {
     }
 
     protected void onEnable() {
-        if (Qubit.getModuleManger().isModuleEnabled(ToggleMsg.class) && !name.equals(Qubit.getModuleManger().getModule(ClickGui.class).getName())) {
+        if (getClass().getAnnotation(NoChat.class) == null && Qubit.getModuleManger().isModuleEnabled(ToggleMsg.class)) {
             MsgUtils.sendMessage(name + Formatting.GREEN + " enabled");
         }
         toggled = true;
@@ -86,7 +86,7 @@ public class Module implements Wrapper {
     }
 
     protected void onDisable() {
-        if (Qubit.getModuleManger().isModuleEnabled(ToggleMsg.class) && !name.equals(Qubit.getModuleManger().getModule(ClickGui.class).getName())) {
+        if (getClass().getAnnotation(NoChat.class) == null) {
             MsgUtils.sendMessage(name + Formatting.RED + " disable");
         }
         toggled = false;

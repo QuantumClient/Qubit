@@ -17,6 +17,8 @@ import org.quantumclient.qubit.module.movement.Sprint;
 import org.quantumclient.qubit.module.player.NoFall;
 import org.quantumclient.qubit.module.player.Scaffold;
 import org.quantumclient.qubit.module.player.Velocity;
+import org.quantumclient.qubit.module.render.Australia;
+import org.quantumclient.qubit.module.render.ESP;
 import org.quantumclient.qubit.module.render.Fullbight;
 import org.quantumclient.qubit.module.render.NoRender;
 import org.quantumclient.qubit.module.world.Timer;
@@ -52,6 +54,8 @@ public final class ModuleManager implements Manager {
         add(new Timer());
         add(new Scaffold());
         add(new NoFall());
+        add(new Australia());
+        add(new ESP());
     }
 
     private void add(Module module) {

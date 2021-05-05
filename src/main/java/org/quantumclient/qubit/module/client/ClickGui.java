@@ -5,8 +5,11 @@ import org.lwjgl.glfw.GLFW;
 import org.quantumclient.qubit.gui.click.ClickGuiScreen;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
+import org.quantumclient.qubit.utils.annotations.NoChat;
 
+@NoChat
 public class ClickGui extends Module {
+
 
     public ClickGui() {
         super("ClickGui", "Opens a control panel for modules", GLFW.GLFW_KEY_RIGHT_SHIFT, Category.CLIENT);

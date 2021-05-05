@@ -1,6 +1,9 @@
 package org.quantumclient.qubit;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.launch.FabricClientTweaker;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.quantumclient.energy.EventBus;

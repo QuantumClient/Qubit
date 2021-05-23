@@ -1,5 +1,6 @@
 package org.quantumclient.qubit.module.client;
 
+import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.event.EventHudRender;
 import org.quantumclient.qubit.module.Category;
@@ -7,8 +8,11 @@ import org.quantumclient.qubit.module.Module;
 import org.quantumclient.qubit.settings.CheckSetting;
 import org.quantumclient.qubit.settings.ModeSetting;
 import org.quantumclient.qubit.settings.numbers.FloatSetting;
+import org.quantumclient.qubit.utils.annotations.SetCategory;
 
 
+@SetCategory(Category.CLIENT)
+@Info("TestModule")
 public class TestModule extends Module {
 
     private final CheckSetting booleanTest = new CheckSetting("BooleanTest", "this is a test",true);
@@ -17,7 +21,7 @@ public class TestModule extends Module {
 
 
     public TestModule() {
-        super("TestModule", Category.CLIENT);
+        super();
         addSetting(booleanTest);
         addSetting(numbertest);
         addSetting(modTest);

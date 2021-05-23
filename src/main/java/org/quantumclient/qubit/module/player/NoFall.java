@@ -1,16 +1,16 @@
 package org.quantumclient.qubit.module.player;
 
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
+import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.event.EventTick;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
+import org.quantumclient.qubit.utils.annotations.SetCategory;
 
+@SetCategory(Category.PLAYER)
+@Info(value = "NoFall", description = "Prevents fall damage")
 public class NoFall extends Module {
-
-    public NoFall() {
-        super("NoFall", "Prevents fall damage", Category.PLAYER);
-    }
 
     @Subscribe
     public void onTick(EventTick event) {

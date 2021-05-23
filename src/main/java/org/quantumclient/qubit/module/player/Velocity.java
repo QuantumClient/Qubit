@@ -2,6 +2,7 @@ package org.quantumclient.qubit.module.player;
 
 import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
 import net.minecraft.network.packet.s2c.play.ExplosionS2CPacket;
+import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.event.EventPacketReceive;
 import org.quantumclient.qubit.mixin.IEntityVelocityUpdateS2CPacket;
@@ -10,7 +11,10 @@ import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
 import org.quantumclient.qubit.settings.AddSetting;
 import org.quantumclient.qubit.settings.numbers.FloatSetting;
+import org.quantumclient.qubit.utils.annotations.SetCategory;
 
+@Info("Velocity")
+@SetCategory(Category.PLAYER)
 public class Velocity extends Module {
 
     @AddSetting
@@ -18,11 +22,6 @@ public class Velocity extends Module {
 
     @AddSetting
     private final FloatSetting vertical = new FloatSetting("Vertical", 0f, 0f, 100f, 0, 0);
-
-
-    public Velocity() {
-        super("Velocity", Category.PLAYER);
-    }
 
     @Subscribe
     public void onReceive(EventPacketReceive event) {

@@ -4,13 +4,15 @@ import net.minecraft.util.Formatting;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.client.ToggleMsg;
 import org.quantumclient.qubit.settings.AddSetting;
 import org.quantumclient.qubit.settings.Setting;
 import org.quantumclient.qubit.utils.MsgUtils;
 import org.quantumclient.qubit.utils.Wrapper;
-import org.quantumclient.qubit.utils.annotations.Silent;
+import org.quantumclient.qubit.utils.annotations.SetCategory;
+import org.quantumclient.commons.annoations.Silent;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -36,29 +38,14 @@ public class Module implements Wrapper {
     private List<Setting> settingList;
 
     /**
-     * Constructor
-     * @param name the name of the module
-     * @param description what the module does
-     * @param bind a key where the button would turn on
-     * @param category what type of module it is
+     * Sets up the Modules from annotations
      */
-    public Module(@NotNull String name, @Nullable String description, int bind, @NotNull Category category) {
-        this.name = name;
-        this.description = description;
-        this.bind = bind;
-        this.category = category;
-    }
-
-    public Module(String name, String description, Category category) {
-        this(name, description, -1, category);
-    }
-
-    public Module(String name, Category category, int bind) {
-        this(name, null, bind, category);
-    }
-
-    public Module(String name, Category category) {
-        this(name, null, category);
+    public Module() {
+        Info info = getClass().getAnnotation(Info.class);
+        this.name = info.value();
+        this.description = (info.description() == "") ? null : info.description();
+        this.category = getClass().getAnnotation(SetCategory.class).value();
+        this.bind = info.bind();
     }
 
     /**
@@ -87,7 +74,7 @@ public class Module implements Wrapper {
 
     protected void onDisable() {
         if (getClass().getAnnotation(Silent.class) == null) {
-            MsgUtils.sendMessage(name + Formatting.RED + " disable");
+            MsgUtils.sendMessage(name + Formatting.RED + " disabled");
         }
         toggled = false;
         Qubit.getEventBus().unregister(this);

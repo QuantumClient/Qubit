@@ -6,6 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
+import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.event.EventTick;
@@ -14,10 +15,13 @@ import org.quantumclient.qubit.module.Module;
 import org.quantumclient.qubit.settings.CheckSetting;
 import org.quantumclient.qubit.settings.ModeSetting;
 import org.quantumclient.qubit.settings.numbers.FloatSetting;
+import org.quantumclient.qubit.utils.annotations.SetCategory;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@SetCategory(Category.COMBAT)
+@Info(value = "Aura", description = "Kill people")
 public class Aura extends Module {
 
     private final ModeSetting modeSetting = new ModeSetting("Mode", "Multi", new String[]{"Multi", "Single"});
@@ -29,7 +33,7 @@ public class Aura extends Module {
     private int tick;
 
     public Aura() {
-        super("Aura", "Kill people", Category.COMBAT);
+        super();
         addSetting(modeSetting,
                 players,
                 mobs,

@@ -1,7 +1,6 @@
 package org.quantumclient.qubit.managers;
 
 import org.lwjgl.glfw.GLFW;
-import org.quantumclient.energy.EventBus;
 import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.event.EventKeyPress;
@@ -13,13 +12,14 @@ import org.quantumclient.qubit.module.client.TestModule;
 import org.quantumclient.qubit.module.client.ToggleMsg;
 import org.quantumclient.qubit.module.combat.Aura;
 import org.quantumclient.qubit.module.combat.Offhand;
+import org.quantumclient.qubit.module.movement.ElytraFlight;
 import org.quantumclient.qubit.module.movement.Sprint;
 import org.quantumclient.qubit.module.player.NoFall;
 import org.quantumclient.qubit.module.player.Scaffold;
 import org.quantumclient.qubit.module.player.Velocity;
 import org.quantumclient.qubit.module.render.Australia;
 import org.quantumclient.qubit.module.render.ESP;
-import org.quantumclient.qubit.module.render.Fullbight;
+import org.quantumclient.qubit.module.render.Fullbright;
 import org.quantumclient.qubit.module.render.NoRender;
 import org.quantumclient.qubit.module.world.Timer;
 
@@ -48,7 +48,7 @@ public final class ModuleManager implements Manager {
         add(new ToggleMsg());
         add(new Aura());
         add(new Font());
-        add(new Fullbight());
+        add(new Fullbright());
         add(new Velocity());
         add(new NoRender());
         add(new Timer());
@@ -56,6 +56,7 @@ public final class ModuleManager implements Manager {
         add(new NoFall());
         add(new Australia());
         add(new ESP());
+        add(new ElytraFlight());
     }
 
     private void add(Module module) {

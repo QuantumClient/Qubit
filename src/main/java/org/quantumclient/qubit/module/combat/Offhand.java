@@ -3,6 +3,7 @@ package org.quantumclient.qubit.module.combat;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
+import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.event.EventTick;
 import org.quantumclient.qubit.module.Category;
@@ -10,7 +11,10 @@ import org.quantumclient.qubit.module.Module;
 import org.quantumclient.qubit.settings.CheckSetting;
 import org.quantumclient.qubit.settings.ModeSetting;
 import org.quantumclient.qubit.settings.numbers.FloatSetting;
+import org.quantumclient.qubit.utils.annotations.SetCategory;
 
+@Info(value = "Offhand", description = "Sets your offhand")
+@SetCategory(Category.COMBAT)
 public class Offhand extends Module {
 
     public ModeSetting modeSetting = new ModeSetting("Mode", "Totem", new String[] {"Totem", "Gapple", "Crystal"});
@@ -18,7 +22,7 @@ public class Offhand extends Module {
     public CheckSetting elytraTotem = new CheckSetting("ElytraTotem", "Force a totem when flying", true);
 
     public Offhand() {
-        super("Offhand", "Sets your offhand", Category.COMBAT);
+        super();
         addSetting(modeSetting);
         addSetting(health);
         addSetting(elytraTotem);

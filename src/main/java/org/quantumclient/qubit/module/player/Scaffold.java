@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
+import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.event.EventTick;
 import org.quantumclient.qubit.mixin.ILivingEntity;
@@ -17,7 +18,10 @@ import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
 import org.quantumclient.qubit.settings.CheckSetting;
 import org.quantumclient.qubit.settings.numbers.FloatSetting;
+import org.quantumclient.qubit.utils.annotations.SetCategory;
 
+@SetCategory(Category.PLAYER)
+@Info(value = "Scaffold", description = "Places blocks under you")
 public class Scaffold extends Module {
 
     private final CheckSetting tower = new CheckSetting("Tower", true);
@@ -26,7 +30,7 @@ public class Scaffold extends Module {
     private final FloatSetting extend = new FloatSetting("Extend", "Places blocks in front of you", 1f, 1f, 8f, 0, 0);
 
     public Scaffold() {
-        super("Scaffold", "Places blocks under you", Category.PLAYER);
+        super();
         addSetting(tower,
                 swing,
                 switchItem,

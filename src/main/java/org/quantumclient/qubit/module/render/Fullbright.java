@@ -2,18 +2,18 @@ package org.quantumclient.qubit.module.render;
 
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.event.EventTick;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
+import org.quantumclient.qubit.utils.annotations.SetCategory;
 
-public class Fullbight extends Module {
+@Info("Fullbright")
+@SetCategory(Category.RENDER)
+public class Fullbright extends Module {
 
     private StatusEffectInstance vision;
-
-    public Fullbight() {
-        super("Fullbight", Category.RENDER);
-    }
 
     @Subscribe
     public void onTick(EventTick event) {

@@ -6,6 +6,7 @@ import net.minecraft.client.gl.ShaderEffect;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleEffect;
@@ -25,6 +26,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.awt.*;
 import java.io.IOException;
+
+import static org.quantumclient.qubit.utils.Wrapper.mc;
 
 @Mixin(WorldRenderer.class)
 public class MixinWorldRenderer {
@@ -76,6 +79,23 @@ public class MixinWorldRenderer {
             }
         }
         return 16777215;
+    }
+
+    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;hasOutline(Lnet/minecraft/entity/Entity;)Z"))
+    public boolean hasOutline(MinecraftClient minecraftClient, Entity entity) {
+        if (Qubit.getModuleManger().isModuleEnabled(ESP.class)) {
+            ESP esp = (ESP) Qubit.getModuleManger().getModule(ESP.class);
+            if (entity instanceof PlayerEntity && (esp.players.getValue() && entity != minecraftClient.player)) {
+                return true;
+            }
+            if (entity instanceof HostileEntity && esp.mobs.getValue()) {
+                return true;
+            }
+            if (esp.others.getValue() && entity != minecraftClient.player) {
+                return true;
+            }
+        }
+        return entity.isGlowing() || minecraftClient.player != null && minecraftClient.player.isSpectator() && minecraftClient.options.keySpectatorOutlines.isPressed() && entity.getType() == EntityType.PLAYER;
     }
 
 

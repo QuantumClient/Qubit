@@ -1,14 +1,14 @@
 package org.quantumclient.qubit.module.render;
 
 import net.minecraft.util.Identifier;
+import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
+import org.quantumclient.qubit.utils.annotations.SetCategory;
 
+@Info("Australia")
+@SetCategory(Category.RENDER)
 public class Australia extends Module {
-
-    public Australia() {
-        super("Australia", Category.RENDER);
-    }
 
     @Override
     public void onEnable() {

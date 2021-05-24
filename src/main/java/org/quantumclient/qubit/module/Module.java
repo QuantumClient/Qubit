@@ -7,7 +7,7 @@ import org.jetbrains.annotations.Nullable;
 import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.client.ToggleMsg;
-import org.quantumclient.qubit.settings.AddSetting;
+import org.quantumclient.qubit.utils.annotations.AddSetting;
 import org.quantumclient.qubit.settings.Setting;
 import org.quantumclient.qubit.utils.MsgUtils;
 import org.quantumclient.qubit.utils.Wrapper;

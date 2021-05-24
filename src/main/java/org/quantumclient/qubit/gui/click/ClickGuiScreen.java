@@ -2,6 +2,7 @@ package org.quantumclient.qubit.gui.click;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.Nullable;
 import org.quantumclient.qubit.Qubit;
@@ -32,13 +33,14 @@ public class ClickGuiScreen extends Screen {
             frames.add(new Frame(category, 20 + (i * 110), 30));
             i++;
         }
+
         Qubit.getConfigManger().loadGui(this);
     }
 
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-        super.render(matrix, mouseX, mouseY, delta);
         super.renderBackground(matrix);
+        super.render(matrix, mouseX, mouseY, delta);
         for (Frame frame : frames) {
             frame.render(matrix, mouseX, mouseY);
         }

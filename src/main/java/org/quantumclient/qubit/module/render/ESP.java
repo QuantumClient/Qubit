@@ -1,13 +1,9 @@
 package org.quantumclient.qubit.module.render;
 
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import org.quantumclient.commons.annoations.Info;
-import org.quantumclient.energy.Subscribe;
-import org.quantumclient.qubit.event.EventEntityRender;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
-import org.quantumclient.qubit.settings.AddSetting;
+import org.quantumclient.qubit.utils.annotations.AddSetting;
 import org.quantumclient.qubit.settings.CheckSetting;
 import org.quantumclient.qubit.utils.annotations.SetCategory;
 

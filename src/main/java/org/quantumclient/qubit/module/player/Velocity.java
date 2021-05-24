@@ -9,7 +9,7 @@ import org.quantumclient.qubit.mixin.IEntityVelocityUpdateS2CPacket;
 import org.quantumclient.qubit.mixin.IExplosionS2CPacket;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
-import org.quantumclient.qubit.settings.AddSetting;
+import org.quantumclient.qubit.utils.annotations.AddSetting;
 import org.quantumclient.qubit.settings.numbers.FloatSetting;
 import org.quantumclient.qubit.utils.annotations.SetCategory;
 

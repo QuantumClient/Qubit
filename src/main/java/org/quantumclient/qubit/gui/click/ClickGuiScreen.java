@@ -4,6 +4,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.Category;
@@ -39,12 +40,12 @@ public class ClickGuiScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-        super.renderBackground(matrix);
+       // super.renderBackground(matrix);
         super.render(matrix, mouseX, mouseY, delta);
         for (Frame frame : frames) {
             frame.render(matrix, mouseX, mouseY);
         }
-        if (description != null && description != "") {
+        if (description != null && !StringUtils.isEmpty(description)) {
             RenderUtils.drawRect(matrix,mouseX + 10, mouseY - 2, mouseX + 15 + FontUtils.getWidth(description), mouseY + client.textRenderer.fontHeight, new Color(63, 91, 115));
             RenderUtils.drawRectOutLine(matrix,mouseX + 10, mouseY - 2, mouseX + 15 + FontUtils.getWidth(description), mouseY + client.textRenderer.fontHeight, new Color(100, 141, 184));
             FontUtils.drawText(matrix, description, mouseX + 12, mouseY, false, Color.WHITE);

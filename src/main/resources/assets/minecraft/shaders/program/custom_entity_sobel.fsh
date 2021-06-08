@@ -1,9 +1,9 @@
-#version 120
+#version 150
 
 uniform sampler2D DiffuseSampler;
 
-varying vec2 texCoord;
-varying vec2 oneTexel;
+in vec2 texCoord;
+in vec2 oneTexel;
 
 void main() {
     float radius = 1;

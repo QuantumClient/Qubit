@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinEntityRenderer<T extends Entity> {
 
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
-    public void onRender(T entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
+    public void onRender2(T entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
         EventEntityRender event = new EventEntityRender(entity);
         Qubit.getEventBus().post(event);
         if (event.isCancelled()) ci.cancel();

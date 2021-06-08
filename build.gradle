@@ -25,8 +25,8 @@ dependencies {
     modImplementation "org.quantumclient:Energy:${project.energy_version}"
     include "org.quantumclient:Energy:${project.energy_version}"
 
-    modImplementation 'org.quantumclient:Renderer:1.0'
-    include 'org.quantumclient:Renderer:1.0'
+    modImplementation 'org.quantumclient:Renderer:2.0'
+    include 'org.quantumclient:Renderer:2.0'
 
     implementation 'org.yaml:snakeyaml:1.28'
     include 'org.yaml:snakeyaml:1.28'
@@ -45,13 +45,8 @@ minecraft {
 processResources {
     inputs.property "version", project.version
 
-    from(sourceSets.main.resources.srcDirs) {
-        include "fabric.mod.json"
+    filesMatching("fabric.mod.json") {
         expand "version": project.version
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude "fabric.mod.json"
     }
 }
 
@@ -60,6 +55,8 @@ processResources {
 // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
+    it.options.release = 16
+
 }
 
 // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task

@@ -31,9 +31,9 @@ public class Offhand extends Module {
     @Subscribe
     public void onTick(EventTick event) {
         if (mc.player.getOffHandStack().getItem() == getOffhandItem()) return;
-        for (int i = 0; i < mc.player.inventory.size(); i++) {
+        for (int i = 0; i < mc.player.getInventory().size(); i++) {
             if (mc.player.getOffHandStack().getItem() != getOffhandItem()) {
-                if (mc.player.inventory.getStack(i).getItem() == getOffhandItem()) {
+                if (mc.player.getInventory().getStack(i).getItem() == getOffhandItem()) {
                     mc.interactionManager.clickSlot(0, 45, 0, SlotActionType.PICKUP, mc.player);
                     mc.interactionManager.clickSlot(0, (i < 9) ? (i + 36) : i, 0, SlotActionType.PICKUP, mc.player);
                     mc.interactionManager.clickSlot(0, 45, 0, SlotActionType.PICKUP, mc.player);

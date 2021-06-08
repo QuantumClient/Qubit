@@ -45,8 +45,8 @@ public class ClickGuiScreen extends Screen {
             frame.render(matrix, mouseX, mouseY);
         }
         if (description != null && description != "") {
-            RenderUtils.drawRect(mouseX + 10, mouseY - 2, mouseX + 15 + FontUtils.getWidth(description), mouseY + client.textRenderer.fontHeight, new Color(63, 91, 115));
-            RenderUtils.drawRectOutLine(mouseX + 10, mouseY - 2, mouseX + 15 + FontUtils.getWidth(description), mouseY + client.textRenderer.fontHeight, new Color(100, 141, 184));
+            RenderUtils.drawRect(matrix,mouseX + 10, mouseY - 2, mouseX + 15 + FontUtils.getWidth(description), mouseY + client.textRenderer.fontHeight, new Color(63, 91, 115));
+            RenderUtils.drawRectOutLine(matrix,mouseX + 10, mouseY - 2, mouseX + 15 + FontUtils.getWidth(description), mouseY + client.textRenderer.fontHeight, new Color(100, 141, 184));
             FontUtils.drawText(matrix, description, mouseX + 12, mouseY, false, Color.WHITE);
         }
 

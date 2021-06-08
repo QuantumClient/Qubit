@@ -43,7 +43,7 @@ public class Scaffold extends Module {
         if (mc.player == null || mc.world == null) return;
 
         if (switchItem.getValue() && !(mc.player.getMainHandStack().getItem() instanceof BlockItem)) for (int i = 0; i < 9; ++i) {
-            if (mc.player.inventory.getStack(i).getItem() instanceof BlockItem) {
+            if (mc.player.getInventory().getStack(i).getItem() instanceof BlockItem) {
                 mc.getNetworkHandler().sendPacket(new UpdateSelectedSlotC2SPacket(i));
                 break;
             }
@@ -75,8 +75,8 @@ public class Scaffold extends Module {
         } else {
             float speed = mc.player.forwardSpeed;
             float sideSpeed = mc.player.sidewaysSpeed;
-            double cos = Math.cos(Math.toRadians(mc.player.yaw + 90.0f));
-            double sin = Math.sin(Math.toRadians(mc.player.yaw + 90.0f));
+            double cos = Math.cos(Math.toRadians(mc.player.getYaw() + 90.0f));
+            double sin = Math.sin(Math.toRadians(mc.player.getYaw() + 90.0f));
             double x;
             double z;
             int i = 1;

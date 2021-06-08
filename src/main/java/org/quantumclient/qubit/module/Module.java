@@ -171,7 +171,8 @@ public class Module implements Wrapper {
     public void loadSetting() {
         try {
             for (Field field : FieldUtils.getFieldsWithAnnotation(getClass(), AddSetting.class)) {
-                if (!field.isAccessible()) field.setAccessible(true);
+               // if (!field.isAccessible()) field.setAccessible(true);
+                field.trySetAccessible();
                 if (Setting.class.isAssignableFrom(field.getType())) {
                     addSetting((Setting) field.get(this));
                 }

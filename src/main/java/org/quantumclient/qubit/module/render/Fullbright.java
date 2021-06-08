@@ -18,7 +18,7 @@ public class Fullbright extends Module {
     @Subscribe
     public void onTick(EventTick event) {
         vision = new StatusEffectInstance(StatusEffects.NIGHT_VISION, 100);
-        mc.player.applyStatusEffect(vision);
+        mc.player.setStatusEffect(vision, mc.player);
     }
 
     @Override

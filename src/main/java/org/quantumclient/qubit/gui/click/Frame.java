@@ -43,17 +43,17 @@ public class Frame implements Wrapper {
 
     void render(MatrixStack matrix, int mouseX, int mouseY) {
         int m = 1;
-        RenderUtils.drawRect(x - 5 , y, x + width + 5, y + height, new Color(63, 91, 115));
-        RenderUtils.drawRectOutLine(x - 5, y, x + width + 5,  y + height, new Color(100, 141, 184));
+        RenderUtils.drawRect(matrix, x - 5 , y, x + width + 5, y + height, new Color(63, 91, 115));
+        RenderUtils.drawRectOutLine(matrix, x - 5, y, x + width + 5,  y + height, new Color(100, 141, 184));
 
      //   mc.textRenderer.draw(matrix, StringUtils.capitalize(category.name().toLowerCase()), (x + ((x + width) - x) / 2 - (mc.textRenderer.getWidth(new LiteralText(category.name().toLowerCase()))) / 2), y + 3, -1);
         FontUtils.drawText(matrix,StringUtils.capitalize(category.name().toLowerCase()), (x + ((x + width) - x) / 2 - (mc.textRenderer.getWidth(new LiteralText(category.name().toLowerCase()))) / 2), y + 3, true, Color.white);
         if (open) for (Module module : Qubit.getModuleManger().getModulesInCat(category)) {
 
 
-            RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
+            RenderUtils.drawRect(matrix, x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
             if (module.isToggled())
-                RenderUtils.drawRect(x, y + m * height + 2, x + width, y + height + m * height - 2, new Color(63, 91, 115));
+                RenderUtils.drawRect(matrix, x, y + m * height + 2, x + width, y + height + m * height - 2, new Color(63, 91, 115));
 
 
             int o = m;
@@ -71,9 +71,9 @@ public class Frame implements Wrapper {
                 }
                 if (setting instanceof CheckSetting) {
                     CheckSetting checkSetting = (CheckSetting) setting;
-                    RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
+                    RenderUtils.drawRect(matrix, x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
                     if (checkSetting.getValue())
-                        RenderUtils.drawRect(x, y + m * height + 2, x + width, y + height + m * height - 2, new Color(63, 91, 115));
+                        RenderUtils.drawRect(matrix, x, y + m * height + 2, x + width, y + height + m * height - 2, new Color(63, 91, 115));
 
                     FontUtils.drawText(matrix, StringUtils.capitalize(setting.getName()), x + 2, y + 3 + height * m, false, Color.WHITE);
                     if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
@@ -82,7 +82,7 @@ public class Frame implements Wrapper {
                 }
                 if (setting instanceof ModeSetting) {
                     ModeSetting modeSetting = (ModeSetting) setting;
-                    RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
+                    RenderUtils.drawRect(matrix, x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
                     FontUtils.drawText(matrix, StringUtils.capitalize(setting.getName()) + ": " + setting.getValue(), x + 2, y + 3 + height * m, false, Color.WHITE);
                     if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                         if (clickedButton == 0) modeSetting.setValue(modeSetting.nextMode());
@@ -91,8 +91,8 @@ public class Frame implements Wrapper {
                 if (setting instanceof FloatSetting) {
                     FloatSetting floatSetting = (FloatSetting) setting;
                     float newWidth = width * (floatSetting.getValue() - floatSetting.getMin()) / (floatSetting.getMax() - floatSetting.getMin());
-                    RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
-                    RenderUtils.drawRect(x, y + m * height + 2, x + newWidth , y + height + m * height - 2, new Color(63, 91, 115));
+                    RenderUtils.drawRect(matrix, x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
+                    RenderUtils.drawRect(matrix, x, y + m * height + 2, x + newWidth , y + height + m * height - 2, new Color(63, 91, 115));
                     FontUtils.drawText(matrix, StringUtils.capitalize(setting.getName()) + ": " + setting.getValue(), x + 2, y + 3 + height * m, false, Color.WHITE);
                     if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                         if (dragging) {
@@ -109,8 +109,8 @@ public class Frame implements Wrapper {
                 if (setting instanceof DoubleSetting) {
                     DoubleSetting doubleSetting = (DoubleSetting) setting;
                     double newWidth = width * (doubleSetting.getValue() - doubleSetting.getMin()) / (doubleSetting.getMax() - doubleSetting.getMin());
-                    RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
-                    RenderUtils.drawRect(x, y + m * height + 2, (float) (x + newWidth), y + height + m * height - 2, new Color(63, 91, 115));
+                    RenderUtils.drawRect(matrix, x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
+                    RenderUtils.drawRect(matrix, x, y + m * height + 2, (float) (x + newWidth), y + height + m * height - 2, new Color(63, 91, 115));
                     FontUtils.drawText(matrix, StringUtils.capitalize(setting.getName()) + ": " + setting.getValue(), x + 2, y + 3 + height * m, false, Color.WHITE);
                     if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                         if (dragging) {
@@ -127,7 +127,7 @@ public class Frame implements Wrapper {
                 m++;
             }
             if (module.isOpen()) {
-                RenderUtils.drawRect(x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
+                RenderUtils.drawRect(matrix, x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
                 String string = (module.isBinding()) ? "..." : (module.getBind() == -1) ? "NONE" : InputUtil.fromKeyCode(module.getBind() , -1).getLocalizedText().getString();
                 FontUtils.drawText(matrix, StringUtils.capitalize("Bind: " + string), x + 2, y + 3 + height * m, false, Color.WHITE);
                 if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
@@ -142,7 +142,7 @@ public class Frame implements Wrapper {
                 }
                 m++;
             }
-            RenderUtils.drawRectOutLine(x, y + o * height, x + width, y + m * height, new Color(100, 141, 184));
+            RenderUtils.drawRectOutLine(matrix, x, y + o * height, x + width, y + m * height, new Color(100, 141, 184));
 
         }
 

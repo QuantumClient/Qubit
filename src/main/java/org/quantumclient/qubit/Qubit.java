@@ -28,7 +28,7 @@ public class Qubit implements ModInitializer, Wrapper {
     @Override
     public void onInitialize() {
         managerManager.init();
-        mc.execute(() -> mc.getWindow().setTitle(String.format("%s - %s", NAME, VERSION)));
+       // mc.execute(() -> mc.getWindow().setTitle(String.format("%s - %s", NAME, VERSION)));
         Runtime.getRuntime().addShutdownHook(new Thread(() -> configManager.save()));
     }
 

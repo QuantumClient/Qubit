@@ -15,7 +15,9 @@
     "MixinWorldRenderer",
     "MixinRenderTickCounter",
     "ILivingEntity",
-    "MixinEntityRenderer"
+    "MixinEntityRenderer",
+    "MixinExplosionS2CPacket",
+    "MixinEntityVelocityUpdateS2CPacket"
   ],
   "injectors": {
     "defaultRequire": 1

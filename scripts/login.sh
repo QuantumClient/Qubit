@@ -7,7 +7,7 @@ response=$(curl -L -X PUT 'https://quantumclient.org/api/auth/login' \
     "username": "'$ACCOUNT_USERNAME'",
     "password": "'$ACCOUNT_PASSWORD'"
 }')
-
+echo '$ACCOUNT_USERNAME'
 token=$(echo $response | jq --raw-output '.token')
 
 echo $token

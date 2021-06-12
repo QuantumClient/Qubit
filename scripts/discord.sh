@@ -32,11 +32,11 @@ esac
 
 shift
 VRS=$(cat ../gradle.properties| grep mod_version | sed 's/.*=//')
-json=$(curl -H 'Content-Type: multipart/form-data' -X POST -F "file=../build/libs/Qubit-$VRS.jar" "$UPLOAD" )
+json=$(curl -H 'Content-Type: multipart/form-data' -X POST -F "file=@../build/libs/Qubit-$VRS.jar" "$UPLOAD" )
 JARLINK=$(echo $json | sed 's/\\\\\//\//g' | sed 's/[{}]//g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | sed 's/\"\:\"/\|/g' | sed 's/[\,]/ /g' | sed 's/\"//g' | grep -w 'url' | sed 's/.* //' )
 
 if [  $TYPE="success" ]; then
-    export TOKEN="$(./login.sh)"
+    TOKEN="$(./login.sh)"
     (curl -L -X PUT 'https://quantumclient.org/api/projects/qubit/link' \
 -H 'Authorization: Bearer '$TOKEN'' \
 -H 'Content-Type: application/json' \

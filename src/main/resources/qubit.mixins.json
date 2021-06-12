@@ -10,8 +10,6 @@
     "MixinClientConnection",
     "MixinInGameHud",
     "MixinCommandSuggestor",
-    "IExplosionS2CPacket",
-    "IEntityVelocityUpdateS2CPacket",
     "MixinWorldRenderer",
     "MixinRenderTickCounter",
     "ILivingEntity",

@@ -53,7 +53,6 @@ public final class ConfigManager implements Manager {
     public void load() {
         try {
             loadModules();
-            loadFriends();
             loadClient();
         } catch (IOException e) {
             e.printStackTrace();
@@ -63,7 +62,6 @@ public final class ConfigManager implements Manager {
     public void save() {
         try {
             saveModules();
-            saveFriends();
             saveClient();
         } catch (IOException e) {
             e.printStackTrace();
@@ -180,30 +178,6 @@ public final class ConfigManager implements Manager {
             PrintWriter writer = new PrintWriter(MAIN_FOLDER + "Gui.yml");
             yaml.dump(dataMap, writer);
             dataMap.clear();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void loadFriends() {
-        try {
-            if (!Files.exists(Paths.get(MAIN_FOLDER + "Friends.yml"))) return;
-            InputStream inputStream = Files.newInputStream(Paths.get(MAIN_FOLDER + "Friends.yml"));
-            for (String name : (List<String>) yaml.load(inputStream)) {
-                Qubit.getFriendManger().addFriend(name);
-            }
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void saveFriends() {
-        try {
-            makeFile(null, "Friends");
-            List<String> friendList = Qubit.getFriendManger().getFriends();
-            PrintWriter writer = new PrintWriter(MAIN_FOLDER + "Friends.yml");
-            yaml.dump(friendList, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }

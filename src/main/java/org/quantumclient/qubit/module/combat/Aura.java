@@ -16,6 +16,7 @@ import org.quantumclient.qubit.settings.CheckSetting;
 import org.quantumclient.qubit.settings.ModeSetting;
 import org.quantumclient.qubit.settings.numbers.FloatSetting;
 import org.quantumclient.qubit.utils.annotations.SetCategory;
+import org.utilitymods.friendapi.FriendManager;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,7 +49,7 @@ public class Aura extends Module {
         if (tick >= 10) {
             entityList = Streams.stream(mc.world.getEntities())
                     .filter(e -> e instanceof LivingEntity)
-                    .filter(e -> (e instanceof PlayerEntity && players.getValue() && !e.equals(mc.player) && !Qubit.getFriendManger().isFriend((PlayerEntity) e))
+                    .filter(e -> (e instanceof PlayerEntity && players.getValue() && !e.equals(mc.player) && !FriendManager.INSTANCE.isFriend(((PlayerEntity) e).getGameProfile().getId()))
                             || (e instanceof Monster && mobs.getValue()))
                     .filter(e -> e.distanceTo(mc.player) <= range.getValue())
                     .sorted((a, b) -> Float.compare(a.distanceTo(mc.player), b.distanceTo(mc.player)))

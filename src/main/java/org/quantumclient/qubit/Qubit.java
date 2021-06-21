@@ -17,7 +17,6 @@ public class Qubit implements ModInitializer, Wrapper {
     protected static final EventBus eventBus = new EventBus();
 
     protected static ManagerManager managerManager = new ManagerManager();
-    protected static FriendManager friendManager = new FriendManager();
     protected static ModuleManager moduleManger = new ModuleManager();
     protected static ConfigManager configManager = new ConfigManager();
     protected static CommandManager commandManager = new CommandManager();
@@ -39,10 +38,6 @@ public class Qubit implements ModInitializer, Wrapper {
 
     public static CommandManager getCommandManger() {
         return commandManager;
-    }
-
-    public static FriendManager getFriendManger() {
-        return friendManager;
     }
 
     public static ManagerManager getMangerManger() {

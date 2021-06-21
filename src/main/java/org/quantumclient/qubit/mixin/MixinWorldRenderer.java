@@ -23,6 +23,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.utilitymods.friendapi.FriendManager;
 
 import java.awt.*;
 import java.io.IOException;
@@ -68,7 +69,7 @@ public class MixinWorldRenderer {
     public int getColor(Entity entity) {
         if (Qubit.getModuleManger().isModuleEnabled(ESP.class)) {
             if (entity instanceof PlayerEntity) {
-                if (Qubit.getFriendManger().isFriend((PlayerEntity) entity)) {
+                if (FriendManager.INSTANCE.isFriend(((PlayerEntity) entity).getGameProfile().getId())) {
                     return 5636095;
                 } else {
                     return 16733525;

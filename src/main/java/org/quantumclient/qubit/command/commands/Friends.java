@@ -17,9 +17,14 @@ import org.quantumclient.qubit.command.Command;
 import org.quantumclient.qubit.command.arguments.PlayerArgument;
 import org.quantumclient.qubit.utils.MsgUtils;
 import org.quantumclient.qubit.utils.Wrapper;
+import org.utilitymods.friendapi.BaseProfile;
+import org.utilitymods.friendapi.FriendManager;
+import org.utilitymods.friendapi.Profile;
 
 import java.util.Collection;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
@@ -36,10 +41,10 @@ public class Friends extends Command {
                 .then(argument("name", new PlayerArgument())
                 .executes(context -> {
                     PlayerEntity player = context.getArgument("name", PlayerEntity.class);
-                    if (Qubit.getFriendManger().isFriend(player)) {
+                    if (FriendManager.INSTANCE.isFriend(player.getUuid())) {
                         MsgUtils.sendMessage(player.getGameProfile().getName() + " is already a friend");
                     } else {
-                        Qubit.getFriendManger().addFriend(player);
+                        FriendManager.INSTANCE.addFriend(new Profile(player));
                         MsgUtils.sendMessage(player.getGameProfile().getName() + " is now a friend");
                     }
                     return SINGLE_SUCCESS;
@@ -48,14 +53,15 @@ public class Friends extends Command {
                 .then(argument("name", new FriendArgument())
                 .executes(context -> {
                     String player = context.getArgument("name", String.class);
-                    Qubit.getFriendManger().deleteFriend(player);
+                    UUID uuid = mc.getNetworkHandler().getPlayerListEntry(player).getProfile().getId();
+                    FriendManager.INSTANCE.removeFriend(uuid);
                     MsgUtils.sendMessage(player + " is no longer a friend");
                     return SINGLE_SUCCESS;
                 })))
                 .then(literal("list")
                 .executes(context -> {
-                    for (String name : Qubit.getFriendManger().getFriends()) {
-                        MsgUtils.sendMessage(name);
+                    for (BaseProfile profile : FriendManager.INSTANCE.getFriendMapCopy().values()) {
+                        MsgUtils.sendMessage(profile.name);
                     }
                     return SINGLE_SUCCESS;
                 }));
@@ -71,9 +77,9 @@ public class Friends extends Command {
         public String parse(StringReader reader) throws CommandSyntaxException {
             String argument = reader.readString();
             String name = null;
-            for (String s : Qubit.getFriendManger().getFriends()) {
-                if (s.equalsIgnoreCase(argument)) {
-                    name = s;
+            for (BaseProfile s : FriendManager.INSTANCE.getFriendMapCopy().values()) {
+                if (s.name.equalsIgnoreCase(argument)) {
+                    name = s.name;
                     break;
                 }
             }
@@ -83,12 +89,12 @@ public class Friends extends Command {
 
         @Override
         public Collection<String> getExamples() {
-            return Qubit.getFriendManger().getFriends();
+            return FriendManager.INSTANCE.getFriendMapCopy().values().stream().map(profile -> profile.name).collect(Collectors.toList());
         }
 
         @Override
         public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
-            return CommandSource.suggestMatching(Qubit.getFriendManger().getFriends(), builder);
+            return CommandSource.suggestMatching(getExamples(), builder);
         }
 
     }

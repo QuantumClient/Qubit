@@ -5,14 +5,14 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.quantumclient.commons.annoations.Info;
+import org.quantumclient.commons.annoations.Silent;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.client.ToggleMsg;
-import org.quantumclient.qubit.utils.annotations.AddSetting;
 import org.quantumclient.qubit.settings.Setting;
 import org.quantumclient.qubit.utils.MsgUtils;
 import org.quantumclient.qubit.utils.Wrapper;
+import org.quantumclient.qubit.utils.annotations.AddSetting;
 import org.quantumclient.qubit.utils.annotations.SetCategory;
-import org.quantumclient.commons.annoations.Silent;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

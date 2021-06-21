@@ -1,7 +1,6 @@
 package org.quantumclient.qubit.mixin;
 
 import net.minecraft.client.Keyboard;
-import org.quantumclient.energy.EventBus;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.event.EventKeyPress;
 import org.spongepowered.asm.mixin.Mixin;

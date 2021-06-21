@@ -5,14 +5,12 @@ import io.netty.util.concurrent.GenericFutureListener;
 import net.minecraft.network.ClientConnection;
 import net.minecraft.network.Packet;
 import net.minecraft.network.listener.PacketListener;
-import org.quantumclient.energy.EventBus;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.event.EventPacketReceive;
 import org.quantumclient.qubit.event.EventPacketSend;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientConnection.class)

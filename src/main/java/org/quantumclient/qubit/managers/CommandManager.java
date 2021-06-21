@@ -8,7 +8,6 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.command.CommandSource;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import org.lwjgl.glfw.GLFW;
-import org.quantumclient.energy.EventBus;
 import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.command.Command;

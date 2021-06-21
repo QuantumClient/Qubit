@@ -4,7 +4,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.texture.TextureManager;
 import net.minecraft.client.world.ClientWorld;
-import org.quantumclient.energy.EventBus;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.event.EventTick;
 import org.quantumclient.qubit.utils.FontUtils;

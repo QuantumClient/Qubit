@@ -3,8 +3,8 @@ package org.quantumclient.qubit.module.render;
 import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
-import org.quantumclient.qubit.utils.annotations.AddSetting;
 import org.quantumclient.qubit.settings.CheckSetting;
+import org.quantumclient.qubit.utils.annotations.AddSetting;
 import org.quantumclient.qubit.utils.annotations.SetCategory;
 
 @Info("ESP")

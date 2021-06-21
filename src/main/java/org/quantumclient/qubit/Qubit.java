@@ -4,7 +4,10 @@ import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.quantumclient.energy.EventBus;
-import org.quantumclient.qubit.managers.*;
+import org.quantumclient.qubit.managers.CommandManager;
+import org.quantumclient.qubit.managers.ConfigManager;
+import org.quantumclient.qubit.managers.ManagerManager;
+import org.quantumclient.qubit.managers.ModuleManager;
 import org.quantumclient.qubit.utils.Wrapper;
 
 public class Qubit implements ModInitializer, Wrapper {

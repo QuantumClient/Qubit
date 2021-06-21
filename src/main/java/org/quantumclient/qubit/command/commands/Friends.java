@@ -12,7 +12,6 @@ import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.LiteralText;
-import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.command.Command;
 import org.quantumclient.qubit.command.arguments.PlayerArgument;
 import org.quantumclient.qubit.utils.MsgUtils;

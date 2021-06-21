@@ -8,7 +8,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
 import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.energy.Subscribe;
-import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.event.EventTick;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;

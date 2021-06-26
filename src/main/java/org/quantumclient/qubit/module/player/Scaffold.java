@@ -41,14 +41,19 @@ public class Scaffold extends Module {
     @Subscribe
     public void onTick(EventTick event) {
         if (mc.player == null || mc.world == null) return;
+        BlockPos blockPos = getBlockPos();
+
+        if (!canPlace(blockPos)) return;
 
         if (switchItem.getValue() && !(mc.player.getMainHandStack().getItem() instanceof BlockItem)) for (int i = 0; i < 9; ++i) {
             if (mc.player.getInventory().getStack(i).getItem() instanceof BlockItem) {
+                mc.player.getInventory().selectedSlot = i;
                 mc.getNetworkHandler().sendPacket(new UpdateSelectedSlotC2SPacket(i));
                 break;
             }
         }
-        BlockPos blockPos = getBlockPos();
+
+        if (!(mc.player.getMainHandStack().getItem() instanceof BlockItem)) return;
 
         if (((ILivingEntity) mc.player).getJumping() && tower.getValue()) {
             mc.player.setVelocity(new Vec3d(0, 0.3, 0));

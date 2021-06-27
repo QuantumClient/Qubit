@@ -53,8 +53,14 @@ public class Fullbright extends Module {
         if (vision != null)
             mc.player.removeStatusEffectInternal(vision.getEffectType());
         if (mc.options != null) {
-            if (mc.options.gamma != 0D) mc.options.gamma = 0D;
+             new Thread(() -> {
+                 for (int i = 0; i < 301; i++) {
+                     setGamma(1D);
+                 }
 
+                 LOGGER.info(mc.options.gamma);
+
+             }).start();
         }
 
     }

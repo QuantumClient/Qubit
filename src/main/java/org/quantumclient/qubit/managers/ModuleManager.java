@@ -22,6 +22,7 @@ import org.quantumclient.qubit.module.render.ESP;
 import org.quantumclient.qubit.module.render.Fullbright;
 import org.quantumclient.qubit.module.render.NoRender;
 import org.quantumclient.qubit.module.world.Timer;
+import org.quantumclient.qubit.utils.Bind;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -99,12 +100,18 @@ public final class ModuleManager implements Manager {
 
     @Subscribe
     public void onKeyPress(EventKeyPress event) {
-        if (event.getAction() != GLFW.GLFW_PRESS) return;
         if (mc.currentScreen != null) return;
         for (Module module : modules) {
-            if (module.getBind() == event.getKey()) {
+            if (event.getAction() == GLFW.GLFW_PRESS) {
+                if (module.getBind().pressMatches(event.getKey(), event.getModifiers())) {
+                    module.toggle();
+                    event.cancel();
+                }
+            } else if (event.getAction() == GLFW.GLFW_RELEASE && module.getBind().getType().equals(Bind.Type.HOLD)) {
                 module.toggle();
+                event.cancel();
             }
+
         }
     }
 

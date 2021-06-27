@@ -14,7 +14,7 @@ import org.quantumclient.qubit.utils.annotations.SetCategory;
 public class Timer extends Module {
 
     @AddSetting
-    private final FloatSetting timerSetting = new FloatSetting("Timer", 1f, 0f, 20f, 0, 2);
+    private final FloatSetting timerSetting = new FloatSetting("Timer", 1f, 0f, 20f, 2);
 
     @Subscribe
     public void onRenderTick(EventRenderTick event) {

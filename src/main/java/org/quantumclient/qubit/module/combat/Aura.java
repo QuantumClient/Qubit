@@ -27,7 +27,7 @@ public class Aura extends Module {
     private final ModeSetting modeSetting = new ModeSetting("Mode", "Multi", new String[]{"Multi", "Single"});
     private final CheckSetting players = new CheckSetting("Players", true);
     private final CheckSetting mobs = new CheckSetting("Mobs", true);
-    private final FloatSetting range = new FloatSetting("Range", 5f, 1f, 10f, 0, 0);
+    private final FloatSetting range = new FloatSetting("Range", 5f, 1f, 10f, 0);
 
     private List<Entity> entityList;
     private int tick;

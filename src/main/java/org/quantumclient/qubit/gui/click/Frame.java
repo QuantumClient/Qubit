@@ -31,6 +31,7 @@ public class Frame implements Wrapper {
     private final int width = 90;
     private final int height = 14;
     private int key;
+    private int modifiers;
     private int clickedButton;
     private boolean dragging;
     private boolean open = true;
@@ -128,15 +129,16 @@ public class Frame implements Wrapper {
             }
             if (module.isOpen()) {
                 RenderUtils.drawRect(matrix, x, y + m * height, x + width, y + height + m * height, new Color(0, 0, 0, 150));
-                String string = (module.isBinding()) ? "..." : (module.getBind() == -1) ? "NONE" : InputUtil.fromKeyCode(module.getBind() , -1).getLocalizedText().getString();
+                String string = (module.isBinding()) ? "..." : module.getBind().toString();
                 FontUtils.drawText(matrix, StringUtils.capitalize("Bind: " + string), x + 2, y + 3 + height * m, false, Color.WHITE);
                 if (mouseX >= x && mouseY >= y + m * height && mouseX <= x + width && mouseY <= y + height + m * height) {
                     if (clickedButton == 0) module.setBinding(!module.isBinding());
                     if (module.isBinding() && key != -1) {
                         if (key == GLFW.GLFW_KEY_BACKSPACE)
-                            module.setBind(-1);
-                        else
-                            module.setBind(key);
+                            module.setBind(-1, 0);
+                        else {
+                            module.setBind(key, modifiers);
+                        }
                         module.setBinding(false);
                     }
                 }
@@ -157,6 +159,7 @@ public class Frame implements Wrapper {
         }
         clickedButton = -1;
         key = -1;
+        modifiers = -1;
     }
 
     void mouseClicked(double mouseX, double mouseY, int button) {
@@ -168,8 +171,9 @@ public class Frame implements Wrapper {
         this.dragging = false;
     }
 
-    void keyPressed(int key) {
+    void keyPressed(int key, int modifiers) {
         this.key = key;
+        this.modifiers = modifiers;
     }
 
     public void setOpen(boolean open) {

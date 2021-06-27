@@ -11,9 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Keyboard.class)
 public class MixinKeyboard {
 
-    @Inject(method = "onKey", at = @At("HEAD"))
+    @Inject(method = "onKey", at = @At("HEAD"), cancellable = true)
     public void onKeyPress(long window, int key, int scancode, int i, int j, CallbackInfo ci) {
-        Qubit.getEventBus().post(new EventKeyPress(key, i));
+        EventKeyPress event = new EventKeyPress(key, i, j);
+        Qubit.getEventBus().post(event);
+        if (event.isCancelled()) ci.cancel();
     }
 
 }

@@ -10,8 +10,10 @@ import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
 import org.quantumclient.qubit.settings.Setting;
 import org.quantumclient.qubit.settings.numbers.FloatSetting;
+import org.quantumclient.qubit.utils.Bind;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -96,7 +98,8 @@ public final class ConfigManager implements Manager {
             Map<String, Object> data = yaml.load(inputStream);
             if (data == null || data.get("Name") == null) continue;
             module.setToggled((boolean) data.get("Toggled"));
-            module.setBind((int) data.get("Bind"));
+            Bind o = (Bind) data.get("Bind");
+            module.setBind(o.getKey(), o.getModifier());
             if (module.hasSetting() && data.containsKey("Settings")) {
                 Map<String, Object> settingMap = (Map<String, Object>) data.get("Settings");
                 for (Setting setting : module.getSettingList()) {

@@ -1,11 +1,8 @@
 package org.quantumclient.qubit.gui.click;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 import org.quantumclient.qubit.Qubit;
@@ -42,7 +39,7 @@ public class ClickGuiScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
-       // super.renderBackground(matrix);
+        super.renderBackground(matrix);
         super.render(matrix, mouseX, mouseY, delta);
         for (Frame frame : frames) {
             frame.render(matrix, mouseX, mouseY);
@@ -80,7 +77,7 @@ public class ClickGuiScreen extends Screen {
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         for (Frame frame : frames) {
-            frame.keyPressed(keyCode);
+            frame.keyPressed(keyCode, modifiers);
         }
         return super.keyPressed(keyCode, scanCode, modifiers);
     }

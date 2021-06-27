@@ -6,7 +6,6 @@ public class DoubleSetting extends Setting<Double> {
 
     protected double min;
     protected double max;
-    protected double inc;
     protected int dec;
 
     /**
@@ -16,26 +15,21 @@ public class DoubleSetting extends Setting<Double> {
      * @param value what the default vaule is
      * @param min the minimum vaule the setting can be
      * @param max the maximum vaule the setting can be
-     * @param inc how much the settings can increase by
      * @param dec how many decimals the settings has
      */
-    public DoubleSetting(String name, String description, double value, double min, double max, double inc, int dec) {
+    public DoubleSetting(String name, String description, double value, double min, double max, int dec) {
         this.name = name;
         this.description = description;
         this.value = value;
         this.min = min;
         this.max = max;
-        this.inc = inc;
         this.dec = dec;
     }
 
-    public DoubleSetting(String name, double value, double min, double max, double inc, int dec) {
-        this(name, null, value, min, max, inc, dec);
+    public DoubleSetting(String name, double value, double min, double max, int dec) {
+        this(name, null, value, min, max, dec);
     }
 
-    public double getInc() {
-        return inc;
-    }
 
     public double getMax() {
         return max;

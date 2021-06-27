@@ -12,10 +12,10 @@ import org.quantumclient.qubit.utils.annotations.SetCategory;
 public class Velocity extends Module {
 
     @AddSetting
-    public final FloatSetting horizontal = new FloatSetting("Horizontal", 0f, 0f, 100f, 0, 0);
+    public final FloatSetting horizontal = new FloatSetting("Horizontal", 0f, 0f, 100f, 0);
 
     @AddSetting
-    public final FloatSetting vertical = new FloatSetting("Vertical", 0f, 0f, 100f, 0, 0);
+    public final FloatSetting vertical = new FloatSetting("Vertical", 0f, 0f, 100f, 0);
 /**
     @Subscribe
     public void onReceive(EventPacketReceive event) {

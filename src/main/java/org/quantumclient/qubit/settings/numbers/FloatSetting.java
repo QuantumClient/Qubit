@@ -6,7 +6,6 @@ public class FloatSetting extends Setting<Float> {
 
     protected float min;
     protected float max;
-    protected float inc;
     protected int dec;
 
     /**
@@ -16,25 +15,19 @@ public class FloatSetting extends Setting<Float> {
      * @param value what the default vaule is
      * @param min the minimum vaule the setting can be
      * @param max the maximum vaule the setting can be
-     * @param inc how much the settings can increase by
      * @param dec how many decimals the settings has
      */
-    public FloatSetting(String name, String description, float value, float min, float max, float inc, int dec) {
+    public FloatSetting(String name, String description, float value, float min, float max, int dec) {
         this.name = name;
         this.description = description;
         this.value = value;
         this.min = min;
         this.max = max;
-        this.inc = inc;
         this.dec = dec;
     }
 
-    public FloatSetting(String name, float vaule, float min, float max, float inc, int dec) {
-        this(name, null, vaule, min, max, inc, dec);
-    }
-
-    public float getInc() {
-        return inc;
+    public FloatSetting(String name, float vaule, float min, float max, int dec) {
+        this(name, null, vaule, min, max, dec);
     }
 
     public float getMax() {

@@ -12,7 +12,6 @@ import org.quantumclient.qubit.utils.Wrapper;
 
 public class Qubit implements ModInitializer, Wrapper {
 
-    public static final Logger LOGGER = LogManager.getLogger();
     public static final String NAME = "Qubit";
 
     protected static final String VERSION = "1.0.1";

@@ -18,7 +18,7 @@ import org.quantumclient.qubit.utils.annotations.SetCategory;
 public class Offhand extends Module {
 
     public ModeSetting modeSetting = new ModeSetting("Mode", "Totem", new String[] {"Totem", "Gapple", "Crystal"});
-    public FloatSetting health = new FloatSetting("Health", "What hp to force a totem", 8f, 0f, 36f, 0f, 1);
+    public FloatSetting health = new FloatSetting("Health", "What hp to force a totem", 8f, 0f, 36f, 1);
     public CheckSetting elytraTotem = new CheckSetting("ElytraTotem", "Force a totem when flying", true);
 
     public Offhand() {

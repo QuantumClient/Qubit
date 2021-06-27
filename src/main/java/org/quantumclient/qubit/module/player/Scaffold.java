@@ -27,7 +27,7 @@ public class Scaffold extends Module {
     private final CheckSetting tower = new CheckSetting("Tower", true);
     private final CheckSetting swing = new CheckSetting("Swing", "Swing hand when placing blocks", false);
     private final CheckSetting switchItem = new CheckSetting("Switch", "Switch to block item", false);
-    private final FloatSetting extend = new FloatSetting("Extend", "Places blocks in front of you", 1f, 1f, 8f, 0, 0);
+    private final FloatSetting extend = new FloatSetting("Extend", "Places blocks in front of you", 1f, 1f, 8f, 0);
 
     public Scaffold() {
         super();

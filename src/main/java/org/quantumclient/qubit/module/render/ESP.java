@@ -20,20 +20,4 @@ public class ESP extends Module {
     @AddSetting
     public final CheckSetting others = new CheckSetting("Others", true);
 
-/*
-    @Subscribe
-    public void onEntityRender(EventEntityRender event) {
-        if (event.getEntity() instanceof PlayerEntity && players.getValue() && event.getEntity() != mc.player ) {
-            event.getEntity().setGlowing(true);
-        }
-        if (event.getEntity() instanceof HostileEntity && mobs.getValue() && event.getEntity() != mc.player ) {
-            event.getEntity().setGlowing(true);
-        }
-        if (others.getValue()) {
-            event.getEntity().setGlowing(true);
-        }
-    }
-
- */
-
 }

@@ -4,11 +4,12 @@ import net.minecraft.util.Formatting;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.lwjgl.glfw.GLFW;
 import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.commons.annoations.Silent;
 import org.quantumclient.qubit.Qubit;
-import org.quantumclient.qubit.module.client.ToggleMsg;
 import org.quantumclient.qubit.settings.Setting;
+import org.quantumclient.qubit.utils.Bind;
 import org.quantumclient.qubit.utils.MsgUtils;
 import org.quantumclient.qubit.utils.Wrapper;
 import org.quantumclient.qubit.utils.annotations.AddSetting;
@@ -30,10 +31,12 @@ public class Module implements Wrapper {
     @NotNull
     private final Category category;
 
+    @NotNull
+    private final Bind bind;
+
     protected boolean open = false;
 
     private boolean isBinding = false;
-    private int bind;
     private boolean toggled;
     private List<Setting> settingList;
 
@@ -45,7 +48,8 @@ public class Module implements Wrapper {
         this.name = info.value();
         this.description = (info.description() == "") ? null : info.description();
         this.category = getClass().getAnnotation(SetCategory.class).value();
-        this.bind = info.bind();
+        this.bind = new Bind(info.bind());
+
     }
 
     /**
@@ -121,10 +125,6 @@ public class Module implements Wrapper {
         }
     }
 
-    protected void setSettingList(List<Setting> settingList) {
-        this.settingList = settingList;
-    }
-
     public List<Setting> getSettingList() {
         return settingList;
     }
@@ -137,7 +137,7 @@ public class Module implements Wrapper {
         return settingList != null && !settingList.isEmpty();
     }
 
-    public int getBind() {
+    public Bind getBind() {
         return bind;
     }
 
@@ -157,8 +157,9 @@ public class Module implements Wrapper {
         isBinding = binding;
     }
 
-    public void setBind(int bind) {
-        this.bind = bind;
+    public void setBind(int key, int modifiers) {
+        this.bind.setKey(key);
+        this.bind.setModifier(modifiers);
     }
 
     public @Nullable String getDescription() {

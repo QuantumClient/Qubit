@@ -6,10 +6,12 @@ public class EventKeyPress extends Event {
 
     private final int key;
     private final int action;
+    private final int modifiers;
 
-    public EventKeyPress(int key, int action) {
+    public EventKeyPress(int key, int action, int modifiers) {
         this.key = key;
         this.action = action;
+        this.modifiers = modifiers;
     }
 
     public int getKey() {
@@ -18,5 +20,9 @@ public class EventKeyPress extends Event {
 
     public int getAction() {
         return action;
+    }
+
+    public int getModifiers() {
+        return modifiers;
     }
 }

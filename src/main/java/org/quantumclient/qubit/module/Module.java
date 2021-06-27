@@ -65,7 +65,7 @@ public class Module implements Wrapper {
     }
 
     protected void onEnable() {
-        if (getClass().getAnnotation(Silent.class) == null && Qubit.getModuleManger().isModuleEnabled(ToggleMsg.class)) {
+        if (getClass().getAnnotation(Silent.class) == null) {
             MsgUtils.sendMessage(name + Formatting.GREEN + " enabled");
         }
         toggled = true;

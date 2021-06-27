@@ -24,8 +24,8 @@ dependencies {
     modImplementation "org.quantumclient:Energy:${project.energy_version}"
     include "org.quantumclient:Energy:${project.energy_version}"
 
-    modImplementation 'org.quantumclient:Renderer:2.0'
-    include 'org.quantumclient:Renderer:2.0'
+    modImplementation group: 'org.quantumclient', name: 'Renderer', version: '2.1', changing: true
+    include group: 'org.quantumclient', name: 'Renderer', version: '2.1', changing: true
 
     implementation 'org.yaml:snakeyaml:1.28'
     include 'org.yaml:snakeyaml:1.28'

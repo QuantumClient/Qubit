@@ -22,7 +22,7 @@ public class ModeSetting extends Setting<String> {
         this(name, null, vaule, modes);
     }
 
-    public String  nextMode() {
+    public String nextMode() {
         int i = 0;
         String returnString;
         for (String string : modes) {

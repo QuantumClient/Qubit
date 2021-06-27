@@ -6,18 +6,15 @@ import org.quantumclient.qubit.event.EventRenderTick;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
 import org.quantumclient.qubit.settings.numbers.FloatSetting;
+import org.quantumclient.qubit.utils.annotations.AddSetting;
 import org.quantumclient.qubit.utils.annotations.SetCategory;
 
 @Info("Timer")
 @SetCategory(Category.WORLD)
 public class Timer extends Module {
 
+    @AddSetting
     private final FloatSetting timerSetting = new FloatSetting("Timer", 1f, 0f, 20f, 0, 2);
-
-    public Timer() {
-        super();
-        addSetting(timerSetting);
-    }
 
     @Subscribe
     public void onRenderTick(EventRenderTick event) {

@@ -5,8 +5,6 @@ import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.event.EventTick;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
-import org.quantumclient.qubit.settings.CheckSetting;
-import org.quantumclient.qubit.settings.numbers.FloatSetting;
 import org.quantumclient.qubit.utils.annotations.SetCategory;
 
 @SetCategory(Category.MOVEMENT)

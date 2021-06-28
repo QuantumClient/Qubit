@@ -4,7 +4,6 @@ import net.minecraft.util.Formatting;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.lwjgl.glfw.GLFW;
 import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.commons.annoations.Silent;
 import org.quantumclient.qubit.Qubit;
@@ -125,6 +124,24 @@ public class Module implements Wrapper {
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+
+        Module module = (Module) obj;
+
+        if (!name.equals(module.name)) {
+            return false;
+        }
+
+        return true;
+    }
+
     public List<Setting> getSettingList() {
         return settingList;
     }
@@ -137,7 +154,7 @@ public class Module implements Wrapper {
         return settingList != null && !settingList.isEmpty();
     }
 
-    public Bind getBind() {
+    public @NotNull Bind getBind() {
         return bind;
     }
 

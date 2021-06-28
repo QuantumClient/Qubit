@@ -1,6 +1,5 @@
 package org.quantumclient.qubit.module.client;
 
-import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.commons.annoations.Silent;

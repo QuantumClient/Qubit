@@ -57,12 +57,8 @@ public class Fullbright extends Module {
                  for (int i = 0; i < 301; i++) {
                      setGamma(0D);
                  }
-
-                 LOGGER.info(mc.options.gamma);
-
              }).start();
         }
-
     }
 
 }

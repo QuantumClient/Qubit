@@ -1,8 +1,6 @@
 package org.quantumclient.qubit;
 
 import net.fabricmc.api.ModInitializer;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.quantumclient.energy.EventBus;
 import org.quantumclient.qubit.managers.CommandManager;
 import org.quantumclient.qubit.managers.ConfigManager;

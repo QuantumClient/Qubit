@@ -17,10 +17,7 @@ import org.quantumclient.qubit.module.movement.Sprint;
 import org.quantumclient.qubit.module.player.NoFall;
 import org.quantumclient.qubit.module.player.Scaffold;
 import org.quantumclient.qubit.module.player.Velocity;
-import org.quantumclient.qubit.module.render.Australia;
-import org.quantumclient.qubit.module.render.ESP;
-import org.quantumclient.qubit.module.render.Fullbright;
-import org.quantumclient.qubit.module.render.NoRender;
+import org.quantumclient.qubit.module.render.*;
 import org.quantumclient.qubit.module.world.Timer;
 import org.quantumclient.qubit.utils.Bind;
 
@@ -58,6 +55,7 @@ public final class ModuleManager implements Manager {
         add(new Australia());
         add(new ESP());
         add(new ElytraFlight());
+        add(new Zoom());
     }
 
     private void add(Module module) {
@@ -107,7 +105,7 @@ public final class ModuleManager implements Manager {
                     module.toggle();
                     event.cancel();
                 }
-            } else if (event.getAction() == GLFW.GLFW_RELEASE && module.getBind().getType().equals(Bind.Type.HOLD)) {
+            } else if (event.getAction() == GLFW.GLFW_RELEASE && module.getBind().getType().equals(Bind.Type.HOLD) && module.getBind().pressMatches(event.getKey(), event.getModifiers())) {
                 module.toggle();
                 event.cancel();
             }

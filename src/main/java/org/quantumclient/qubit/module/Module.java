@@ -32,7 +32,7 @@ public class Module implements Wrapper {
     private final Category category;
 
     @NotNull
-    private final Bind bind;
+    protected Bind bind;
 
     protected boolean open = false;
 

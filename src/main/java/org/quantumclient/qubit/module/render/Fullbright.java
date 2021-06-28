@@ -55,7 +55,7 @@ public class Fullbright extends Module {
         if (mc.options != null) {
              new Thread(() -> {
                  for (int i = 0; i < 301; i++) {
-                     setGamma(1D);
+                     setGamma(0D);
                  }
 
                  LOGGER.info(mc.options.gamma);

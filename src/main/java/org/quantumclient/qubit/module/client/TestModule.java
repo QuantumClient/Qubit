@@ -8,6 +8,7 @@ import org.quantumclient.qubit.module.Module;
 import org.quantumclient.qubit.settings.CheckSetting;
 import org.quantumclient.qubit.settings.ModeSetting;
 import org.quantumclient.qubit.settings.numbers.FloatSetting;
+import org.quantumclient.qubit.utils.Bind;
 import org.quantumclient.qubit.utils.annotations.SetCategory;
 
 
@@ -19,12 +20,12 @@ public class TestModule extends Module {
     private final FloatSetting numbertest = new FloatSetting("numbertesta", 4.4f, 4f, 10f, 1);
     private final ModeSetting modTest = new ModeSetting("ModeTest", "Packet", new String[] {"Packet", "Normal"});
 
-
     public TestModule() {
         super();
         addSetting(booleanTest);
         addSetting(numbertest);
         addSetting(modTest);
+        this.bind = new Bind(0, 0, Bind.Type.HOLD);
     }
 
     @Subscribe

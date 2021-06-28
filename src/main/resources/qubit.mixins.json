@@ -15,7 +15,8 @@
     "ILivingEntity",
     "MixinEntityRenderer",
     "MixinExplosionS2CPacket",
-    "MixinEntityVelocityUpdateS2CPacket"
+    "MixinEntityVelocityUpdateS2CPacket",
+    "MixinGameRenderer"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -18,7 +18,7 @@ public class ClickGui extends Module {
         super.onEnable();
         if (mc.player == null) return;
         //mc.gameRenderer.loadShader(new Identifier("qubit", "shaders/post/gui_blur.json"));
-        mc.openScreen(new ClickGuiScreen());
+        mc.setScreen(new ClickGuiScreen());
 
         toggle();
     }

@@ -49,13 +49,14 @@ public class MixinWorldRenderer {
         if (event.isCancelled()) ci.cancel();
     }
 
-//    I was trying with a shader esp.... (no work) :(
+    //    I was trying with a shader esp.... (no work) :(
     @Inject(method = "loadEntityOutlineShader", at = @At("HEAD"), cancellable = true)
     public void onLoadEntityShader(CallbackInfo ci) {
         ci.cancel();
         Identifier identifier = new Identifier("qubit", "shaders/post/custom_entity_outline.json");
         try {
-            entityOutlineShader = new ShaderEffect(this.client.getTextureManager(), this.client.getResourceManager(), this.client.getFramebuffer(), identifier);
+            entityOutlineShader =
+                    new ShaderEffect(this.client.getTextureManager(), this.client.getResourceManager(), this.client.getFramebuffer(), identifier);
             entityOutlineShader.setupDimensions(this.client.getWindow().getFramebufferWidth(), this.client.getWindow().getFramebufferHeight());
             entityOutlinesFramebuffer = this.entityOutlineShader.getSecondaryTarget("final");
 
@@ -84,7 +85,7 @@ public class MixinWorldRenderer {
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;hasOutline(Lnet/minecraft/entity/Entity;)Z"))
     public boolean hasOutline(MinecraftClient minecraftClient, Entity entity) {
         if (Qubit.getModuleManger().isModuleEnabled(ESP.class)) {
-            ESP esp = (ESP) Qubit.getModuleManger().getModule(ESP.class);
+            ESP esp = Qubit.getModuleManger().getModule(ESP.class);
             if (entity instanceof PlayerEntity && (esp.players.getValue() && entity != minecraftClient.player)) {
                 return true;
             }
@@ -105,7 +106,6 @@ public class MixinWorldRenderer {
         Qubit.getEventBus().post(event);
         if (event.isCancelled()) ci.cancel();
     }
-
 
 
 }

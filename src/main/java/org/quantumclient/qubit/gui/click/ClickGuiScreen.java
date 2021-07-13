@@ -86,9 +86,9 @@ public class ClickGuiScreen extends Screen {
     public void onClose() {
         super.onClose();
         Qubit.getConfigManger().saveGui(this);
-        if (client.gameRenderer.getShader() != null) {
-            client.gameRenderer.getShader().close();
-        }
+        //if (client.gameRenderer.getShader() != null) {
+        //    client.gameRenderer.getShader().close();
+        //}
     }
 
     static void setDescription(String s) {

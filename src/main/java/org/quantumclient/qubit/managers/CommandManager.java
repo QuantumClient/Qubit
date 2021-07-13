@@ -67,7 +67,7 @@ public final class CommandManager implements Wrapper, Manager {
         if (event.getAction() != GLFW.GLFW_PRESS) return;
         if (mc.currentScreen != null) return;
         if (prefix.equals(InputUtil.fromKeyCode(event.getKey(), -1).getLocalizedText().getString())) {
-            mc.openScreen(new ChatScreen(""));
+            mc.setScreen(new ChatScreen(""));
         }
     }
 

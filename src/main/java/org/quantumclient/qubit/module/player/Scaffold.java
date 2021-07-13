@@ -20,6 +20,9 @@ import org.quantumclient.qubit.settings.CheckSetting;
 import org.quantumclient.qubit.settings.numbers.FloatSetting;
 import org.quantumclient.qubit.utils.annotations.SetCategory;
 
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.IntStream;
+
 @SetCategory(Category.PLAYER)
 @Info(value = "Scaffold", description = "Places blocks under you")
 public class Scaffold extends Module {
@@ -41,25 +44,27 @@ public class Scaffold extends Module {
     @Subscribe
     public void onTick(EventTick event) {
         if (mc.player == null || mc.world == null) return;
-        BlockPos blockPos = getBlockPos();
+        var blockPos = getBlockPos();
 
         if (!canPlace(blockPos)) return;
 
-        if (switchItem.getValue() && !(mc.player.getMainHandStack().getItem() instanceof BlockItem)) for (int i = 0; i < 9; ++i) {
+        boolean yes = (mc.player.getMainHandStack().getItem() instanceof BlockItem);
+
+        if (switchItem.getValue() && !(yes)) for (int i = 0; i < 9; ++i) {
             if (mc.player.getInventory().getStack(i).getItem() instanceof BlockItem) {
-                mc.player.getInventory().selectedSlot = i;
                 mc.getNetworkHandler().sendPacket(new UpdateSelectedSlotC2SPacket(i));
+                yes = true;
                 break;
             }
         }
 
-        if (!(mc.player.getMainHandStack().getItem() instanceof BlockItem)) return;
+        if (!yes) return;
 
         if (((ILivingEntity) mc.player).getJumping() && tower.getValue()) {
-            mc.player.setVelocity(new Vec3d(0, 0.3, 0));
+            mc.player.setVelocity(new Vec3d(0, 0.4, 0));
         }
 
-        BlockHitResult blockHitResult = new BlockHitResult(new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ()), Direction.DOWN, blockPos, false);
+        var blockHitResult = new BlockHitResult(new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ()), Direction.DOWN, blockPos, false);
         if (blockHitResult.getType() != HitResult.Type.MISS) {
             mc.getNetworkHandler().sendPacket(new PlayerInteractBlockC2SPacket(Hand.MAIN_HAND, blockHitResult));
             if (swing.getValue()) {
@@ -85,7 +90,7 @@ public class Scaffold extends Module {
             double x;
             double z;
             int i = 1;
-            BlockPos tempBlock = new BlockPos(mc.player.getX(), mc.player.getY() - 1, mc.player.getZ());
+            var tempBlock = new BlockPos(mc.player.getX(), mc.player.getY() - 1, mc.player.getZ());
             while (!canPlace(tempBlock)) {
                 if (i > extend.getValue()) {
                     break;

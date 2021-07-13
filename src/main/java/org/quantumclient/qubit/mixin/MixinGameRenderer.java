@@ -14,7 +14,7 @@ public class MixinGameRenderer {
     @Inject(method = "getFov", at = @At("RETURN"), cancellable = true)
     public void getZoomLevel(CallbackInfoReturnable<Double> ci) {
         if (Qubit.getModuleManger().isModuleEnabled(Zoom.class)) {
-            ci.setReturnValue(ci.getReturnValue() / ((Zoom) Qubit.getModuleManger().getModule(Zoom.class)).zoomSetting.getValue());
+            ci.setReturnValue(ci.getReturnValue() / Qubit.getModuleManger().getModule(Zoom.class).zoomSetting.getValue());
         }
     }
 

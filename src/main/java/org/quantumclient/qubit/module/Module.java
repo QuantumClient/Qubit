@@ -135,11 +135,7 @@ public class Module implements Wrapper {
 
         Module module = (Module) obj;
 
-        if (!name.equals(module.name)) {
-            return false;
-        }
-
-        return true;
+        return name.equals(module.name);
     }
 
     public List<Setting> getSettingList() {

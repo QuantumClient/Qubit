@@ -2,7 +2,7 @@ package org.quantumclient.qubit.utils;
 
 import net.minecraft.client.util.InputUtil;
 
-public class Bind {
+public final class Bind {
 
     private Type type;
 

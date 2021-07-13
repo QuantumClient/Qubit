@@ -63,25 +63,14 @@ public final class ModuleManager implements Manager {
         modules.add(module);
     }
 
-    public Module getModule(Class<? extends Module> module) {
-        return modules.stream()
+    public <M extends Module> M getModule(Class<M> module) {
+        return (M) modules.stream()
                 .filter(mod -> mod.getClass().equals(module))
                 .findFirst()
                 .orElse(null);
     }
 
-    public Module getModule(String name) {
-        return modules.stream()
-                .filter(mod -> mod.getName().equalsIgnoreCase(name))
-                .findFirst()
-                .orElse(null);
-    }
-
     public boolean isModuleEnabled(Class<? extends Module> module) {
-        return getModule(module).isToggled();
-    }
-
-    public boolean isModuleEnabled(String module) {
         return getModule(module).isToggled();
     }
 

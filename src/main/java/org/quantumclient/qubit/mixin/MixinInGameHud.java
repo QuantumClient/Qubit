@@ -31,7 +31,7 @@ public class MixinInGameHud {
 
     @Inject(method = "renderOverlay", at = @At("HEAD"), cancellable = true)
     public void onRenderOverlay(Identifier texture, float opacity, CallbackInfo ci) {
-        if (Qubit.getModuleManger().isModuleEnabled(NoRender.class) && ((NoRender) (Qubit.getModuleManger().getModule(NoRender.class))).pumpkin.getValue() && texture.getPath().contains("pumpkinblur")) {
+        if (Qubit.getModuleManger().isModuleEnabled(NoRender.class) && Qubit.getModuleManger().getModule(NoRender.class).pumpkin.getValue() && texture.getPath().contains("pumpkinblur")) {
             ci.cancel();
         }
     }

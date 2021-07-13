@@ -13,8 +13,9 @@ public class Australia extends Module {
     @Override
     public void onEnable() {
         super.onEnable();
-        if (mc.gameRenderer != null)
+        if (mc.gameRenderer != null) {
             mc.gameRenderer.loadShader(new Identifier("shaders/post/flip.json"));
+        }
     }
 
     @Override

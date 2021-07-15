@@ -16,7 +16,9 @@
     "MixinEntityRenderer",
     "MixinExplosionS2CPacket",
     "MixinEntityVelocityUpdateS2CPacket",
-    "MixinGameRenderer"
+    "MixinGameRenderer",
+    "MixinBlock",
+    "MixinAbstractBlockState"
   ],
   "injectors": {
     "defaultRequire": 1

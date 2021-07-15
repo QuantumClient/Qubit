@@ -1,8 +1,10 @@
 package org.quantumclient.qubit.module.client;
 
+import net.minecraft.block.Blocks;
 import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.energy.Subscribe;
 import org.quantumclient.qubit.event.EventHudRender;
+import org.quantumclient.qubit.event.EventBlockRender;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
 import org.quantumclient.qubit.settings.CheckSetting;
@@ -36,5 +38,6 @@ public class TestModule extends Module {
 
         //Qubit.getFontManger().drawString(event.getMatrix(), "Hi this is a test", 100, 100, true);
     }
+
 
 }

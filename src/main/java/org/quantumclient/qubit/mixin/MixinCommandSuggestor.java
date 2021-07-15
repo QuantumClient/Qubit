@@ -27,10 +27,10 @@ public abstract class MixinCommandSuggestor {
 
     @Shadow
     @Final
-    private TextFieldWidget textField;
+    TextFieldWidget textField;
 
     @Shadow
-    private boolean completingSuggestions;
+    boolean completingSuggestions;
 
     @Shadow
     private CompletableFuture<Suggestions> pendingSuggestions;

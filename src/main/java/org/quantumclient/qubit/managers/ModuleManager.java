@@ -19,6 +19,7 @@ import org.quantumclient.qubit.module.player.Scaffold;
 import org.quantumclient.qubit.module.player.Velocity;
 import org.quantumclient.qubit.module.render.*;
 import org.quantumclient.qubit.module.world.Timer;
+import org.quantumclient.qubit.module.world.Xray;
 import org.quantumclient.qubit.utils.Bind;
 
 import java.util.ArrayList;
@@ -56,6 +57,7 @@ public final class ModuleManager implements Manager {
         add(new ESP());
         add(new ElytraFlight());
         add(new Zoom());
+        add(new Xray());
     }
 
     private void add(Module module) {

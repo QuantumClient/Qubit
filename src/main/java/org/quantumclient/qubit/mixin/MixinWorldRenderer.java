@@ -19,6 +19,7 @@ import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.event.EventAddParticle;
 import org.quantumclient.qubit.event.EventWorldRender;
 import org.quantumclient.qubit.module.render.ESP;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -32,14 +33,15 @@ import java.io.IOException;
 @Mixin(WorldRenderer.class)
 public class MixinWorldRenderer {
 
+    @Final
     @Shadow
-    MinecraftClient client;
+    private MinecraftClient client;
 
     @Shadow
-    ShaderEffect entityOutlineShader;
+    private ShaderEffect entityOutlineShader;
 
     @Shadow
-    Framebuffer entityOutlinesFramebuffer;
+    private Framebuffer entityOutlinesFramebuffer;
 
 
     @Inject(method = "addParticle(Lnet/minecraft/particle/ParticleEffect;ZDDDDDD)V", at = @At("HEAD"), cancellable = true)
@@ -49,7 +51,6 @@ public class MixinWorldRenderer {
         if (event.isCancelled()) ci.cancel();
     }
 
-    //    I was trying with a shader esp.... (no work) :(
     @Inject(method = "loadEntityOutlineShader", at = @At("HEAD"), cancellable = true)
     public void onLoadEntityShader(CallbackInfo ci) {
         ci.cancel();

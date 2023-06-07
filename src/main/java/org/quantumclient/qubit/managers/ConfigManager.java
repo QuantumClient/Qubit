@@ -187,10 +187,10 @@ public final class ConfigManager implements Manager {
 
     public void loadClient() {
         try {
-            if (!Files.exists(Paths.get(MAIN_FOLDER + "Prefix.yml"))) return;
+            if (!Files.exists(Paths.get(MAIN_FOLDER + "Client.yml"))) return;
             InputStream inputStream = Files.newInputStream(Paths.get(MAIN_FOLDER + "Client.yml"));
             Map<String, Object> data = yaml.load(inputStream);
-            if (data.containsKey("Prefix")) CommandManager.setPrefix((String) data.get("Prefix"));
+            if (data.containsKey("Prefix")) CommandManager.setPrefix(String.valueOf(data.get("Prefix")));
 
             inputStream.close();
         } catch (IOException e) {
@@ -205,7 +205,6 @@ public final class ConfigManager implements Manager {
             dataMap.put("Prefix", CommandManager.getPrefix());
             PrintWriter writer = new PrintWriter(MAIN_FOLDER + "Client.yml");
             yaml.dump(dataMap, writer);
-            dataMap.clear();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -13,7 +13,9 @@ import org.quantumclient.qubit.module.client.ToggleMsg;
 import org.quantumclient.qubit.module.combat.Aura;
 import org.quantumclient.qubit.module.combat.Offhand;
 import org.quantumclient.qubit.module.movement.ElytraFlight;
+import org.quantumclient.qubit.module.movement.MiloStep;
 import org.quantumclient.qubit.module.movement.Sprint;
+import org.quantumclient.qubit.module.player.AntiNarrator;
 import org.quantumclient.qubit.module.player.NoFall;
 import org.quantumclient.qubit.module.player.Scaffold;
 import org.quantumclient.qubit.module.player.Velocity;
@@ -58,6 +60,8 @@ public final class ModuleManager implements Manager {
         add(new ElytraFlight());
         add(new Zoom());
         add(new Xray());
+        add(new MiloStep());
+        add(new AntiNarrator());
     }
 
     private void add(Module module) {

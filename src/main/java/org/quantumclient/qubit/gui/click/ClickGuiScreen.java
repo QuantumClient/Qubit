@@ -1,22 +1,30 @@
 package org.quantumclient.qubit.gui.click;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
+import org.lwjgl.opengl.GL20;
 import org.quantumclient.qubit.Qubit;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.utils.FontUtils;
 import org.quantumclient.qubit.utils.RenderUtils;
+import org.quantumclient.renderer.shader.ShaderProgram;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.lwjgl.opengl.GL11.glScissor;
+import static org.lwjgl.opengl.GL20.glGetUniformLocation;
+import static org.lwjgl.opengl.GL20.glUniform4f;
+
 public class ClickGuiScreen extends Screen {
 
     private final List<Frame> frames = new ArrayList<>();
+    ShaderProgram shaderProgram;
 
     @Nullable
     private static String description;
@@ -28,6 +36,7 @@ public class ClickGuiScreen extends Screen {
     @Override
     public void init() {
         super.init();
+        shaderProgram = new ShaderProgram("qubit/shaders/blur.vsh", "qubit/shaders/blur.fsh");
         int i = 0;
         for (Category category : Category.values()) {
             frames.add(new Frame(category, 20 + (i * 110), 30));
@@ -39,7 +48,18 @@ public class ClickGuiScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrix, int mouseX, int mouseY, float delta) {
+
         super.renderBackground(matrix);
+        shaderProgram.bind();
+        glUniform4f(glGetUniformLocation(shaderProgram.getProgramID(), "uColor"),
+                200/255f-0.5f,
+                10/255f-0.5f,
+                123/255f-0.5f,
+                255/255f);
+        GL20.glUniform1f(GL20.glGetUniformLocation(shaderProgram.getProgramID(), "uBlurSize"), 52);
+        GL20.glUniform2f(GL20.glGetUniformLocation(shaderProgram.getProgramID(), "uTexelSize"), 1.0f, 1.0f);
+        GL20.glUniform4f(GL20.glGetUniformLocation(shaderProgram.getProgramID(), "uCornerRadii"), width, 300, 1000, 1000);
+
         super.render(matrix, mouseX, mouseY, delta);
         for (Frame frame : frames) {
             frame.render(matrix, mouseX, mouseY);

@@ -2,6 +2,7 @@ package org.quantumclient.qubit.module.world;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.OreBlock;
 import org.quantumclient.commons.annoations.Info;
 import org.quantumclient.qubit.module.Category;
 import org.quantumclient.qubit.module.Module;
@@ -44,7 +45,7 @@ public class Xray extends Module {
     }
 
     public boolean isinList(Block block) {
-        return  xrayList.contains(block);
+        return  block instanceof OreBlock;
     }
 
 }

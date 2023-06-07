@@ -10,15 +10,19 @@ import java.awt.*;
 
 public final class FontUtils implements Wrapper {
 
+    private FontUtils () {
+
+    }
+
     private static FontRenderer tahoma;
     private static final TextRenderer tr = mc.textRenderer;
     private static boolean custom;
 
     public static void drawText(MatrixStack matrix, String string, float x, float y, boolean shawdow, Color color) {
-        if (tahoma == null) tahoma = new FontRenderer(new GlyphPage(new Font("Tahoma", Font.PLAIN, 1000), 1000));
+        if (tahoma == null) tahoma = new FontRenderer(new Font("Tahoma", Font.PLAIN, 36));
         custom = Qubit.getModuleManger().isModuleEnabled(org.quantumclient.qubit.module.client.Font.class);
         if (custom) {
-            tahoma.drawString(matrix, string, x, y - 3, shawdow, color);
+            tahoma.drawString(matrix, string, x, y - 2, shawdow, color);
         } else {
             if (shawdow) {
                 tr.drawWithShadow(matrix, string, x, y, color.getRGB());
@@ -30,7 +34,7 @@ public final class FontUtils implements Wrapper {
 
     public static void init() {
         if (tahoma == null) {
-            tahoma = new FontRenderer(new GlyphPage(new Font("Tahoma", Font.PLAIN, 128), 128));
+            tahoma = new FontRenderer(new Font("Tahoma", Font.PLAIN, 36));
         }
 
     }
@@ -38,7 +42,7 @@ public final class FontUtils implements Wrapper {
     public static float getWidth(String s) {
         custom = Qubit.getModuleManger().isModuleEnabled(org.quantumclient.qubit.module.client.Font.class);
         if (custom) {
-            return tahoma.getWidth(s);
+            return tr.getWidth(s);
         } else {
             return tr.getWidth(s);
         }

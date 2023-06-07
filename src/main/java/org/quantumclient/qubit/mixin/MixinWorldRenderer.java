@@ -24,6 +24,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.utilitymods.friendapi.FriendManager;
@@ -106,6 +107,11 @@ public class MixinWorldRenderer {
         EventWorldRender event = new EventWorldRender(matrices, tickDelta);
         Qubit.getEventBus().post(event);
         if (event.isCancelled()) ci.cancel();
+    }
+
+    @ModifyArg(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/WorldRenderer;setupTerrain(Lnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/Frustum;ZIZ)V"), index = 4)
+    public boolean isSpectator(boolean spectator) {
+        return spectator;
     }
 
 

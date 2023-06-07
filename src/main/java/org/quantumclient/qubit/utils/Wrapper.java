@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 public interface Wrapper {
 
     Logger LOGGER = LogManager.getLogger();
+
     MinecraftClient mc = MinecraftClient.getInstance();
 
 }

@@ -26,7 +26,7 @@ public abstract class MixinAbstractBlockState {
     @Inject(method = "getLuminance", at = @At("HEAD"), cancellable = true)
     public void onGetLuminance(CallbackInfoReturnable<Integer> cir) {
         if (Qubit.getModuleManger().isModuleEnabled(Xray.class)) {
-            cir.setReturnValue(100);
+            cir.setReturnValue(15);
         }
     }
 }

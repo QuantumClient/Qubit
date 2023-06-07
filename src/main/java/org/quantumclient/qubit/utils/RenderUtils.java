@@ -25,7 +25,6 @@ public class RenderUtils {
         bufferbuilder.vertex(matrix, w, h, 0).color(color.getRed()/255.0f, color.getGreen()/255.0f, color.getBlue()/255.0f, color.getAlpha()/255.0f).next();
         bufferbuilder.vertex(matrix, w, y, 0).color(color.getRed()/255.0f, color.getGreen()/255.0f, color.getBlue()/255.0f, color.getAlpha()/255.0f).next();
         bufferbuilder.vertex(matrix, x, y, 0).color(color.getRed()/255.0f, color.getGreen()/255.0f, color.getBlue()/255.0f, color.getAlpha()/255.0f).next();
-        //tessellator.draw();
         bufferbuilder.end();
         BufferRenderer.draw(bufferbuilder);
         matrixStack.pop();
@@ -56,7 +55,6 @@ public class RenderUtils {
         RenderSystem.blendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ZERO);
         RenderSystem.setShader(GameRenderer::getPositionColorShader);
         RenderSystem.lineWidth(2);
-        //GlStateManager.shadeModel(GL11.GL_SMOOTH);
     }
 
     public static void end() {

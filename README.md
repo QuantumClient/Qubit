@@ -3,6 +3,9 @@
 
 Qubit is a fabric utility mod for anarchy servers.
 
+## Current Status
+No work has been done in this in years. Feel free to use it with proper credit.
+
 ## Releases and Support
 At this time there are no releases as we are just starting out, but you should join out [discord](https://discord.gg/h8EQyuYTK7) server to you can stay informed.
 
